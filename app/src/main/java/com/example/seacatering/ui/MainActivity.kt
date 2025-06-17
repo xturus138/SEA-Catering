@@ -25,7 +25,7 @@ class MainActivity : AppCompatActivity() {
         setContentView(binding.root)
         hideSystemBars()
         viewPager = binding.viewPager2
-        dotsIndicator = findViewById(binding.)
+        dotsIndicator = binding.dotsIndicator
         viewPager.adapter = LandingPagerAdapter(this)
     }
 }
