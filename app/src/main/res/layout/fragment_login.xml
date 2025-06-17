@@ -1,0 +1,127 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    android:padding="24dp"
+    tools:context=".ui.auth.LoginFragment">
+
+    <ImageView
+        android:layout_width="100dp"
+        android:layout_height="97dp"
+        android:layout_marginTop="50dp"
+        android:background="@color/green"
+        android:layout_gravity="center"/>
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Welcome Back"
+        android:layout_marginTop="20dp"
+        android:textSize="34dp"
+        android:textStyle="bold"
+        android:textColor="@color/blueDark"
+        android:textAlignment="center"/>
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Sign in to continue to your account"
+        android:textAlignment="center"
+        android:textStyle="normal"
+        android:textSize="16dp"
+        android:layout_marginTop="10dp"
+        android:textColor="@color/blueDark"/>
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Email Address"
+        android:layout_marginBottom="8dp"
+        android:layout_marginStart="2dp"
+        android:textSize="14dp"
+        android:layout_marginTop="32dp"
+        android:textColor="@color/blueDark"/>
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="example@gmail.com"
+        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/inputEmail"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/rounded_edittext_background" android:padding="12dp"
+            android:inputType="text" />
+
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Password"
+        android:layout_marginBottom="8dp"
+        android:layout_marginStart="2dp"
+        android:textSize="14dp"
+        android:layout_marginTop="32dp"
+        android:textColor="@color/blueDark"/>
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Your password"
+        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/inputPassword"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/rounded_edittext_background" android:padding="12dp"
+            android:inputType="text" />
+
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Make sure your email and password are correct"
+        android:textColor="@color/gray"
+        android:textSize="13sp"
+        android:layout_marginTop="10dp"
+        android:layout_marginStart="2dp"/>
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/googleButtonSignIn"
+        android:layout_width="256dp"
+        android:layout_height="wrap_content"
+        android:text="Sign in with Google"
+        android:textColor="@color/blueDark"
+        android:layout_marginTop="25dp"
+        android:layout_gravity="center"
+        app:icon = "@drawable/google"
+        app:iconTint="@null"
+        app:iconGravity="textStart"
+        app:iconPadding="8dp"
+        app:backgroundTint="@color/white"
+        app:cornerRadius="24dp"
+        app:strokeColor="@color/blueDark"
+        app:strokeWidth="1dp"/>
+
+    <Button
+        android:id="@+id/signInButton"
+        android:layout_width="256dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="13dp"
+        android:text="Log In"
+        android:textSize="16dp"
+        android:layout_gravity="center"
+        android:backgroundTint="@color/blueDark"/>
+
+
+
+
+</LinearLayout>

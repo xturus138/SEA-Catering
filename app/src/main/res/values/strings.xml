@@ -1,3 +1,14 @@
 <resources>
     <string name="app_name">SEA Catering</string>
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+
+    <string name="title_page_one">Welcome to SEA Catering!</string>
+    <string name="title_page_two">Explore Our Menus</string>
+    <string name="title_page_third">Easy Subscription and delivery</string>
+    <string name="sub_page_one">Discover delicious healthy meal plans tailored for you</string>
+    <string name="sub_page_two">Browser a variety of healthy and tasty options, from breakfast
+    to dinner</string>
+    <string name="sub_page_third">Sign up for your favorite plan and enjoy convinient meal delivery</string>
+
+
 </resources>
