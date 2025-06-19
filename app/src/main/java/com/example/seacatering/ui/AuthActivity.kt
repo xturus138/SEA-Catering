@@ -1,4 +1,4 @@
-package com.example.seacatering.ui.auth
+package com.example.seacatering.ui
 
 import android.os.Bundle
 import androidx.activity.enableEdgeToEdge

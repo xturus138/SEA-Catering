@@ -6,7 +6,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical"
     android:padding="24dp"
-    tools:context=".ui.auth.LoginFragment">
+    tools:context=".ui.auth.login.LoginFragment">
 
     <ImageView
         android:layout_width="120dp"

@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:fillViewport="true"
-    tools:context=".ui.auth.RegisterFragment">
+    tools:context=".ui.auth.register.RegisterFragment">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -59,6 +59,32 @@
 
             <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/inputEmail"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@drawable/rounded_edittext_background"
+                android:padding="12dp"
+                android:inputType="text" />
+
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Full Name"
+            android:layout_marginBottom="8dp"
+            android:layout_marginStart="2dp"
+            android:textSize="14sp"
+            android:layout_marginTop="32dp"
+            android:textColor="@color/blueDark"/>
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Raditya Aryabudhi Ramadhan"
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/inputName"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:background="@drawable/rounded_edittext_background"
@@ -146,7 +172,7 @@
             app:strokeWidth="1dp"/>
 
         <Button
-            android:id="@+id/signInButton"
+            android:id="@+id/signUpButton"
             android:layout_width="256dp"
             android:layout_height="wrap_content"
             android:layout_marginTop="13dp"
