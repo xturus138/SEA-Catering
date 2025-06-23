@@ -19,6 +19,10 @@ class PageThirdFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         binding = FragmentPageThirdBinding.inflate(layoutInflater, container, false)
+
+        binding.progressBar.visibility = View.VISIBLE
+
+
         return binding.root
     }
 

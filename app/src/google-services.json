@@ -1,0 +1,47 @@
+{
+  "project_info": {
+    "project_number": "988938722625",
+    "project_id": "sea-catering-37ede",
+    "storage_bucket": "sea-catering-37ede.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:988938722625:android:aa1875bdb9ea8c3f0b95c0",
+        "android_client_info": {
+          "package_name": "com.example.seacatering"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "988938722625-rfdk8p6ah0lqh5kjdma3i811l7ict7ec.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.seacatering",
+            "certificate_hash": "47ee2016a8dd780d98ea83036495cbd939f274e9"
+          }
+        },
+        {
+          "client_id": "988938722625-l2dllsfdme7g3n3tvlgueousb51kghr9.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBGeEdkwz6J0Lp4G8YxUBTt6wXNAJs9Rkk"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "988938722625-l2dllsfdme7g3n3tvlgueousb51kghr9.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

@@ -49,15 +49,16 @@
     <com.google.android.material.textfield.TextInputLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:hint="example@gmail.com"
+       app:hintEnabled="false"
         style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox">
 
         <com.google.android.material.textfield.TextInputEditText
             android:id="@+id/inputEmail"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:hint="example@gmail.com"
             android:background="@drawable/rounded_edittext_background" android:padding="12dp"
-            android:inputType="text" />
+            android:inputType="textEmailAddress" />
 
     </com.google.android.material.textfield.TextInputLayout>
 
@@ -68,25 +69,27 @@
         android:layout_marginBottom="8dp"
         android:layout_marginStart="2dp"
         android:textSize="14dp"
-        android:layout_marginTop="32dp"
+        android:layout_marginTop="16dp"
         android:textColor="@color/blueDark"/>
 
     <com.google.android.material.textfield.TextInputLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:hint="Your password"
+        app:hintEnabled="false"
         style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox">
 
         <com.google.android.material.textfield.TextInputEditText
             android:id="@+id/inputPassword"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:hint="Your password"
             android:background="@drawable/rounded_edittext_background" android:padding="12dp"
-            android:inputType="text" />
+            android:inputType="textPassword" />
 
     </com.google.android.material.textfield.TextInputLayout>
 
     <TextView
+        android:id="@+id/tv_register"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="Register Here!"

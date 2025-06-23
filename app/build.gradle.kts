@@ -41,6 +41,11 @@ android {
 }
 
 dependencies {
+    implementation(libs.firebase.firestore.ktx)
+    implementation(libs.google.play.services.auth)
+    implementation(libs.googleid)
+    implementation (libs.androidx.fragment.ktx)
+    implementation (libs.androidx.lifecycle.viewmodel.ktx)
     implementation(platform(libs.google.firebase.bom))
     implementation(libs.firebase.analytics)
     implementation (libs.android.lottie)

@@ -25,7 +25,7 @@
         android:id="@+id/lottieThird"
         android:layout_width="300dp"
         android:layout_height="300dp"
-        android:layout_marginBottom="100dp"
+        android:layout_marginBottom="150dp"
         app:lottie_rawRes="@raw/page3"
         app:lottie_autoPlay="true"
         app:lottie_loop="true"
@@ -38,30 +38,42 @@
         android:id="@+id/titleFirst"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="41dp"
-        android:layout_marginStart="102dp"
-        android:layout_marginEnd="102dp"
+        android:layout_marginEnd="16dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="20dp"
         android:text="@string/title_page_third"
+        android:textAlignment="center"
         android:textSize="20sp"
         android:textStyle="bold"
-        android:textAlignment="center"
-        app:layout_constraintTop_toBottomOf="@id/lottieThird"
-        app:layout_constraintStart_toStartOf="@id/lottieThird"
-        app:layout_constraintEnd_toEndOf="@id/lottieThird" />
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/lottieThird" />
 
     <TextView
+        android:id="@+id/textView12"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
         android:layout_marginStart="20dp"
+        android:layout_marginTop="16dp"
         android:layout_marginEnd="20dp"
         android:text="@string/sub_page_third"
+        android:textAlignment="center"
         android:textSize="16sp"
         android:textStyle="normal"
-        android:textAlignment="center"
-        app:layout_constraintTop_toBottomOf="@id/titleFirst"
+        app:layout_constraintEnd_toEndOf="@id/titleFirst"
         app:layout_constraintStart_toStartOf="@id/titleFirst"
-        app:layout_constraintEnd_toEndOf="@id/titleFirst" />
+        app:layout_constraintTop_toBottomOf="@id/titleFirst" />
+
+    <ProgressBar
+        android:id="@+id/progressBar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:visibility="gone"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView12" />
+
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

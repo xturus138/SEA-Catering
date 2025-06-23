@@ -54,16 +54,17 @@
         <com.google.android.material.textfield.TextInputLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="example@gmail.com"
+            app:hintEnabled="false"
             style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox">
 
             <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/inputEmail"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:hint="example@gmail.com"
                 android:background="@drawable/rounded_edittext_background"
                 android:padding="12dp"
-                android:inputType="text" />
+                android:inputType="textEmailAddress" />
 
         </com.google.android.material.textfield.TextInputLayout>
 
@@ -74,19 +75,21 @@
             android:layout_marginBottom="8dp"
             android:layout_marginStart="2dp"
             android:textSize="14sp"
-            android:layout_marginTop="32dp"
+            android:layout_marginTop="16dp"
             android:textColor="@color/blueDark"/>
 
         <com.google.android.material.textfield.TextInputLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="Raditya Aryabudhi Ramadhan"
+
+            app:hintEnabled="false"
             style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox">
 
             <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/inputName"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:hint="Raditya Aryabudhi Ramadhan"
                 android:background="@drawable/rounded_edittext_background"
                 android:padding="12dp"
                 android:inputType="text" />
@@ -100,22 +103,24 @@
             android:layout_marginBottom="8dp"
             android:layout_marginStart="2dp"
             android:textSize="14sp"
-            android:layout_marginTop="32dp"
+            android:layout_marginTop="16dp"
             android:textColor="@color/blueDark"/>
 
         <com.google.android.material.textfield.TextInputLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="Make sure your password is strong"
+            app:hintEnabled="false"
+
             style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox">
 
             <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/inputPassword"
                 android:layout_width="match_parent"
+                android:hint="Make sure your password is strong"
                 android:layout_height="wrap_content"
                 android:background="@drawable/rounded_edittext_background"
                 android:padding="12dp"
-                android:inputType="text" />
+                android:inputType="textPassword" />
 
         </com.google.android.material.textfield.TextInputLayout>
 
@@ -126,22 +131,24 @@
             android:layout_marginBottom="8dp"
             android:layout_marginStart="2dp"
             android:textSize="14sp"
-            android:layout_marginTop="32dp"
+            android:layout_marginTop="16dp"
             android:textColor="@color/blueDark"/>
 
         <com.google.android.material.textfield.TextInputLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="Confirm password"
+
+            app:hintEnabled="false"
             style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox">
 
             <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/inputConfirmPassword"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:hint="Confirm password"
                 android:background="@drawable/rounded_edittext_background"
                 android:padding="12dp"
-                android:inputType="text" />
+                android:inputType="textPassword" />
 
         </com.google.android.material.textfield.TextInputLayout>
 
@@ -155,10 +162,10 @@
             android:layout_marginStart="2dp"/>
 
         <com.google.android.material.button.MaterialButton
-            android:id="@+id/googleButtonSignIn"
+            android:id="@+id/googleButtonSignUp"
             android:layout_width="256dp"
             android:layout_height="wrap_content"
-            android:text="Sign in with Google"
+            android:text="Sign up with Google"
             android:textColor="@color/blueDark"
             android:layout_marginTop="25dp"
             android:layout_gravity="center"

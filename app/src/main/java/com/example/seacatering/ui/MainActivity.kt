@@ -1,5 +1,6 @@
 package com.example.seacatering.ui
 
+import android.content.Intent
 import android.os.Bundle
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
@@ -17,6 +18,7 @@ class MainActivity : AppCompatActivity() {
     private lateinit var viewPager: ViewPager2
     private lateinit var dotsIndicator: DotsIndicator
     private lateinit var binding: ActivityMainBinding
+    private var hasNavigatedToAuth = false
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -27,5 +29,19 @@ class MainActivity : AppCompatActivity() {
         viewPager = binding.viewPager2
         dotsIndicator = binding.dotsIndicator
         viewPager.adapter = LandingPagerAdapter(this)
+        dotsIndicator.setViewPager2(viewPager)
+        viewPager.registerOnPageChangeCallback(object : ViewPager2.OnPageChangeCallback() {
+            override fun onPageSelected(position: Int) {
+                super.onPageSelected(position)
+                if (position == 2 && !hasNavigatedToAuth) {
+                    hasNavigatedToAuth = true
+                    viewPager.postDelayed({
+                        val intent = Intent(this@MainActivity, AuthActivity::class.java)
+                        startActivity(intent)
+                        finish()
+                    }, 1000)
+                }
+            }
+        })
     }
 }
