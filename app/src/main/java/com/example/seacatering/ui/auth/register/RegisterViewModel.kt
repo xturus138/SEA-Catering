@@ -19,7 +19,7 @@ class RegisterViewModel: ViewModel() {
     private val _googleLoginResult = MutableLiveData<Boolean>()
     val googleLoginResult: LiveData<Boolean> get() = _googleLoginResult
 
-    fun register(email: String, password: String, confirmPass: String, name: String){
+    fun register(email: String, password: String, confirmPass: String, name: String, address: String, noHp: String){
         if (email.isEmpty() && password.isEmpty() && confirmPass.isEmpty() && name.isEmpty()){
             _errorResult.value = "Fields cannot be empty"
             return
@@ -33,7 +33,7 @@ class RegisterViewModel: ViewModel() {
                 val uid = FirebaseAuth.getInstance().currentUser?.uid
                 if (uid != null){
                     Log.d("RegisterViewModel", "register: Get into saveUserData")
-                    authRepository.saveUserData(uid, name, email)
+                    authRepository.saveUserData(uid, name, email, address, noHp)
                 }
                 _registerResult.value = true
             } else {
@@ -50,7 +50,9 @@ class RegisterViewModel: ViewModel() {
                     authRepository.saveUserData(
                         uid = user.uid,
                         name = user.displayName ?: "No Name",
-                        email = user.email ?: "No Email"
+                        email = user.email ?: "No Email",
+                        address = "Not Provided",
+                        noHp = "Not Provided"
                     )
                     _googleLoginResult.value = true
                 } else {

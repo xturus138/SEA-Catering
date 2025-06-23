@@ -33,7 +33,7 @@ class MainActivity : AppCompatActivity() {
         viewPager.registerOnPageChangeCallback(object : ViewPager2.OnPageChangeCallback() {
             override fun onPageSelected(position: Int) {
                 super.onPageSelected(position)
-                if (position == 2 && !hasNavigatedToAuth) {
+                if (position == viewPager.adapter?.itemCount?.minus(1) && !hasNavigatedToAuth) {
                     hasNavigatedToAuth = true
                     viewPager.postDelayed({
                         val intent = Intent(this@MainActivity, AuthActivity::class.java)
@@ -43,5 +43,6 @@ class MainActivity : AppCompatActivity() {
                 }
             }
         })
+
     }
 }

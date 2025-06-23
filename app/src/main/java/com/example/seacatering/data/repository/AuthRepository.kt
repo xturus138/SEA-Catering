@@ -29,10 +29,12 @@ class AuthRepository() {
         return  firebaseAuth.createUserWithEmailAndPassword(email, password)
     }
 
-    fun saveUserData(uid: String, name: String, email: String){
+    fun saveUserData(uid: String, name: String, email: String, address: String, noHp: String){
         val user = Users(
             name = name,
             email = email,
+            address = address,
+            noHp = noHp,
             role = Role.USER
         )
         db.collection("users").document(uid).set(user).addOnCompleteListener{

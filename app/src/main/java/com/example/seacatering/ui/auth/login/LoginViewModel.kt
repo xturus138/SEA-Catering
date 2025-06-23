@@ -41,7 +41,9 @@ class LoginViewModel: ViewModel() {
                     authRepository.saveUserData(
                         uid = user.uid,
                         name = user.displayName ?: "No Name",
-                        email = user.email ?: "No Email"
+                        email = user.email ?: "No Email",
+                        address = "Not Provided",
+                        noHp = "Not Provided"
                     )
                     _googleLoginResult.value = true
                 } else {

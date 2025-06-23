@@ -20,7 +20,7 @@ class PageThirdFragment : Fragment() {
     ): View? {
         binding = FragmentPageThirdBinding.inflate(layoutInflater, container, false)
 
-        binding.progressBar.visibility = View.VISIBLE
+
 
 
         return binding.root
