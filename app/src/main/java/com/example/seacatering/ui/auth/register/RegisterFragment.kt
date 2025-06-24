@@ -8,6 +8,8 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
 import androidx.fragment.app.commit
+import androidx.lifecycle.ViewModelProvider
+import com.example.seacatering.data.DataStoreManager
 import com.example.seacatering.databinding.FragmentRegisterBinding
 import com.example.seacatering.ui.BaseActivity
 import com.example.seacatering.ui.auth.login.LoginFragment
@@ -30,7 +32,9 @@ class RegisterFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         binding = FragmentRegisterBinding.inflate(layoutInflater, container, false)
-        viewModel = RegisterViewModel()
+        val dataStoreManager = DataStoreManager(requireContext())
+        val factory = RegisterViewModelFactory(dataStoreManager)
+        viewModel = ViewModelProvider(this, factory).get(RegisterViewModel::class.java)
 
         val gso = GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
             .requestIdToken(getString(com.example.seacatering.R.string.default_web_client_id))

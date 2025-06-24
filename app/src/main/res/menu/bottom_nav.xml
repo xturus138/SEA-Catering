@@ -11,8 +11,8 @@
         android:icon="@android:drawable/ic_menu_agenda"/>
 
     <item
-        android:id="@+id/menu_profile"
-        android:title="Profile"
+        android:id="@+id/menu_subscription"
+        android:title="Subscription"
         android:icon="@android:drawable/ic_menu_myplaces"/>
 
 </menu>

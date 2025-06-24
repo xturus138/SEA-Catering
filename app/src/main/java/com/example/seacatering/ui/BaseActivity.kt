@@ -16,10 +16,13 @@ import com.example.seacatering.databinding.ActivityBaseBinding
 import com.example.seacatering.ui.home.HomeFragment
 import com.example.seacatering.ui.meal.MealFragment
 import com.example.seacatering.ui.profile.ProfileFragment
+import com.example.seacatering.ui.subscription.ResultFragment
+import com.example.seacatering.ui.subscription.SubscriptionFragment
+import com.example.seacatering.utils.BottomVisibilityController
 import kotlinx.coroutines.flow.first
 import kotlinx.coroutines.launch
 
-class BaseActivity : AppCompatActivity() {
+class BaseActivity : AppCompatActivity(), BottomVisibilityController {
 
     companion object{
         var TAG = BaseActivity::class.java.simpleName
@@ -52,7 +55,7 @@ class BaseActivity : AppCompatActivity() {
             val fragment = when (menuItem.itemId) {
                 R.id.menu_home -> HomeFragment()
                 R.id.menu_meal -> MealFragment()
-                R.id.menu_profile -> ProfileFragment()
+                R.id.menu_subscription -> ResultFragment()
                 else -> null
             }
 
@@ -66,15 +69,13 @@ class BaseActivity : AppCompatActivity() {
 
     }
 
+    override fun setBottomNavVisible(visible: Boolean) {
+        binding.bottomNav.visibility = if (visible) View.VISIBLE else View.GONE
+    }
+
     private fun loadFragment(fragment: Fragment){
         supportFragmentManager.beginTransaction()
             .replace(R.id.fragment_container, fragment)
             .commit()
-
-//        if (fragment is ProfileFragment) {
-//            binding.bottomNav.visibility = View.GONE
-//        } else {
-//            binding.bottomNav.visibility = View.VISIBLE
-//        }
     }
 }

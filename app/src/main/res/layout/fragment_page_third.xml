@@ -8,12 +8,12 @@
     tools:context=".ui.walkthrough.PageThirdFragment">
 
     <TextView
-        android:id="@+id/textSkip"
+        android:id="@+id/txt_next"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="43dp"
         android:layout_marginEnd="40dp"
-        android:text="Skip"
+        android:text="Next !"
         android:textSize="20sp"
         android:textStyle="bold"
         android:textAlignment="textEnd"

@@ -47,19 +47,7 @@ class MainActivity : AppCompatActivity() {
         dotsIndicator = binding.dotsIndicator
         viewPager.adapter = LandingPagerAdapter(this)
         dotsIndicator.setViewPager2(viewPager)
-        viewPager.registerOnPageChangeCallback(object : ViewPager2.OnPageChangeCallback() {
-            override fun onPageSelected(position: Int) {
-                super.onPageSelected(position)
-                if (position == viewPager.adapter?.itemCount?.minus(1) && !hasNavigatedToAuth) {
-                    hasNavigatedToAuth = true
-                    viewPager.postDelayed({
-                        val intent = Intent(this@MainActivity, AuthActivity::class.java)
-                        startActivity(intent)
-                        finish()
-                    }, 1000)
-                }
-            }
-        })
+
 
     }
 }

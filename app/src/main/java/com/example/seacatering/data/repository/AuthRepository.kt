@@ -20,6 +20,28 @@ class AuthRepository() {
         return firebaseAuth.signInWithEmailAndPassword(email, password)
     }
 
+    fun logoutUser(){
+        firebaseAuth.signOut()
+    }
+
+    fun updateUser(uid: String, name: String, email: String, address: String, noHp: String): Task<Void> {
+        val updatedUser = mapOf(
+            "name" to name,
+            "email" to email,
+            "address" to address,
+            "noHp" to noHp
+        )
+
+        return db.collection("users").document(uid)
+            .update(updatedUser)
+            .addOnSuccessListener {
+                Log.d("Firestore", "User data updated successfully")
+            }
+            .addOnFailureListener { e ->
+                Log.e("Firestore", "Failed to update user data: ${e.message}")
+            }
+    }
+
     fun loginWithGoogle(idToken: String): Task<AuthResult> {
         val credential = GoogleAuthProvider.getCredential(idToken, null)
         return FirebaseAuth.getInstance().signInWithCredential(credential)
@@ -45,6 +67,23 @@ class AuthRepository() {
             }
 
     }
+
+    fun getUserData(uid: String, onResult: (Users?) -> Unit) {
+        db.collection("users").document(uid).get()
+            .addOnSuccessListener { document ->
+                if (document.exists()) {
+                    val user = document.toObject(Users::class.java)
+                    onResult(user)
+                } else {
+                    onResult(null)
+                }
+            }
+            .addOnFailureListener {
+                Log.e("Firestore", "Error fetching user data", it)
+                onResult(null)
+            }
+    }
+
 
 
 }

@@ -20,10 +20,11 @@ class HomeFragment : Fragment() {
     ): View? {
         binding = FragmentHomeBinding.inflate(layoutInflater, container, false)
 
-
         binding.cardView.setOnClickListener(){
-            val intent = Intent(requireContext(), ProfileFragment::class.java)
-            startActivity(intent)
+            parentFragmentManager.beginTransaction()
+                .replace(R.id.fragment_container, ProfileFragment())
+                .addToBackStack(null)
+                .commit()
         }
 
         return binding.root

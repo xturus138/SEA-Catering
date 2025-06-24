@@ -34,7 +34,8 @@ class LoginFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View {
         binding = FragmentLoginBinding.inflate(inflater, container, false)
-        viewModel = ViewModelProvider(this, ViewModelProvider.AndroidViewModelFactory.getInstance(requireActivity().application)).get(LoginViewModel::class.java)
+        val factory = LoginViewModelFactory(requireActivity().application)
+        viewModel = ViewModelProvider(this, factory).get(LoginViewModel::class.java)
 
 
         val gso = GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
@@ -90,7 +91,9 @@ class LoginFragment : Fragment() {
         viewModel.loginResult.observe(viewLifecycleOwner) { success ->
             if (success) {
                 Toast.makeText(requireContext(), "Login Successful", Toast.LENGTH_SHORT).show()
-                startActivity(Intent(requireContext(), BaseActivity::class.java))
+                val intent = Intent(requireContext(), BaseActivity::class.java)
+                intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
+                startActivity(intent)
                 requireActivity().finish()
             }
         }
@@ -98,7 +101,9 @@ class LoginFragment : Fragment() {
         viewModel.googleLoginResult.observe(viewLifecycleOwner) { success ->
             if (success) {
                 Toast.makeText(requireContext(), "Google Login Successful", Toast.LENGTH_SHORT).show()
-                startActivity(Intent(requireContext(), BaseActivity::class.java))
+                val intent = Intent(requireContext(), BaseActivity::class.java)
+                intent.flags  = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
+                startActivity(intent)
                 requireActivity().finish()
             }
         }
