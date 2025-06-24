@@ -41,6 +41,7 @@ android {
 }
 
 dependencies {
+    implementation(libs.androidx.datastore.preferences)
     implementation(libs.firebase.firestore.ktx)
     implementation(libs.google.play.services.auth)
     implementation(libs.googleid)

@@ -44,7 +44,7 @@ class RegisterFragment : Fragment() {
             val password = binding.inputPassword.text.toString()
             val confirmPass = binding.inputConfirmPassword.text.toString()
             val name = binding.inputName.text.toString()
-            viewModel.register(email, password, confirmPass, name)
+            viewModel.register(email, password, confirmPass, name, address = "Not Provide", noHp = "Not Provide")
         }
 
         binding.googleButtonSignUp.setOnClickListener {
