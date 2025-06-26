@@ -21,7 +21,6 @@ class MealFragment : Fragment(), ListMealplanAdapter.onMealClickListener {
     private lateinit var binding: FragmentMealBinding
     private lateinit var viewModel: MealViewModel
     private lateinit var adapter: ListMealplanAdapter
-    private lateinit var dataStoreManager: DataStoreManager
 
     private var selectedMeal: Meals? = null
 
@@ -30,7 +29,6 @@ class MealFragment : Fragment(), ListMealplanAdapter.onMealClickListener {
         savedInstanceState: Bundle?
     ): View {
         binding = FragmentMealBinding.inflate(inflater, container, false)
-        dataStoreManager = DataStoreManager(requireContext())
 
         binding.rvMealPlan.layoutManager = LinearLayoutManager(requireContext(), LinearLayoutManager.HORIZONTAL, false)
         binding.updateButton.visibility = View.GONE
@@ -43,13 +41,17 @@ class MealFragment : Fragment(), ListMealplanAdapter.onMealClickListener {
 
         binding.updateButton.setOnClickListener {
             selectedMeal?.let { meal ->
-                lifecycleScope.launch {
-                    dataStoreManager.saveSelectedMeal(meal.name, meal.price, meal.descriptionTitle)
-                    parentFragmentManager.beginTransaction()
-                        .replace(R.id.fragment_container, SubscriptionFragment())
-                        .addToBackStack(null)
-                        .commit()
+                val bundle = Bundle().apply {
+                    putParcelable("meal_data", meal)
                 }
+                val detailFragment = MealDetailFragment().apply {
+                    arguments = bundle
+                }
+
+                parentFragmentManager.beginTransaction()
+                    .replace(R.id.fragment_container, detailFragment)
+                    .addToBackStack(null)
+                    .commit()
             }
         }
 
@@ -66,6 +68,7 @@ class MealFragment : Fragment(), ListMealplanAdapter.onMealClickListener {
             binding.progressBar.visibility = if (loading) View.VISIBLE else View.GONE
         }
     }
+
 
     override fun onMealClick(meal: Meals) {
         selectedMeal = meal

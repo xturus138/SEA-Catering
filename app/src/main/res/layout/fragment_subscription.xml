@@ -24,8 +24,9 @@
             app:layout_constraintTop_toTopOf="parent" />
 
         <ImageButton
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:id="@+id/backButton"
+            android:layout_width="48dp"
+            android:layout_height="48dp"
             android:backgroundTint="@android:color/transparent"
             android:layout_marginEnd="33dp"
             android:src="@drawable/baseline_x_button_24"
@@ -122,8 +123,10 @@
                     android:id="@+id/inputPlanSelection"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:inputType="text"
-                    android:hint="Ex: Healthy Plan"
+                    android:focusable="false"
+                    android:clickable="false"
+                    android:cursorVisible="false"
+                    android:longClickable="false"
                     android:padding="12dp" />
 
             </com.google.android.material.textfield.TextInputLayout>

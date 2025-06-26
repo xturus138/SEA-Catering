@@ -9,11 +9,13 @@ import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.lifecycleScope
+import com.example.seacatering.R
 import com.example.seacatering.data.DataStoreManager
 import com.example.seacatering.databinding.FragmentProfileBinding
 import com.example.seacatering.ui.AuthActivity
 import com.example.seacatering.ui.home.HomeFragment
 import com.example.seacatering.utils.BottomVisibilityController
+import com.google.android.material.bottomnavigation.BottomNavigationView
 import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.launch
 
@@ -22,6 +24,7 @@ class ProfileFragment : Fragment() {
     private lateinit var binding: FragmentProfileBinding
     private lateinit var dataStoreManager: DataStoreManager
     private lateinit var viewModel: ProfileViewModel
+    private lateinit var bottomNavHelper: BottomVisibilityController
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -74,6 +77,7 @@ class ProfileFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         (activity as? BottomVisibilityController)?.setBottomNavVisible(false)
+        val bottomNav = activity?.findViewById<BottomNavigationView>(R.id.bottom_nav)
         viewModel.updateResult.observe(viewLifecycleOwner) { success ->
             if (success) {
                 Toast.makeText(requireContext(), "Update berhasil", Toast.LENGTH_SHORT).show()
@@ -88,6 +92,7 @@ class ProfileFragment : Fragment() {
         super.onDestroyView()
         (activity as? BottomVisibilityController)?.setBottomNavVisible(true)
     }
+
 
     private fun updateProfile() {
         val name = binding.textInputName.text.toString()
