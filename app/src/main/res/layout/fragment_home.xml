@@ -71,8 +71,8 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="20dp"
         android:orientation="horizontal"
-        app:layout_constraintEnd_toEndOf="@+id/rvAdds"
-        app:layout_constraintStart_toStartOf="@+id/rvAdds"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView3">
 
         <androidx.cardview.widget.CardView
@@ -123,9 +123,7 @@
         android:layout_marginTop="20dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView4"
-        tools:listitem="@layout/item_offers_row"
-        tools:itemCount="4"/>
+        app:layout_constraintTop_toBottomOf="@+id/textView4" />
 
 
     <TextView

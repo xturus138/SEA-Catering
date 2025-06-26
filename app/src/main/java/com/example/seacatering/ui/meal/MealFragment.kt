@@ -1,60 +1,75 @@
 package com.example.seacatering.ui.meal
 
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.fragment.app.Fragment
+import androidx.lifecycle.ViewModelProvider
+import androidx.lifecycle.lifecycleScope
+import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.seacatering.R
+import com.example.seacatering.adapter.ListMealplanAdapter
+import com.example.seacatering.data.DataStoreManager
+import com.example.seacatering.databinding.FragmentMealBinding
+import com.example.seacatering.model.Meals
+import com.example.seacatering.ui.subscription.SubscriptionFragment
+import kotlinx.coroutines.launch
 
-// TODO: Rename parameter arguments, choose names that match
-// the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
-private const val ARG_PARAM1 = "param1"
-private const val ARG_PARAM2 = "param2"
+class MealFragment : Fragment(), ListMealplanAdapter.onMealClickListener {
 
-/**
- * A simple [Fragment] subclass.
- * Use the [MealFragment.newInstance] factory method to
- * create an instance of this fragment.
- */
-class MealFragment : Fragment() {
-    // TODO: Rename and change types of parameters
-    private var param1: String? = null
-    private var param2: String? = null
+    private lateinit var binding: FragmentMealBinding
+    private lateinit var viewModel: MealViewModel
+    private lateinit var adapter: ListMealplanAdapter
+    private lateinit var dataStoreManager: DataStoreManager
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        arguments?.let {
-            param1 = it.getString(ARG_PARAM1)
-            param2 = it.getString(ARG_PARAM2)
-        }
-    }
+    private var selectedMeal: Meals? = null
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
-        // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_meal, container, false)
-    }
+    ): View {
+        binding = FragmentMealBinding.inflate(inflater, container, false)
+        dataStoreManager = DataStoreManager(requireContext())
 
-    companion object {
-        /**
-         * Use this factory method to create a new instance of
-         * this fragment using the provided parameters.
-         *
-         * @param param1 Parameter 1.
-         * @param param2 Parameter 2.
-         * @return A new instance of fragment MealFragment.
-         */
-        // TODO: Rename and change types and number of parameters
-        @JvmStatic
-        fun newInstance(param1: String, param2: String) =
-            MealFragment().apply {
-                arguments = Bundle().apply {
-                    putString(ARG_PARAM1, param1)
-                    putString(ARG_PARAM2, param2)
+        binding.rvMealPlan.layoutManager = LinearLayoutManager(requireContext(), LinearLayoutManager.HORIZONTAL, false)
+        binding.updateButton.visibility = View.GONE
+
+        viewModel = ViewModelProvider(this)[MealViewModel::class.java]
+        adapter = ListMealplanAdapter(emptyList(), this)
+        binding.rvMealPlan.adapter = adapter
+
+        observeViewModel()
+
+        binding.updateButton.setOnClickListener {
+            selectedMeal?.let { meal ->
+                lifecycleScope.launch {
+                    dataStoreManager.saveSelectedMeal(meal.name, meal.price, meal.descriptionTitle)
+                    parentFragmentManager.beginTransaction()
+                        .replace(R.id.fragment_container, SubscriptionFragment())
+                        .addToBackStack(null)
+                        .commit()
                 }
             }
+        }
+
+        return binding.root
+    }
+
+    private fun observeViewModel() {
+        viewModel.meals.observe(viewLifecycleOwner) { meals ->
+            adapter.updateData(meals)
+            binding.updateButton.visibility = if (meals.isNotEmpty()) View.VISIBLE else View.GONE
+        }
+
+        viewModel.isLoading.observe(viewLifecycleOwner) { loading ->
+            binding.progressBar.visibility = if (loading) View.VISIBLE else View.GONE
+        }
+    }
+
+    override fun onMealClick(meal: Meals) {
+        selectedMeal = meal
     }
 }
+
+

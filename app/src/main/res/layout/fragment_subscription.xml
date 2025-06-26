@@ -28,7 +28,7 @@
             android:layout_height="wrap_content"
             android:backgroundTint="@android:color/transparent"
             android:layout_marginEnd="33dp"
-            android:src="@drawable/sementara_nanti_hapus"
+            android:src="@drawable/baseline_x_button_24"
             app:layout_constraintBottom_toBottomOf="@+id/textView6"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="@+id/textView6" />
@@ -66,13 +66,13 @@
             <com.google.android.material.textfield.TextInputLayout
                 style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:hint="Full Name">
+                android:layout_height="wrap_content">
 
                 <com.google.android.material.textfield.TextInputEditText
                     android:id="@+id/inputName"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:hint="Ex: Raditya Aryabudhi Ramadhan"
                     android:inputType="text"
                     android:padding="12dp" />
 
@@ -91,14 +91,14 @@
             <com.google.android.material.textfield.TextInputLayout
                 style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:hint="+620821212">
+                android:layout_height="wrap_content">
 
                 <com.google.android.material.textfield.TextInputEditText
                     android:id="@+id/inputNumber"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:inputType="number"
+                    android:hint="Ex: +6282121243"
                     android:padding="12dp" />
 
             </com.google.android.material.textfield.TextInputLayout>
@@ -116,14 +116,14 @@
             <com.google.android.material.textfield.TextInputLayout
                 style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:hint="Healthy Plan">
+                android:layout_height="wrap_content">
 
                 <com.google.android.material.textfield.TextInputEditText
                     android:id="@+id/inputPlanSelection"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:inputType="text"
+                    android:hint="Ex: Healthy Plan"
                     android:padding="12dp" />
 
             </com.google.android.material.textfield.TextInputLayout>
@@ -196,48 +196,60 @@
                 app:chipSpacingVertical="4dp">
 
                 <com.google.android.material.chip.Chip
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
                     android:id="@+id/chipMonday"
                     style="@style/Widget.MaterialComponents.Chip.Choice"
                     android:text="Monday"
                     android:checkable="true" />
 
                 <com.google.android.material.chip.Chip
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
                     android:id="@+id/chipTuesday"
                     style="@style/Widget.MaterialComponents.Chip.Choice"
                     android:text="Tuesday"
                     android:checkable="true" />
 
                 <com.google.android.material.chip.Chip
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
                     android:id="@+id/chipWednesday"
                     style="@style/Widget.MaterialComponents.Chip.Choice"
                     android:text="Wednesday"
                     android:checkable="true" />
 
                 <com.google.android.material.chip.Chip
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
                     android:id="@+id/chipThursday"
                     style="@style/Widget.MaterialComponents.Chip.Choice"
                     android:text="Thursday"
                     android:checkable="true" />
 
                 <com.google.android.material.chip.Chip
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
                     android:id="@+id/chipFriday"
                     style="@style/Widget.MaterialComponents.Chip.Choice"
                     android:text="Friday"
                     android:checkable="true" />
 
                 <com.google.android.material.chip.Chip
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
                     android:id="@+id/chipSaturday"
                     style="@style/Widget.MaterialComponents.Chip.Choice"
                     android:text="Saturday"
                     android:checkable="true" />
 
                 <com.google.android.material.chip.Chip
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
                     android:id="@+id/chipSunday"
                     style="@style/Widget.MaterialComponents.Chip.Choice"
                     android:text="Sunday"
                     android:checkable="true" />
-
-
 
             </com.google.android.material.chip.ChipGroup>
 
@@ -278,11 +290,11 @@
                 android:textColor="@color/blueDark"/>
 
             <com.google.android.material.button.MaterialButton
-                android:id="@+id/signInButton"
+                android:id="@+id/payment_button"
                 android:layout_width="256dp"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="42dp"
-                android:text="Log In"
+                android:layout_marginTop="20dp"
+                android:text="Proceed to Payment"
                 android:textSize="16sp"
                 android:layout_marginBottom="61dp"
                 android:layout_gravity="center"

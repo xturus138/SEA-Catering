@@ -21,6 +21,17 @@ class DataStoreManager(private val context: Context) {
         val PHONE = stringPreferencesKey("phone")
         val ADDRESS = stringPreferencesKey("address")
         val ROLE = stringPreferencesKey("role")
+        val MEAL_NAME = stringPreferencesKey("meal_name")
+        val MEAL_PRICE = stringPreferencesKey("meal_price")
+        val MEAL_DESC_TITLE = stringPreferencesKey("meal_desc_title")
+    }
+
+    suspend fun saveSelectedMeal(name: String, price: String, descTitle: String) {
+        context.dataStore.edit { preferences ->
+            preferences[PreferencesKeys.MEAL_NAME] = name
+            preferences[PreferencesKeys.MEAL_PRICE] = price
+            preferences[PreferencesKeys.MEAL_DESC_TITLE] = descTitle
+        }
     }
 
     suspend fun saveUserData(user: Users) {
@@ -37,6 +48,18 @@ class DataStoreManager(private val context: Context) {
     suspend fun clearUserData(){
         context.dataStore.edit { prefs ->
             prefs.clear()
+        }
+    }
+
+    val selectedMealData: Flow<Triple<String, String, String>?> = context.dataStore.data.map { prefs ->
+        val name = prefs[PreferencesKeys.MEAL_NAME]
+        val price = prefs[PreferencesKeys.MEAL_PRICE]
+        val descTitle = prefs[PreferencesKeys.MEAL_DESC_TITLE]
+
+        if (name != null && price != null && descTitle != null) {
+            Triple(name, price, descTitle)
+        } else {
+            null
         }
     }
 
