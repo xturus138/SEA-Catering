@@ -10,8 +10,10 @@ import androidx.lifecycle.lifecycleScope
 import com.example.seacatering.R
 import com.example.seacatering.data.DataStoreManager
 import com.example.seacatering.databinding.ActivityBaseBinding
+import com.example.seacatering.model.Role
 import com.example.seacatering.ui.home.HomeFragment
 import com.example.seacatering.ui.meal.MealFragment
+import com.example.seacatering.ui.dashboard.admin.AdminDashboardFragment
 import com.example.seacatering.ui.dashboard.user.ResultFragment
 import com.example.seacatering.utils.BottomVisibilityController
 import kotlinx.coroutines.flow.first
@@ -25,6 +27,7 @@ class BaseActivity : AppCompatActivity(), BottomVisibilityController {
 
     private lateinit var binding : ActivityBaseBinding
     private lateinit var dataStoreManager: DataStoreManager
+    private var currentUserRole: Role = Role.USER
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -35,33 +38,50 @@ class BaseActivity : AppCompatActivity(), BottomVisibilityController {
 
         lifecycleScope.launch {
             val user = dataStoreManager.userData.first()
-                if(user == null){
-                    startActivity(Intent(this@BaseActivity, AuthActivity::class.java))
-                    finish()
-                } else {
-                    Log.d(TAG, "onCreate: User Sudah Login: ${user.name}")
-                }
+            if (user == null) {
+                startActivity(Intent(this@BaseActivity, AuthActivity::class.java))
+                finish()
+            } else {
+                currentUserRole = user.role
+                Log.d(TAG, "onCreate: User Sudah Login: ${user.name}, Role: ${user.role}")
 
+                if (savedInstanceState == null) {
+                    if (currentUserRole == Role.ADMIN) {
+                        loadFragment(AdminDashboardFragment())
+                        binding.bottomNav.visibility = View.GONE
+                    } else {
+                        loadFragment(HomeFragment())
+                        binding.bottomNav.selectedItemId = R.id.menu_home
+                        binding.bottomNav.visibility = View.VISIBLE
+                    }
+                }
+            }
         }
 
-        loadFragment(HomeFragment())
-
         binding.bottomNav.setOnItemSelectedListener { menuItem ->
-            val fragment = when (menuItem.itemId) {
+            val fragment: Fragment? = when (menuItem.itemId) {
                 R.id.menu_home -> HomeFragment()
                 R.id.menu_meal -> MealFragment()
-                R.id.menu_subscription -> ResultFragment()
+                R.id.menu_subscription -> {
+                    if (currentUserRole == Role.ADMIN) {
+                        AdminDashboardFragment()
+                    } else {
+                        ResultFragment()
+                    }
+                }
                 else -> null
             }
 
             fragment?.let {
                 loadFragment(it)
+                if (it is AdminDashboardFragment) {
+                    binding.bottomNav.visibility = View.GONE
+                } else {
+                    binding.bottomNav.visibility = View.VISIBLE
+                }
                 true
             } ?: false
         }
-
-
-
     }
 
     override fun setBottomNavVisible(visible: Boolean) {

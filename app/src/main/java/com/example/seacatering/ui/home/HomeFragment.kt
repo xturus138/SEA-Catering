@@ -11,6 +11,8 @@ import android.view.ViewGroup
 import androidx.annotation.RequiresPermission
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.lifecycleScope
+import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.example.seacatering.R
 import com.example.seacatering.data.DataStoreManager
@@ -18,6 +20,7 @@ import com.example.seacatering.data.repository.HomeRepository
 import com.example.seacatering.databinding.FragmentHomeBinding
 import com.example.seacatering.ui.meal.MealFragment
 import com.example.seacatering.ui.profile.ProfileFragment
+import com.example.seacatering.adapter.TestimonialAdapter // Import adapter baru
 import kotlinx.coroutines.flow.first
 import kotlinx.coroutines.launch
 
@@ -26,7 +29,8 @@ class HomeFragment : Fragment() {
     private lateinit var binding : FragmentHomeBinding
     private lateinit var homeRepository: HomeRepository
     private lateinit var homeViewModel: HomeViewModel
-
+    private lateinit var homeTestimonialViewModel: HomeTestimonialViewModel
+    private lateinit var testimonialAdapter: TestimonialAdapter
 
     @RequiresPermission(allOf = [Manifest.permission.ACCESS_FINE_LOCATION, Manifest.permission.ACCESS_COARSE_LOCATION])
     override fun onCreateView(
@@ -34,7 +38,11 @@ class HomeFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         binding = FragmentHomeBinding.inflate(layoutInflater, container, false)
+
         homeViewModel = ViewModelProvider(this).get(HomeViewModel::class.java)
+        homeTestimonialViewModel = ViewModelProvider(this, ViewModelProvider.AndroidViewModelFactory.getInstance(requireActivity().application))
+            .get(HomeTestimonialViewModel::class.java)
+
         homeViewModel.fetchUserLocation()
 
         homeViewModel.locationName.observe(viewLifecycleOwner) { locationName ->
@@ -51,6 +59,8 @@ class HomeFragment : Fragment() {
         homeRepository = HomeRepository()
         loadRecommendedItems()
         clickToNavigate()
+        setupTestimonialRecyclerView()
+        observeTestimonials()
         return binding.root
     }
 
@@ -96,6 +106,37 @@ class HomeFragment : Fragment() {
         }
     }
 
+    private fun setupTestimonialRecyclerView() {
+        testimonialAdapter = TestimonialAdapter(emptyList())
+        val layoutManager = LinearLayoutManager(context, LinearLayoutManager.HORIZONTAL, false)
+        binding.rvReview.layoutManager = layoutManager
+        binding.rvReview.adapter = testimonialAdapter
+
+
+        binding.rvReview.addOnScrollListener(object : RecyclerView.OnScrollListener() {
+            override fun onScrolled(recyclerView: RecyclerView, dx: Int, dy: Int) {
+                super.onScrolled(recyclerView, dx, dy)
+                val totalItemCount = layoutManager.itemCount
+                val lastVisibleItem = layoutManager.findLastVisibleItemPosition()
+
+                if (!homeTestimonialViewModel.isLoadingTestimonials.value!! && lastVisibleItem >= totalItemCount - 1) {
+                    homeTestimonialViewModel.displayNextPage()
+                }
+            }
+        })
+    }
+
+    private fun observeTestimonials() {
+        homeTestimonialViewModel.testimonials.observe(viewLifecycleOwner) { testimonials ->
+            testimonialAdapter.updateData(testimonials)
+
+        }
+
+        homeTestimonialViewModel.isLoadingTestimonials.observe(viewLifecycleOwner) { isLoading ->
+            //buat progressbar ntar
+        }
+    }
+
 
     private fun hideRecommendedItems() {
         binding.linearLayoutOffersStatic.visibility = View.GONE
@@ -103,6 +144,7 @@ class HomeFragment : Fragment() {
         binding.textView4.visibility = View.GONE
         binding.textView5.visibility = View.GONE
         binding.linearLayoutRecommended.visibility = View.GONE
+        binding.rvReview.visibility = View.GONE
     }
 
     private fun showRecommendedItems() {
@@ -111,6 +153,6 @@ class HomeFragment : Fragment() {
         binding.textView4.visibility = View.VISIBLE
         binding.textView5.visibility = View.VISIBLE
         binding.linearLayoutRecommended.visibility = View.VISIBLE
-
+        binding.rvReview.visibility = View.VISIBLE 
     }
 }

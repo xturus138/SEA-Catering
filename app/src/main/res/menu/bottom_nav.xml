@@ -3,16 +3,13 @@
     <item
         android:id="@+id/menu_home"
         android:title="Home"
-        android:icon="@android:drawable/ic_menu_today"/>
-
+        android:icon="@drawable/ic_home_selector"/>
     <item
         android:id="@+id/menu_meal"
         android:title="Meal Plans"
-        android:icon="@android:drawable/ic_menu_agenda"/>
-
+        android:icon="@drawable/ic_meal_plan_selector"/>
     <item
         android:id="@+id/menu_subscription"
         android:title="Subscription"
-        android:icon="@android:drawable/ic_menu_myplaces"/>
-
+        android:icon="@drawable/ic_subscription_selector"/>
 </menu>

@@ -12,6 +12,7 @@ import com.google.firebase.Timestamp
 import com.google.firebase.auth.FirebaseAuth
 import kotlinx.coroutines.flow.firstOrNull
 import kotlinx.coroutines.launch
+import java.util.Date
 
 class SubscriptionViewModel(application: Application) : AndroidViewModel(application) {
 
@@ -72,8 +73,8 @@ class SubscriptionViewModel(application: Application) : AndroidViewModel(applica
             return
         }
 
-        val endDate = Timestamp(System.currentTimeMillis() / 1000 + (30 * 24 * 60 * 60), 0)
-
+        val endDate = Timestamp(System.currentTimeMillis() / 1000 + (30L * 24 * 60 * 60 * 1000), 0) // 30 hari dari sekarang
+        val createdAt = Timestamp.now()
 
         val newSubscription = Subscription(
             allergies = allergies,
@@ -85,9 +86,9 @@ class SubscriptionViewModel(application: Application) : AndroidViewModel(applica
             plan_name = planName,
             status = "ACTIVE",
             user_uid = userUid,
-            total_price = lastCalculatedPrice
+            total_price = lastCalculatedPrice,
+            created_at = createdAt
         )
-
 
         viewModelScope.launch {
             val result = subscriptionRepository.saveSubscription(newSubscription)

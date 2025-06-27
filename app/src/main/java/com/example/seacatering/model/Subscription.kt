@@ -18,5 +18,7 @@ data class Subscription(
     val plan_name: String = "",
     val status: String = "",
     val user_uid: String = "",
-    val total_price: Double = 0.0
+    val total_price: Double = 0.0,
+    val created_at: Timestamp? = null,
+    val canceled_at: Timestamp? = null
 ) : Parcelable

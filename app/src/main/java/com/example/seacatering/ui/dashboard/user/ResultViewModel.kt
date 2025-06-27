@@ -40,7 +40,17 @@ class ResultViewModel(application: Application) : AndroidViewModel(application) 
             val userUid = auth.currentUser?.uid
             if (userUid != null) {
                 val subs = subscriptionRepository.getSubscriptionsByUserId(userUid)
-                _subscriptions.value = subs
+                val sortedSubs = subs.sortedWith(compareBy<Subscription> {
+                    when (it.status) {
+                        "ACTIVE" -> 1
+                        "PAUSED" -> 2
+                        "CANCELED" -> 3
+                        else -> 4
+                    }
+                }.thenBy {
+                    it.end_date?.toDate() ?: Date(Long.MAX_VALUE)
+                })
+                _subscriptions.value = sortedSubs
             } else {
                 _subscriptions.value = emptyList()
                 _actionResult.value = Pair(false, "User not logged in.")
@@ -64,7 +74,7 @@ class ResultViewModel(application: Application) : AndroidViewModel(application) 
             val result = subscriptionRepository.updateSubscriptionStatus(subscription.documentId, updates)
             if (result) {
                 _actionResult.value = Pair(true, "Subscription paused successfully!")
-                fetchUserSubscriptions() // Refresh list
+                fetchUserSubscriptions()
             } else {
                 _actionResult.value = Pair(false, "Failed to pause subscription.")
             }
@@ -101,7 +111,8 @@ class ResultViewModel(application: Application) : AndroidViewModel(application) 
             }
 
             val updates = mapOf(
-                "status" to "CANCELED"
+                "status" to "CANCELED",
+                "canceled_at" to Timestamp.now()
             )
             val result = subscriptionRepository.updateSubscriptionStatus(subscription.documentId, updates)
             if (result) {
