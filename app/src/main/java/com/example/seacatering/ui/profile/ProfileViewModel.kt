@@ -1,5 +1,6 @@
 package com.example.seacatering.ui.profile
 
+import android.net.Uri // Import Uri
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
@@ -9,7 +10,7 @@ import com.example.seacatering.data.repository.AuthRepository
 import com.example.seacatering.model.Role
 import com.example.seacatering.model.Users
 import com.google.firebase.auth.FirebaseAuth
-import com.google.firebase.firestore.auth.User
+import kotlinx.coroutines.flow.firstOrNull
 import kotlinx.coroutines.launch
 
 class ProfileViewModel(private val dataStoreManager: DataStoreManager) : ViewModel() {
@@ -20,6 +21,9 @@ class ProfileViewModel(private val dataStoreManager: DataStoreManager) : ViewMod
 
     private val _errorMsg = MutableLiveData<String>()
     val errorMsg: LiveData<String> get() = _errorMsg
+
+    private val _tempProfileImageUri = MutableLiveData<Uri?>()
+    val tempProfileImageUri: LiveData<Uri?> get() = _tempProfileImageUri
 
     fun logout(){
         repository.logoutUser()
@@ -33,7 +37,22 @@ class ProfileViewModel(private val dataStoreManager: DataStoreManager) : ViewMod
         repository.updateUser(uid, name, email,address, noHp)
             .addOnSuccessListener {
                 viewModelScope.launch {
-                    val updatedUser = Users(uid, name, email, address, noHp, Role.USER)
+                    val currentUserData = dataStoreManager.userData.firstOrNull()
+                    val updatedUser = currentUserData?.copy(
+                        name = name,
+                        email = email,
+                        address = address,
+                        noHp = noHp,
+                        profileImageUrl = tempProfileImageUri.value.toString()
+                    ) ?: Users(
+                        uid = uid,
+                        name = name,
+                        email = email,
+                        address = address,
+                        noHp = noHp,
+                        role = Role.USER,
+                        profileImageUrl = tempProfileImageUri.value.toString()
+                    )
                     dataStoreManager.saveUserData(updatedUser)
                     _updateResult.value = true
                 }
@@ -42,5 +61,9 @@ class ProfileViewModel(private val dataStoreManager: DataStoreManager) : ViewMod
             .addOnFailureListener {
                 _errorMsg.value = it.message
             }
+    }
+
+    fun setTempProfileImageUri(uri: Uri?) {
+        _tempProfileImageUri.value = uri
     }
 }

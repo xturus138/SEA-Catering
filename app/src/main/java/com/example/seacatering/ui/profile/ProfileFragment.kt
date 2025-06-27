@@ -1,15 +1,19 @@
 package com.example.seacatering.ui.profile
 
 import android.content.Intent
+import android.net.Uri
 import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
+import androidx.activity.result.ActivityResultLauncher
+import androidx.activity.result.contract.ActivityResultContracts
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.lifecycleScope
+import com.bumptech.glide.Glide
 import com.example.seacatering.R
 import com.example.seacatering.data.DataStoreManager
 import com.example.seacatering.databinding.FragmentProfileBinding
@@ -26,7 +30,24 @@ class ProfileFragment : Fragment() {
     private lateinit var binding: FragmentProfileBinding
     private lateinit var dataStoreManager: DataStoreManager
     private lateinit var viewModel: ProfileViewModel
-    private lateinit var bottomNavHelper: BottomVisibilityController
+
+
+
+    private val pickImageLauncher: ActivityResultLauncher<String> =
+        registerForActivityResult(ActivityResultContracts.GetContent()) { uri: Uri? ->
+            if (uri != null) {
+                viewModel.setTempProfileImageUri(uri)
+                context?.let {
+                    Glide.with(it)
+                        .load(uri)
+                        .circleCrop()
+                        .placeholder(R.drawable.ic_default_profile_image)
+                        .into(binding.imgProfile)
+                }
+            } else {
+                Toast.makeText(context, "No image selected.", Toast.LENGTH_SHORT).show()
+            }
+        }
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -50,13 +71,26 @@ class ProfileFragment : Fragment() {
                     binding.textInputEmail.setText(userData.email)
                     binding.textInputHp.setText(userData.noHp)
                     binding.textInputAddress.setText(userData.address)
+
+                    if (userData.profileImageUrl.isNotEmpty()) {
+                        context?.let {
+                            Glide.with(it)
+                                .load(Uri.parse(userData.profileImageUrl))
+                                .circleCrop()
+                                .placeholder(R.drawable.ic_default_profile_image)
+                                .error(R.drawable.ic_default_profile_image)
+                                .into(binding.imgProfile)
+                        }
+                    } else {
+                        binding.imgProfile.setImageResource(R.drawable.ic_default_profile_image)
+                    }
                 }
             }
         }
 
         binding.backButton.setOnClickListener {
             parentFragmentManager.beginTransaction()
-                .replace(com.example.seacatering.R.id.fragment_container, HomeFragment())
+                .replace(R.id.fragment_container, HomeFragment())
                 .addToBackStack(null)
                 .commit()
         }
@@ -73,17 +107,20 @@ class ProfileFragment : Fragment() {
             requireActivity().finish()
         }
 
+
+        binding.cardView.setOnClickListener {
+            pickImageLauncher.launch("image/*")
+        }
+
         return binding.root
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         (activity as? BottomVisibilityController)?.setBottomNavVisible(false)
-        val bottomNav = activity?.findViewById<BottomNavigationView>(R.id.bottom_nav)
         viewModel.updateResult.observe(viewLifecycleOwner) { success ->
             if (success) {
                 Toast.makeText(requireContext(), "Update berhasil", Toast.LENGTH_SHORT).show()
-                refreshProfile()
             } else {
                 Toast.makeText(requireContext(), "Update gagal", Toast.LENGTH_SHORT).show()
             }
@@ -95,29 +132,12 @@ class ProfileFragment : Fragment() {
         (activity as? BottomVisibilityController)?.setBottomNavVisible(true)
     }
 
-
     private fun updateProfile() {
         val name = binding.textInputName.text.toString()
         val email = binding.textInputEmail.text.toString()
         val address = binding.textInputAddress.text.toString()
         val noHp = binding.textInputHp.text.toString()
         viewModel.updateUser(name, email, address, noHp)
-        dataStoreManager = DataStoreManager(requireContext())
-
-        viewLifecycleOwner.lifecycleScope.launchWhenStarted {
-            val user = dataStoreManager.userData.first()
-            Log.d("ProfileFragment", "UID: ${user?.uid}")
-        }
     }
 
-    private fun refreshProfile() {
-        lifecycleScope.launch {
-            dataStoreManager.userData.collectLatest { userData ->
-                binding.textInputName.setText(userData?.name)
-                binding.textInputEmail.setText(userData?.email)
-                binding.textInputHp.setText(userData?.noHp)
-                binding.textInputAddress.setText(userData?.address)
-            }
-        }
-    }
 }

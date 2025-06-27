@@ -6,7 +6,6 @@ import androidx.datastore.preferences.core.stringPreferencesKey
 import androidx.datastore.preferences.preferencesDataStore
 import com.example.seacatering.model.Role
 import com.example.seacatering.model.Users
-import com.google.firebase.firestore.core.UserData
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.map
 
@@ -23,6 +22,7 @@ class DataStoreManager(private val context: Context) {
         val PHONE = stringPreferencesKey("phone")
         val ADDRESS = stringPreferencesKey("address")
         val ROLE = stringPreferencesKey("role")
+        val PROFILE_IMAGE_URL = stringPreferencesKey("profile_image_url")
     }
 
     suspend fun saveUserData(user: Users) {
@@ -33,6 +33,7 @@ class DataStoreManager(private val context: Context) {
             preferences[PreferencesKeys.PHONE] = user.noHp
             preferences[PreferencesKeys.ADDRESS] = user.address
             preferences[PreferencesKeys.ROLE] = user.role.name
+            preferences[PreferencesKeys.PROFILE_IMAGE_URL] = user.profileImageUrl
         }
     }
 
@@ -50,6 +51,7 @@ class DataStoreManager(private val context: Context) {
         val phone = preferences[PreferencesKeys.PHONE]
         val address = preferences[PreferencesKeys.ADDRESS]
         val roleString = preferences[PreferencesKeys.ROLE]
+        val profileImageUrl = preferences[PreferencesKeys.PROFILE_IMAGE_URL]
 
         if (uid != null && name != null && email != null && phone != null && address != null && roleString != null) {
             val role = try {
@@ -58,11 +60,9 @@ class DataStoreManager(private val context: Context) {
                 Role.USER
             }
 
-            Users(uid, name, email, address, phone, role)
+            Users(uid, name, email, address, phone, role, profileImageUrl ?: "")
         } else {
             null
         }
     }
-
-
 }
