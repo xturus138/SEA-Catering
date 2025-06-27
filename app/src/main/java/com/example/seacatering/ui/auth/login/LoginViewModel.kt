@@ -39,12 +39,11 @@ class LoginViewModel (private val app: Application) : AndroidViewModel(app) {
             if (task.isSuccessful) {
                 val uid = FirebaseAuth.getInstance().currentUser?.uid
                 if (uid != null) {
-                    authRepository.getUserData(uid) { user ->
+                    viewModelScope.launch {
+                        val user = authRepository.getUserData(uid)
                         if (user != null) {
-                            viewModelScope.launch {
-                                dataStoreManager.saveUserData(user)
-                                _loginResult.value = true
-                            }
+                            dataStoreManager.saveUserData(user)
+                            _loginResult.value = true
                         } else {
                             _errorMessage.value = "User data not found"
                         }
@@ -58,30 +57,34 @@ class LoginViewModel (private val app: Application) : AndroidViewModel(app) {
         }
     }
 
-
-
     fun loginWithGoogle(idToken: String) {
         authRepository.loginWithGoogle(idToken).addOnCompleteListener { task ->
             if (task.isSuccessful) {
                 val user = FirebaseAuth.getInstance().currentUser
                 if (user != null) {
-                    authRepository.getUserData(user.uid) { existingUser ->
-                        viewModelScope.launch {
-                            if (existingUser != null) {
-                                dataStoreManager.saveUserData(existingUser)
-                            } else {
-                                val newUser = Users(
-                                    name = user.displayName ?: "No Name",
-                                    email = user.email ?: "No Email",
-                                    address = "Not Provided",
-                                    noHp = "Not Provided",
-                                    role = Role.USER
-                                )
-                                authRepository.saveUserData(user.uid, newUser.name, newUser.email, newUser.address, newUser.noHp)
-                                dataStoreManager.saveUserData(newUser)
-                            }
-                            _googleLoginResult.value = true
+                    viewModelScope.launch {
+                        val existingUser = authRepository.getUserData(user.uid)
+                        if (existingUser != null) {
+                            dataStoreManager.saveUserData(existingUser)
+                        } else {
+                            val newUser = Users(
+                                uid = user.uid,
+                                name = user.displayName ?: "No Name",
+                                email = user.email ?: "No Email",
+                                address = "Not Provided",
+                                noHp = "Not Provided",
+                                role = Role.USER
+                            )
+                            authRepository.saveUserData(
+                                user.uid,
+                                newUser.name,
+                                newUser.email,
+                                newUser.address,
+                                newUser.noHp
+                            )
+                            dataStoreManager.saveUserData(newUser)
                         }
+                        _googleLoginResult.value = true
                     }
                 } else {
                     _errorMessage.value = "User not found after Google sign-in"
@@ -92,7 +95,5 @@ class LoginViewModel (private val app: Application) : AndroidViewModel(app) {
         }
     }
 
-
-    fun isUserLoggedIn(): Flow<Boolean> = dataStoreManager.userData.map { it != null }
 
 }

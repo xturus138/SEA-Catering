@@ -2,6 +2,7 @@ package com.example.seacatering.ui.profile
 
 import android.content.Intent
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -17,6 +18,7 @@ import com.example.seacatering.ui.home.HomeFragment
 import com.example.seacatering.utils.BottomVisibilityController
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import kotlinx.coroutines.flow.collectLatest
+import kotlinx.coroutines.flow.first
 import kotlinx.coroutines.launch
 
 class ProfileFragment : Fragment() {
@@ -100,6 +102,12 @@ class ProfileFragment : Fragment() {
         val address = binding.textInputAddress.text.toString()
         val noHp = binding.textInputHp.text.toString()
         viewModel.updateUser(name, email, address, noHp)
+        dataStoreManager = DataStoreManager(requireContext())
+
+        viewLifecycleOwner.lifecycleScope.launchWhenStarted {
+            val user = dataStoreManager.userData.first()
+            Log.d("ProfileFragment", "UID: ${user?.uid}")
+        }
     }
 
     private fun refreshProfile() {

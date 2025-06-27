@@ -6,7 +6,7 @@ import com.example.seacatering.model.MenuItem
 import com.google.firebase.firestore.FirebaseFirestore
 import kotlinx.coroutines.tasks.await
 
-class MealRepository {
+class MealRepository() {
 
     private val db = FirebaseFirestore.getInstance()
     private val mealCollection = db.collection("meals")

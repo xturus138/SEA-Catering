@@ -32,6 +32,7 @@ class MealFragment : Fragment(), ListMealplanAdapter.onMealClickListener {
 
         binding.rvMealPlan.layoutManager = LinearLayoutManager(requireContext(), LinearLayoutManager.HORIZONTAL, false)
         binding.updateButton.visibility = View.GONE
+        binding.textView14.visibility = View.GONE
 
         viewModel = ViewModelProvider(this)[MealViewModel::class.java]
         adapter = ListMealplanAdapter(emptyList(), this)
@@ -62,6 +63,7 @@ class MealFragment : Fragment(), ListMealplanAdapter.onMealClickListener {
         viewModel.meals.observe(viewLifecycleOwner) { meals ->
             adapter.updateData(meals)
             binding.updateButton.visibility = if (meals.isNotEmpty()) View.VISIBLE else View.GONE
+            binding.textView14.visibility = if (meals.isNotEmpty()) View.VISIBLE else View.GONE
         }
 
         viewModel.isLoading.observe(viewLifecycleOwner) { loading ->

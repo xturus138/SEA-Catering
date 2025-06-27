@@ -33,7 +33,7 @@ class ProfileViewModel(private val dataStoreManager: DataStoreManager) : ViewMod
         repository.updateUser(uid, name, email,address, noHp)
             .addOnSuccessListener {
                 viewModelScope.launch {
-                    val updatedUser = Users(name, email, address, noHp, Role.USER)
+                    val updatedUser = Users(uid, name, email, address, noHp, Role.USER)
                     dataStoreManager.saveUserData(updatedUser)
                     _updateResult.value = true
                 }

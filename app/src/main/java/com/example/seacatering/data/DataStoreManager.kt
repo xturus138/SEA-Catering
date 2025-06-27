@@ -17,6 +17,7 @@ class DataStoreManager(private val context: Context) {
 
 
     private object PreferencesKeys {
+        val UID = stringPreferencesKey("uid")
         val NAMA = stringPreferencesKey("nama")
         val EMAIL = stringPreferencesKey("email")
         val PHONE = stringPreferencesKey("phone")
@@ -26,6 +27,7 @@ class DataStoreManager(private val context: Context) {
 
     suspend fun saveUserData(user: Users) {
         context.dataStore.edit { preferences ->
+            preferences[PreferencesKeys.UID] = user.uid
             preferences[PreferencesKeys.NAMA] = user.name
             preferences[PreferencesKeys.EMAIL] = user.email
             preferences[PreferencesKeys.PHONE] = user.noHp
@@ -42,20 +44,21 @@ class DataStoreManager(private val context: Context) {
     }
 
     val userData: Flow<Users?> = context.dataStore.data.map { preferences ->
+        val uid = preferences[PreferencesKeys.UID]
         val name = preferences[PreferencesKeys.NAMA]
         val email = preferences[PreferencesKeys.EMAIL]
         val phone = preferences[PreferencesKeys.PHONE]
         val address = preferences[PreferencesKeys.ADDRESS]
         val roleString = preferences[PreferencesKeys.ROLE]
 
-        if (name != null && email != null && phone != null && address != null && roleString != null) {
+        if (uid != null && name != null && email != null && phone != null && address != null && roleString != null) {
             val role = try {
                 Role.valueOf(roleString)
             } catch (e: IllegalArgumentException) {
                 Role.USER
             }
 
-            Users(name, email, address, phone, role)
+            Users(uid, name, email, address, phone, role)
         } else {
             null
         }

@@ -43,6 +43,7 @@ class RegisterViewModel(private val dataStoreManager: DataStoreManager) : ViewMo
                     viewModelScope.launch {
                         dataStoreManager.saveUserData(
                             Users(
+                                uid = uid,
                                 name = name,
                                 email = email,
                                 address = address,
@@ -74,6 +75,7 @@ class RegisterViewModel(private val dataStoreManager: DataStoreManager) : ViewMo
                     viewModelScope.launch {
                         dataStoreManager.saveUserData(
                             Users(
+                                uid = user.uid,
                                 name = user.displayName ?: "No Name",
                                 email = user.email ?: "No Email",
                                 address = "Not Provided",

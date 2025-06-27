@@ -10,6 +10,7 @@ import com.google.firebase.auth.GoogleAuthCredential
 import com.google.firebase.auth.GoogleAuthProvider
 import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.firestore.auth.User
+import kotlinx.coroutines.tasks.await
 
 class AuthRepository() {
     private val firebaseAuth = FirebaseAuth.getInstance()
@@ -53,6 +54,7 @@ class AuthRepository() {
 
     fun saveUserData(uid: String, name: String, email: String, address: String, noHp: String){
         val user = Users(
+            uid = uid,
             name = name,
             email = email,
             address = address,
@@ -68,21 +70,22 @@ class AuthRepository() {
 
     }
 
-    fun getUserData(uid: String, onResult: (Users?) -> Unit) {
-        db.collection("users").document(uid).get()
-            .addOnSuccessListener { document ->
-                if (document.exists()) {
-                    val user = document.toObject(Users::class.java)
-                    onResult(user)
-                } else {
-                    onResult(null)
-                }
+    suspend fun getUserData(uid: String): Users? {
+        return try {
+            val document = db.collection("users").document(uid).get().await()
+            if (document.exists()) {
+                val user = document.toObject(Users::class.java)
+                user?.uid = uid
+                user
+            } else {
+                null
             }
-            .addOnFailureListener {
-                Log.e("Firestore", "Error fetching user data", it)
-                onResult(null)
-            }
+        } catch (e: Exception) {
+            Log.e("Firestore", "Error fetching user data", e)
+            null
+        }
     }
+
 
 
 

@@ -2,6 +2,7 @@ package com.example.seacatering.ui.auth.login
 
 import android.content.Intent
 import android.os.Bundle
+import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
@@ -19,6 +20,7 @@ import com.google.android.gms.auth.api.signin.GoogleSignIn
 import com.google.android.gms.auth.api.signin.GoogleSignInClient
 import com.google.android.gms.auth.api.signin.GoogleSignInOptions
 import com.google.android.gms.common.api.ApiException
+import kotlinx.coroutines.flow.first
 import kotlinx.coroutines.launch
 
 class LoginFragment : Fragment() {
@@ -27,6 +29,7 @@ class LoginFragment : Fragment() {
     private lateinit var viewModel: LoginViewModel
     private lateinit var googleSignInClient: GoogleSignInClient
     private val RC_SIGN_IN = 9001
+    private lateinit var dataStoreManager: DataStoreManager
 
 
     override fun onCreateView(
@@ -101,6 +104,7 @@ class LoginFragment : Fragment() {
         viewModel.googleLoginResult.observe(viewLifecycleOwner) { success ->
             if (success) {
                 Toast.makeText(requireContext(), "Google Login Successful", Toast.LENGTH_SHORT).show()
+
                 val intent = Intent(requireContext(), BaseActivity::class.java)
                 intent.flags  = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
                 startActivity(intent)
