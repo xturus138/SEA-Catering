@@ -355,7 +355,7 @@
             app:layout_constraintTop_toBottomOf="@+id/linearLayoutOffersStatic" />
 
         <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/recyclerView"
+            android:id="@+id/rv_review"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="16dp"

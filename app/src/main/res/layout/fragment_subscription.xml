@@ -283,6 +283,17 @@
             </com.google.android.material.textfield.TextInputLayout>
 
             <TextView
+                android:id="@+id/totalPriceTextView"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Rp 0"
+                android:layout_marginTop="20dp"
+                android:layout_marginStart="2dp"
+                android:textSize="18sp"
+                android:textColor="@color/green"
+                android:textStyle="bold" />
+
+            <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="Note: All fields are required and must be filled in before submitting the form"
