@@ -7,11 +7,13 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.FragmentManager
 import androidx.lifecycle.ViewModelProvider
 import com.example.seacatering.R
 import com.example.seacatering.databinding.FragmentSubscriptionBinding
 import com.example.seacatering.model.Meals
 import com.example.seacatering.ui.home.HomeFragment
+import com.example.seacatering.ui.testimonial.AddTestimonialFragment
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.google.android.material.chip.Chip
 import java.text.NumberFormat
@@ -83,9 +85,11 @@ class SubscriptionFragment : Fragment() {
         viewModel.submissionResult.observe(viewLifecycleOwner) { isSuccess ->
             if (isSuccess) {
                 Toast.makeText(context, "Subscription successful!", Toast.LENGTH_SHORT).show()
+                parentFragmentManager.popBackStack(null, FragmentManager.POP_BACK_STACK_INCLUSIVE)
                 parentFragmentManager.beginTransaction()
-                    .replace(R.id.fragment_container, ResultFragment())
+                    .replace(R.id.fragment_container, AddTestimonialFragment())
                     .commit()
+
             } else {
                 Toast.makeText(context, viewModel.errorMessage.value ?: "Subscription failed.", Toast.LENGTH_SHORT).show()
             }
@@ -149,9 +153,19 @@ class SubscriptionFragment : Fragment() {
         }
         val deliveryDaysString = deliveryDays.joinToString(",")
 
-        val planId = selectedMeal?.name ?: "Unknown Plan"
+        val planId = selectedMeal?.id ?: "UnknownID"
+        val planName = selectedMeal?.name ?: "Unknown Plan"
 
-        viewModel.submitSubscription(allergies, mealTypeString, deliveryDaysString, planId, phoneNumber)
+
+        viewModel.submitSubscription(
+            allergies,
+            mealTypeString,
+            deliveryDaysString,
+            planId,
+            planName,
+            phoneNumber
+        )
+
     }
 
     private fun isMealTypeSelected(): Boolean {

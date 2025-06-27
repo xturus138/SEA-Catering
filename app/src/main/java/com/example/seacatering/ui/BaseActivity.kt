@@ -4,10 +4,7 @@ import android.content.Intent
 import android.os.Bundle
 import android.util.Log
 import android.view.View
-import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
-import androidx.core.view.ViewCompat
-import androidx.core.view.WindowInsetsCompat
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.lifecycleScope
 import com.example.seacatering.R
@@ -15,9 +12,7 @@ import com.example.seacatering.data.DataStoreManager
 import com.example.seacatering.databinding.ActivityBaseBinding
 import com.example.seacatering.ui.home.HomeFragment
 import com.example.seacatering.ui.meal.MealFragment
-import com.example.seacatering.ui.profile.ProfileFragment
-import com.example.seacatering.ui.subscription.ResultFragment
-import com.example.seacatering.ui.subscription.SubscriptionFragment
+import com.example.seacatering.ui.dashboard.user.ResultFragment
 import com.example.seacatering.utils.BottomVisibilityController
 import kotlinx.coroutines.flow.first
 import kotlinx.coroutines.launch

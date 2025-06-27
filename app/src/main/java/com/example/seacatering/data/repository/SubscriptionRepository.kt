@@ -21,26 +21,39 @@ class SubscriptionRepository {
         }
     }
 
-    suspend fun getSubscriptionByUserId(userId: String): List<Subscription> {
+    suspend fun getSubscriptionsByUserId(userId: String): List<Subscription> {
         return try {
             val snapshot = subscriptionCollection
                 .whereEqualTo("user_uid", userId)
                 .get()
                 .await()
-            snapshot.documents.mapNotNull { it.toObject(Subscription::class.java) }
+            snapshot.documents.mapNotNull { doc ->
+                doc.toObject(Subscription::class.java)?.copy(documentId = doc.id)
+            }
         } catch (e: Exception) {
             Log.e("SubscriptionRepository", "Error fetching subscription data: ${e.message}")
             emptyList()
         }
     }
 
-    suspend fun updateSubscription(documentId: String, updatedSubscription: Map<String, Any>): Boolean {
+    suspend fun updateSubscriptionStatus(documentId: String, updates: Map<String, Any>): Boolean {
         return try {
-            subscriptionCollection.document(documentId).update(updatedSubscription).await()
-            Log.d("SubscriptionRepository", "Subscription data updated successfully")
+            subscriptionCollection.document(documentId).update(updates).await()
+            Log.d("SubscriptionRepository", "Subscription $documentId updated successfully with status: ${updates["status"]}")
             true
         } catch (e: Exception) {
-            Log.e("SubscriptionRepository", "Failed to update subscription data: ${e.message}")
+            Log.e("SubscriptionRepository", "Failed to update subscription $documentId: ${e.message}")
+            false
+        }
+    }
+
+    suspend fun deleteSubscription(documentId: String): Boolean {
+        return try {
+            subscriptionCollection.document(documentId).delete().await()
+            Log.d("SubscriptionRepository", "Subscription $documentId deleted successfully")
+            true
+        } catch (e: Exception) {
+            Log.e("SubscriptionRepository", "Failed to delete subscription $documentId: ${e.message}")
             false
         }
     }

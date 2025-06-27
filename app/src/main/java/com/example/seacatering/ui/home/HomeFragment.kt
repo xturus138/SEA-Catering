@@ -64,32 +64,38 @@ class HomeFragment : Fragment() {
     }
 
     private fun loadRecommendedItems() {
-        lifecycleScope.launch {
+        viewLifecycleOwner.lifecycleScope.launch {
+            if (!isAdded) return@launch
+
             binding.progressBarRecommended.visibility = View.VISIBLE
             hideRecommendedItems()
+
             val adds = homeRepository.getAddsItems()
             val recommendedItems = homeRepository.getRecommendedItems()
-            Glide.with(requireContext())
-                .load(adds.getOrNull(0))
-                .placeholder(R.drawable.placeholder_banner)
-                .error(R.drawable.placeholder_banner)
-                .dontAnimate()
-                .into(binding.imgAdds)
-            Glide.with(requireContext()).load(recommendedItems.getOrNull(0)?.photoResId).into(binding.imgRecommended1)
-            binding.titleOne.text = recommendedItems.getOrNull(0)?.title ?: ""
 
-            Glide.with(requireContext()).load(recommendedItems.getOrNull(1)?.photoResId).into(binding.imgRecommended2)
-            binding.titleTwo.text = recommendedItems.getOrNull(1)?.title ?: ""
+            context?.let { ctx ->
+                Glide.with(ctx)
+                    .load(adds.getOrNull(0))
+                    .placeholder(R.drawable.placeholder_banner)
+                    .error(R.drawable.placeholder_banner)
+                    .dontAnimate()
+                    .into(binding.imgAdds)
 
-            Glide.with(requireContext()).load(recommendedItems.getOrNull(2)?.photoResId).into(binding.imgRecommended3)
-            binding.titleThird.text = recommendedItems.getOrNull(2)?.title ?: ""
+                Glide.with(ctx).load(recommendedItems.getOrNull(0)?.photoResId).into(binding.imgRecommended1)
+                binding.titleOne.text = recommendedItems.getOrNull(0)?.title ?: ""
+
+                Glide.with(ctx).load(recommendedItems.getOrNull(1)?.photoResId).into(binding.imgRecommended2)
+                binding.titleTwo.text = recommendedItems.getOrNull(1)?.title ?: ""
+
+                Glide.with(ctx).load(recommendedItems.getOrNull(2)?.photoResId).into(binding.imgRecommended3)
+                binding.titleThird.text = recommendedItems.getOrNull(2)?.title ?: ""
+            }
 
             binding.progressBarRecommended.visibility = View.GONE
             showRecommendedItems()
-
         }
-
     }
+
 
     private fun hideRecommendedItems() {
         binding.linearLayoutOffersStatic.visibility = View.GONE

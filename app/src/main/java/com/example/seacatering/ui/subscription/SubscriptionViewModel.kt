@@ -62,6 +62,7 @@ class SubscriptionViewModel(application: Application) : AndroidViewModel(applica
         mealType: String,
         deliveryDays: String,
         planId: String,
+        planName: String,
         phoneNumber: String
     ) {
         val userUid = auth.currentUser?.uid
@@ -81,10 +82,12 @@ class SubscriptionViewModel(application: Application) : AndroidViewModel(applica
             meal_type = mealType,
             phone_number = phoneNumber,
             plan_id = planId,
+            plan_name = planName,
             status = "ACTIVE",
             user_uid = userUid,
             total_price = lastCalculatedPrice
         )
+
 
         viewModelScope.launch {
             val result = subscriptionRepository.saveSubscription(newSubscription)

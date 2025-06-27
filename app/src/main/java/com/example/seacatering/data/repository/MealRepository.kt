@@ -16,13 +16,14 @@ class MealRepository() {
         try {
             val snapshot = mealCollection.get().await()
             for (document in snapshot.documents) {
+                val id = document.id
                 val name = document.getString("name") ?: ""
                 val price = document.getString("price") ?: ""
                 val descriptionTitle = document.getString("descriptionTitle") ?: ""
                 val details = document.get("details") as? List<String> ?: emptyList()
                 val imageResId = document.getString("imageResId") ?: ""
 
-                val menuListSnapshot = mealCollection.document(document.id)
+                val menuListSnapshot = mealCollection.document(id)
                     .collection("menuList")
                     .get()
                     .await()
@@ -33,6 +34,7 @@ class MealRepository() {
 
                 mealsWithMenu.add(
                     Meals(
+                        id = id,
                         name = name,
                         price = price,
                         descriptionTitle = descriptionTitle,
@@ -47,6 +49,8 @@ class MealRepository() {
         }
         return mealsWithMenu
     }
+
+
 
 
 

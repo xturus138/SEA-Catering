@@ -6,6 +6,7 @@ import kotlinx.parcelize.Parcelize
 
 @Parcelize
 data class Subscription(
+    val documentId: String = "",
     val allergies: String = "",
     val delivery_days: String = "",
     val end_date: Timestamp? = null,
@@ -14,6 +15,7 @@ data class Subscription(
     val pause_periode_start: Timestamp? = null,
     val phone_number: String = "",
     val plan_id: String = "",
+    val plan_name: String = "",
     val status: String = "",
     val user_uid: String = "",
     val total_price: Double = 0.0
