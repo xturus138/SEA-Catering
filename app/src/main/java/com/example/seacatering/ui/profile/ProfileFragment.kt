@@ -24,6 +24,7 @@ import com.google.android.material.bottomnavigation.BottomNavigationView
 import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.flow.first
 import kotlinx.coroutines.launch
+import androidx.core.net.toUri
 
 class ProfileFragment : Fragment() {
 
@@ -105,6 +106,25 @@ class ProfileFragment : Fragment() {
             intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
             startActivity(intent)
             requireActivity().finish()
+        }
+
+        binding.btnContactWhatsapp.setOnClickListener {
+            val phoneNumber = "08123456789"
+            val message = "I want to ask.."
+
+            try {
+                val whatsappIntent = Intent(Intent.ACTION_VIEW)
+                whatsappIntent.data = "https://api.whatsapp.com/send?phone=$phoneNumber&text=${Uri.encode(message)}".toUri()
+                startActivity(whatsappIntent)
+            } catch (e: Exception) {
+                val dialIntent = Intent(Intent.ACTION_DIAL)
+                dialIntent.data = "tel:$phoneNumber".toUri()
+                try {
+                    startActivity(dialIntent)
+                } catch (dialException: Exception) {
+                    Toast.makeText(requireContext(), "No application found to handle this request.", Toast.LENGTH_SHORT).show()
+                }
+            }
         }
 
 
