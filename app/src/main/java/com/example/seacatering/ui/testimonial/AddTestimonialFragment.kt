@@ -1,5 +1,6 @@
 package com.example.seacatering.ui.testimonial
 
+import android.content.Intent
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -11,6 +12,7 @@ import androidx.lifecycle.ViewModelProvider
 import com.example.seacatering.R
 import com.example.seacatering.databinding.FragmentAddTestimonialBinding
 import com.example.seacatering.ui.home.HomeFragment
+import com.example.seacatering.ui.meal.MealFragment
 import com.example.seacatering.utils.BottomVisibilityController
 import com.google.android.material.bottomnavigation.BottomNavigationView
 
@@ -51,6 +53,11 @@ class AddTestimonialFragment : Fragment() {
             } else {
                 Toast.makeText(context, viewModel.errorMessage.value ?: "Failed to submit testimonial.", Toast.LENGTH_SHORT).show()
             }
+        }
+        binding.backButton.setOnClickListener {
+            parentFragmentManager.beginTransaction()
+                .replace(R.id.fragment_container, MealFragment())
+                .commit()
         }
     }
 
