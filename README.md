@@ -156,7 +156,7 @@ Aplikasi ini dibangun dengan:
 - **Arsitektur:** MVVM (Model-View-ViewModel)
 - **Navigasi:** Bottom Navigation
 - **Database & Auth:** Firebase Firestore + Firebase Auth
-- **Storage:** Github Storage
+- **Storage:** Github Storage + Firebase (Auth & Firestore)
 
 ---
 ## Setup Emulator Menggunakan Android Studio
