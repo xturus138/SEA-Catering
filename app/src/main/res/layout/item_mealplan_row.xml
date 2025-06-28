@@ -46,7 +46,7 @@
                     android:textSize="14sp"
                     android:textStyle="bold"
                     android:gravity="start|center_vertical"
-                     />
+                    />
 
                 <TextView
                     android:id="@+id/tvPrice"
@@ -106,27 +106,12 @@
                     android:id="@+id/rvDetails"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:nestedScrollingEnabled="false" />
+                    android:nestedScrollingEnabled="false"
+                    android:focusable="false"
+                    android:clickable="false"
+                    android:isScrollContainer="false" />
             </LinearLayout>
         </androidx.cardview.widget.CardView>
-
-        <androidx.cardview.widget.CardView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:backgroundTint="#FFFFFF"
-            app:cardCornerRadius="10dp"
-            app:cardElevation="2dp"
-            app:cardUseCompatPadding="true" />
-
-        <androidx.cardview.widget.CardView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:backgroundTint="#FFFFFF"
-            app:cardCornerRadius="10dp"
-            app:cardElevation="2dp"
-            app:cardUseCompatPadding="true" />
-
-
 
     </LinearLayout>
 

@@ -76,5 +76,3 @@ class MealFragment : Fragment(), ListMealplanAdapter.onMealClickListener {
         selectedMeal = meal
     }
 }
-
-

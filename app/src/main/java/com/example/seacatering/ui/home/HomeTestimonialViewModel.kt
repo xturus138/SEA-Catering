@@ -7,6 +7,7 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.viewModelScope
 import com.example.seacatering.data.repository.TestimonialRepository
 import com.example.seacatering.model.Testimonial
+import kotlinx.coroutines.isActive
 import kotlinx.coroutines.launch
 
 class HomeTestimonialViewModel(application: Application) : AndroidViewModel(application) {
@@ -21,7 +22,10 @@ class HomeTestimonialViewModel(application: Application) : AndroidViewModel(appl
 
     private var allTestimonials: List<Testimonial> = emptyList()
     private var currentIndex = 0
-    private val PAGE_SIZE = 5
+
+    companion object {
+        private const val PAGE_SIZE = 5
+    }
 
     init {
         loadInitialTestimonials()
@@ -30,39 +34,51 @@ class HomeTestimonialViewModel(application: Application) : AndroidViewModel(appl
     private fun loadInitialTestimonials() {
         _isLoadingTestimonials.value = true
         viewModelScope.launch {
-            allTestimonials = testimonialRepository.getAllTestimonials()
-            allTestimonials = allTestimonials.shuffled()
-            displayNextPage()
+            val fetched = testimonialRepository.getAllTestimonials()
+            if (isActive) {
+                allTestimonials = fetched
+                currentIndex = 0
+                _testimonials.value = emptyList()
+                displayNextPageInternal()
+            }
         }
     }
 
     fun displayNextPage() {
+        if (_isLoadingTestimonials.value == true) return
+        _isLoadingTestimonials.value = true
+        displayNextPageInternal()
+    }
+
+    private fun displayNextPageInternal() {
         if (allTestimonials.isEmpty()) {
-            _testimonials.value = emptyList()
             _isLoadingTestimonials.value = false
             return
         }
 
         val start = currentIndex
         val end = (currentIndex + PAGE_SIZE).coerceAtMost(allTestimonials.size)
-        val newReviews = allTestimonials.subList(start, end)
 
-        if (newReviews.isEmpty()) {
-            currentIndex = 0
-            displayNextPage()
-        } else {
-            _testimonials.value = newReviews
-            currentIndex = end
-            _isLoadingTestimonials.value = false
-        }
+        val nextItems = allTestimonials.subList(start, end)
+        val currentList = _testimonials.value?.toMutableList() ?: mutableListOf()
+        currentList.addAll(nextItems)
+
+        _testimonials.value = currentList
+
+        currentIndex = if (end == allTestimonials.size) 0 else end
+        _isLoadingTestimonials.value = false
     }
 
     fun refreshAllTestimonials() {
         _isLoadingTestimonials.value = true
         currentIndex = 0
         viewModelScope.launch {
-            allTestimonials = testimonialRepository.getAllTestimonials()
-            displayNextPage()
+            val fetched = testimonialRepository.getAllTestimonials()
+            if (isActive) {
+                allTestimonials = fetched
+                _testimonials.value = emptyList()
+                displayNextPageInternal()
+            }
         }
     }
 }

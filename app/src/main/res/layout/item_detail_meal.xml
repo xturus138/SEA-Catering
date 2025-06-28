@@ -5,4 +5,8 @@
     android:layout_height="wrap_content"
     android:textColor="@color/blueDark"
     android:textSize="14sp"
+    android:nestedScrollingEnabled="false"
+    android:focusable="false"
+    android:clickable="false"
+    android:isScrollContainer="false"
     android:text="• Sample detail" />

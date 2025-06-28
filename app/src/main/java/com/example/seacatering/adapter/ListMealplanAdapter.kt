@@ -1,5 +1,6 @@
 package com.example.seacatering.adapter
 
+import android.annotation.SuppressLint
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -37,6 +38,7 @@ class ListMealplanAdapter(private var meals: List<Meals>, private val listener: 
         return MealViewHolder(view)
     }
 
+    @SuppressLint("ClickableViewAccessibility")
     override fun onBindViewHolder(holder: MealViewHolder, position: Int) {
         val meal = meals[position]
 
@@ -65,6 +67,13 @@ class ListMealplanAdapter(private var meals: List<Meals>, private val listener: 
 
             listener.onMealClick(meals[clickedPosition])
         }
+
+        holder.rvDetails.setOnTouchListener { _, event ->
+            if (event.action == android.view.MotionEvent.ACTION_UP) {
+                holder.itemView.performClick()
+            }
+            true
+        }
     }
 
     override fun getItemCount(): Int = meals.size
@@ -74,7 +83,3 @@ class ListMealplanAdapter(private var meals: List<Meals>, private val listener: 
         notifyDataSetChanged()
     }
 }
-
-
-
-
