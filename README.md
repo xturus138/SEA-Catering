@@ -159,14 +159,51 @@ Aplikasi ini dibangun dengan:
 - **Storage:** Github Storage
 
 ---
+## Setup Emulator Menggunakan Android Studio
+
+1.  **Akses Device Manager:** Di Android Studio, buka *Device Manager*.
+2.  **Buat Perangkat Baru:** Klik 'Create Device'.
+3.  **Pilih Spesifikasi:** Pilih model perangkat virtual.
+4.  **Unduh Sistem Operasi:** Pilih versi Android yang akan digunakan (disarankan Android Terbaru API 35 (Android 14)).
+5.  **Finalisasi & Jalankan:** Ikuti wizard hingga selesai, lalu luncurkan emulator.
+6.  
+---
+
+## Menggunakan Device Asli (Physical)
+
+Pastikan perangkat Anda menjalankan **Android 14 (API 35) atau lebih baru**.
+
+1.  **Aktifkan Opsi Developer:** Di perangkat, buka `Settings > About phone` (atau serupa), ketuk `Build number` berkali-kali hingga Opsi Developer aktif.
+2.  **Aktifkan USB Debugging:** Di `Settings > System > Developer options`, aktifkan `USB debugging`.
+3.  **Hubungkan Perangkat:** Sambungkan perangkat Android ke komputer via kabel USB.
+4.  **Izinkan Debugging:** Di perangkat Anda, izinkan *USB debugging* jika ada *prompt*.
+5.  **Pilih Perangkat:** Di Android Studio, pilih perangkat fisik Anda dari daftar *target device*.
+6.  **Jalankan Aplikasi:** Klik tombol 'Run' (ikon segitiga hijau).
+
+--
+## Admin & User Login Credentials
+
+### 🧑‍💻 Akun Pengguna Biasa
+
+* **Email:** `user@gmail.com`
+* **Password:** `user1234`
+
+### ⚙️ Akun Admin
+
+* **Email:** `admin@gmail.com`
+* **Password:** `admin1234`
+--
 
 ## 🚀 Cara Install & Menjalankan
 
 ### Persiapan
 - Android Studio versi Meerkat
 - JDK 17 atau lebih tinggi
-- Android SDK minimal API 24
+- Android SDK minimal API 24 tetapi disarankan android 14 api 35
 - Catatan: Project ini menggunakan Gradle Kotlin DSL (build.gradle.kts) dan Firebase, pastikan plugin Google Services sudah aktif di Android Studio (Tools → Firebase → Set Up).
+
+## Link Aplikasi (APK Bundle)
+- [Unduh Aplikasi](https://drive.google.com/drive/folders/19zI-O-gH4CsRuvw7pB_8tURGsZt_naMV?usp=sharing)
 
 ### Clone Project
 
