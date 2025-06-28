@@ -166,7 +166,6 @@ Aplikasi ini dibangun dengan:
 3.  **Pilih Spesifikasi:** Pilih model perangkat virtual.
 4.  **Unduh Sistem Operasi:** Pilih versi Android yang akan digunakan (disarankan Android Terbaru API 35 (Android 14)).
 5.  **Finalisasi & Jalankan:** Ikuti wizard hingga selesai, lalu luncurkan emulator.
-6.  
 ---
 
 ## Menggunakan Device Asli (Physical)
