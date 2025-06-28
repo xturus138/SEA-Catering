@@ -9,4 +9,4 @@
     android:focusable="false"
     android:clickable="false"
     android:isScrollContainer="false"
-    android:text="• Sample detail" />
+    android:text="@string/sample_detail" />

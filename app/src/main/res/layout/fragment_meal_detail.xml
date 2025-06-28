@@ -38,7 +38,7 @@
                 android:layout_height="wrap_content"
                 android:gravity="center"
                 android:layout_marginStart="16sp"
-                android:text="Popular meal in this plan"
+                android:text="@string/popular_meal_in_this_plan"
                 android:textColor="@color/blueDark"
                 android:textSize="16sp"
                 android:textStyle="bold"
@@ -62,7 +62,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="16dp"
-            android:text="Every dish is designed by our nutritionists to ensure you get balanced nutrition without sacrificing delicious taste."
+            android:text="@string/every_dish_is_designed_by_our_nutritionists_to_ensure_you_get_balanced_nutrition_without_sacrificing_delicious_taste"
             android:textColor="@color/blueDark"
             android:textSize="14sp"
             android:textStyle="normal" />
@@ -86,7 +86,7 @@
             android:layout_marginTop="14dp"
             android:backgroundTint="@color/green"
             android:layout_gravity="center"
-            android:text="Proceed to Subscribe"
+            android:text="@string/proceed_to_subscribe"
             android:textSize="16sp"
             app:cornerRadius="5dp" />
 

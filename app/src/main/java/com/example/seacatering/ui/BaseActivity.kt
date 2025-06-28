@@ -5,6 +5,7 @@ import android.os.Bundle
 import android.util.Log
 import android.view.View
 import androidx.appcompat.app.AppCompatActivity
+import androidx.appcompat.app.AppCompatDelegate
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.lifecycleScope
 import com.example.seacatering.R
@@ -34,6 +35,7 @@ class BaseActivity : AppCompatActivity(), BottomVisibilityController {
 
         binding = ActivityBaseBinding.inflate(layoutInflater)
         setContentView(binding.root)
+        AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO)
         dataStoreManager = DataStoreManager(applicationContext)
 
         lifecycleScope.launch {

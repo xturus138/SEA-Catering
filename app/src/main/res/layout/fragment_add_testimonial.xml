@@ -15,7 +15,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="32dp"
-            android:text="Add Your Testimonial"
+            android:text="@string/add_your_testimonial"
             android:textColor="@color/blueDark"
             android:textSize="20sp"
             android:textStyle="bold"
@@ -53,7 +53,7 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Customer Name"
+                android:text="@string/customer_name"
                 android:layout_marginBottom="8dp"
                 android:textColor="@color/blueDark"
                 android:textSize="14sp" />
@@ -67,7 +67,7 @@
                     android:id="@+id/inputCustomerName"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:hint="Your Name"
+                    android:hint="@string/your_name"
                     android:inputType="textPersonName"
                     android:padding="12dp"
                     android:enabled="false"/> </com.google.android.material.textfield.TextInputLayout>
@@ -75,7 +75,7 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Your Review"
+                android:text="@string/your_review"
                 android:layout_marginTop="16dp"
                 android:layout_marginBottom="8dp"
                 android:textColor="@color/blueDark"
@@ -85,7 +85,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
-                android:hint="Share your experience using the app...">
+                android:hint="@string/share_your_experience_using_the_app">
 
                 <com.google.android.material.textfield.TextInputEditText
                     android:id="@+id/inputReview"
@@ -101,7 +101,7 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Rating"
+                android:text="@string/rating"
                 android:layout_marginTop="16dp"
                 android:layout_marginBottom="8dp"
                 android:textColor="@color/blueDark"
@@ -121,7 +121,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="32dp"
-                android:text="Submit Testimonial"
+                android:text="@string/submit_testimonial"
                 android:textSize="16sp"
                 android:paddingVertical="12dp"
                 android:backgroundTint="@color/green"

@@ -38,7 +38,6 @@ class RegisterViewModel(private val dataStoreManager: DataStoreManager) : ViewMo
             if (task.isSuccessful) {
                 val uid = FirebaseAuth.getInstance().currentUser?.uid
                 if (uid != null) {
-                    Log.d("RegisterViewModel", "register: Save user data to Firestore and DataStore")
                     authRepository.saveUserData(uid, name, email, address, noHp)
                     viewModelScope.launch {
                         dataStoreManager.saveUserData(

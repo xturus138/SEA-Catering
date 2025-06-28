@@ -19,9 +19,9 @@
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Welcome Back"
+        android:text="@string/textWelcomeLogin"
         android:layout_marginTop="20dp"
-        android:textSize="34dp"
+        android:textSize="34sp"
         android:textStyle="bold"
         android:textColor="@color/blueDark"
         android:textAlignment="center"/>
@@ -29,20 +29,20 @@
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Sign in to continue to your account"
+        android:text="@string/textSubtitleLogin"
         android:textAlignment="center"
         android:textStyle="normal"
-        android:textSize="16dp"
+        android:textSize="16sp"
         android:layout_marginTop="10dp"
         android:textColor="@color/blueDark"/>
 
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Email Address"
+        android:text="@string/labelEmailLogin"
         android:layout_marginBottom="8dp"
         android:layout_marginStart="2dp"
-        android:textSize="14dp"
+        android:textSize="14sp"
         android:layout_marginTop="32dp"
         android:textColor="@color/blueDark"/>
 
@@ -55,8 +55,8 @@
         <com.google.android.material.textfield.TextInputEditText
             android:id="@+id/inputEmail"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:hint="example@gmail.com"
+            android:layout_height="48dp"
+            android:hint="@string/inputEmailLogin"
             android:background="@drawable/rounded_edittext_background" android:padding="12dp"
             android:inputType="textEmailAddress" />
 
@@ -65,10 +65,10 @@
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Password"
+        android:text="@string/labelPasswordLogin"
         android:layout_marginBottom="8dp"
         android:layout_marginStart="2dp"
-        android:textSize="14dp"
+        android:textSize="14sp"
         android:layout_marginTop="16dp"
         android:textColor="@color/blueDark"/>
 
@@ -81,8 +81,8 @@
         <com.google.android.material.textfield.TextInputEditText
             android:id="@+id/inputPassword"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:hint="Your password"
+            android:layout_height="48dp"
+            android:hint="@string/inputPasswordLogin"
             android:background="@drawable/rounded_edittext_background" android:padding="12dp"
             android:inputType="textPassword" />
 
@@ -92,7 +92,7 @@
         android:id="@+id/tv_register"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Register Here!"
+        android:text="@string/textRegisterLogin"
         android:textColor="@color/gray"
         android:textSize="13sp"
         android:layout_marginTop="10dp"
@@ -102,7 +102,7 @@
         android:id="@+id/googleButtonSignIn"
         android:layout_width="256dp"
         android:layout_height="wrap_content"
-        android:text="Sign in with Google"
+        android:text="@string/buttonGoogleSignIn"
         android:textColor="@color/blueDark"
         android:layout_marginTop="25dp"
         android:layout_gravity="center"
@@ -120,7 +120,7 @@
         android:layout_width="256dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="13dp"
-        android:text="Log In"
+        android:text="@string/buttonLogin"
         android:textSize="16dp"
         android:layout_gravity="center"
         android:backgroundTint="@color/blueDark"/>

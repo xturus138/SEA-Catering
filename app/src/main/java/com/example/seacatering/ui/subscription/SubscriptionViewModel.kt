@@ -73,7 +73,7 @@ class SubscriptionViewModel(application: Application) : AndroidViewModel(applica
             return
         }
 
-        val endDate = Timestamp(System.currentTimeMillis() / 1000 + (30L * 24 * 60 * 60 * 1000), 0) // 30 hari dari sekarang
+        val endDate = Timestamp(System.currentTimeMillis() / 1000 + (30L * 24 * 60 * 60 * 1000), 0)
         val createdAt = Timestamp.now()
 
         val newSubscription = Subscription(

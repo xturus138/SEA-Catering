@@ -24,9 +24,9 @@
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Create Your Account"
+            android:text="@string/textTitleRegister"
             android:layout_marginTop="20dp"
-            android:textSize="34dp"
+            android:textSize="34sp"
             android:textStyle="bold"
             android:textColor="@color/blueDark"
             android:textAlignment="center"/>
@@ -34,17 +34,17 @@
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Sign up to access your personalized experience"
+            android:text="@string/textSubtitleRegister"
             android:textAlignment="center"
             android:textStyle="normal"
-            android:textSize="16dp"
+            android:textSize="16sp"
             android:layout_marginTop="10dp"
             android:textColor="@color/blueDark"/>
 
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Email Address"
+            android:text="@string/labelEmailRegister"
             android:layout_marginBottom="8dp"
             android:layout_marginStart="2dp"
             android:textSize="14sp"
@@ -61,7 +61,7 @@
                 android:id="@+id/inputEmail"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:hint="example@gmail.com"
+                android:hint="@string/inputEmailRegister"
                 android:background="@drawable/rounded_edittext_background"
                 android:padding="12dp"
                 android:inputType="textEmailAddress" />
@@ -71,7 +71,7 @@
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Full Name"
+            android:text="@string/labelNameRegister"
             android:layout_marginBottom="8dp"
             android:layout_marginStart="2dp"
             android:textSize="14sp"
@@ -89,7 +89,7 @@
                 android:id="@+id/inputName"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:hint="Raditya Aryabudhi Ramadhan"
+                android:hint="@string/inputNameRegister"
                 android:background="@drawable/rounded_edittext_background"
                 android:padding="12dp"
                 android:inputType="text" />
@@ -99,7 +99,7 @@
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Create Password"
+            android:text="@string/labelPasswordRegister"
             android:layout_marginBottom="8dp"
             android:layout_marginStart="2dp"
             android:textSize="14sp"
@@ -116,7 +116,7 @@
             <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/inputPassword"
                 android:layout_width="match_parent"
-                android:hint="Make sure your password is strong"
+                android:hint="@string/inputPasswordRegister"
                 android:layout_height="wrap_content"
                 android:background="@drawable/rounded_edittext_background"
                 android:padding="12dp"
@@ -127,7 +127,7 @@
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Confirm Password"
+            android:text="@string/labelConfirmPasswordRegister"
             android:layout_marginBottom="8dp"
             android:layout_marginStart="2dp"
             android:textSize="14sp"
@@ -145,7 +145,7 @@
                 android:id="@+id/inputConfirmPassword"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:hint="Confirm password"
+                android:hint="@string/inputConfirmPasswordRegister"
                 android:background="@drawable/rounded_edittext_background"
                 android:padding="12dp"
                 android:inputType="textPassword" />
@@ -153,9 +153,10 @@
         </com.google.android.material.textfield.TextInputLayout>
 
         <TextView
+            android:id="@+id/backButton"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Please double check your input"
+            android:text="@string/textNoteRegister"
             android:textColor="@color/gray"
             android:textSize="13sp"
             android:layout_marginTop="10dp"
@@ -165,7 +166,7 @@
             android:id="@+id/googleButtonSignUp"
             android:layout_width="256dp"
             android:layout_height="wrap_content"
-            android:text="Sign up with Google"
+            android:text="@string/buttonGoogleSignUpRegister"
             android:textColor="@color/blueDark"
             android:layout_marginTop="25dp"
             android:layout_gravity="center"
@@ -183,8 +184,8 @@
             android:layout_width="256dp"
             android:layout_height="wrap_content"
             android:layout_marginTop="13dp"
-            android:text="Create Account"
-            android:textSize="16dp"
+            android:text="@string/buttonSignUpRegister"
+            android:textSize="16sp"
             android:layout_gravity="center"
             android:backgroundTint="@color/blueDark"/>
     </LinearLayout>

@@ -41,7 +41,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="54dp"
-                android:text="Location"
+                android:text="@string/textViewLocationLabelHome"
                 android:textColor="@color/blueDark"
                 android:textSize="14sp"
                 app:layout_constraintEnd_toEndOf="parent"
@@ -56,7 +56,7 @@
                 android:singleLine="true"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="4dp"
-                android:text="Please turn on your location"
+                android:text="@string/textViewLocationStatusHome"
                 android:textColor="@color/grayBlack"
                 android:textSize="12sp"
                 app:layout_constraintEnd_toEndOf="@+id/textView"
@@ -93,7 +93,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginStart="16dp"
                 android:layout_marginTop="20dp"
-                android:text="Recommended for you!"
+                android:text="@string/textViewRecommendedTitleHome"
                 android:textColor="@color/blueDark"
                 android:textSize="14sp"
                 app:layout_constraintStart_toStartOf="parent"
@@ -140,7 +140,7 @@
                             android:layout_width="match_parent"
                             android:layout_height="match_parent"
                             android:scaleType="centerCrop"
-                            android:contentDescription="Recommended image 1" />
+                            android:contentDescription="@string/recommended_image_1" />
                     </androidx.cardview.widget.CardView>
 
                     <TextView
@@ -148,7 +148,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="5dp"
-                        android:text="Healthy Package"
+                        android:text="@string/healthy_package_home"
                         android:textColor="@color/blueDark"
                         android:textSize="12sp" />
                 </LinearLayout>
@@ -171,7 +171,7 @@
                             android:layout_width="match_parent"
                             android:layout_height="match_parent"
                             android:scaleType="centerCrop"
-                            android:contentDescription="Recommended image 2" />
+                            android:contentDescription="@string/recommended_image_2" />
                     </androidx.cardview.widget.CardView>
 
                     <TextView
@@ -179,7 +179,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="5dp"
-                        android:text="Vegan Package"
+                        android:text="@string/vegan_package"
                         android:textColor="@color/blueDark"
                         android:textSize="12sp" />
                 </LinearLayout>
@@ -201,7 +201,7 @@
                             android:layout_width="match_parent"
                             android:layout_height="match_parent"
                             android:scaleType="centerCrop"
-                            android:contentDescription="Recommended image 3" />
+                            android:contentDescription="@string/recommended_image_3" />
                     </androidx.cardview.widget.CardView>
 
                     <TextView
@@ -209,7 +209,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="5dp"
-                        android:text="Muscle Package"
+                        android:text="@string/muscle_package"
                         android:textColor="@color/blueDark"
                         android:textSize="12sp" />
                 </LinearLayout>
@@ -221,7 +221,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginStart="16dp"
                 android:layout_marginTop="36dp"
-                android:text="What we offers?"
+                android:text="@string/textViewOffersTitleHome"
                 android:textColor="@color/blueDark"
                 android:textSize="14sp"
                 app:layout_constraintStart_toStartOf="parent"
@@ -260,13 +260,13 @@
                             android:layout_height="match_parent"
                             android:src="@drawable/fast"
                             android:scaleType="centerCrop"
-                            android:contentDescription="Fast Delivery" />
+                            android:contentDescription="@string/fast_delivery" />
                     </androidx.cardview.widget.CardView>
 
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="Fast Delivery"
+                        android:text="@string/fast_delivery_tv"
                         android:textColor="@color/blueDark"
                         android:textSize="12sp" />
                 </LinearLayout>
@@ -293,13 +293,13 @@
                             android:layout_height="match_parent"
                             android:src="@drawable/food"
                             android:scaleType="centerCrop"
-                            android:contentDescription="Healthy Food" />
+                            android:contentDescription="@string/healthy_food" />
                     </androidx.cardview.widget.CardView>
 
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="Healthy Food"
+                        android:text="@string/healthy_food_tv"
                         android:textColor="@color/blueDark"
                         android:textSize="12sp" />
                 </LinearLayout>
@@ -326,13 +326,13 @@
                             android:layout_height="match_parent"
                             android:src="@drawable/fresh"
                             android:scaleType="centerCrop"
-                            android:contentDescription="Fresh Ingredients" />
+                            android:contentDescription="@string/fresh_ingredients" />
                     </androidx.cardview.widget.CardView>
 
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="Fresh Ingredients"
+                        android:text="@string/fresh_ingredients_tv"
                         android:textColor="@color/blueDark"
                         android:textSize="12sp" />
                 </LinearLayout>
@@ -344,7 +344,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginStart="16dp"
                 android:layout_marginTop="36dp"
-                android:text="What others thinking about us?"
+                android:text="@string/what_others_thinking_about_us"
                 android:textColor="@color/blueDark"
                 android:textSize="14sp"
                 app:layout_constraintStart_toStartOf="parent"

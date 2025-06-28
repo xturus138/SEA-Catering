@@ -15,7 +15,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="33dp"
-            android:text="Subscription"
+            android:text="@string/subscription"
             android:textColor="@color/blueDark"
             android:textSize="16sp"
             android:textStyle="bold"
@@ -58,7 +58,7 @@
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Full Name"
+                android:text="@string/full_name_subs"
                 android:layout_marginBottom="8dp"
                 android:layout_marginStart="2dp"
                 android:textSize="14sp"
@@ -73,7 +73,7 @@
                     android:id="@+id/inputName"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:hint="Ex: Raditya Aryabudhi Ramadhan"
+                    android:hint="@string/ex_raditya_aryabudhi_ramadhan"
                     android:inputType="text"
                     android:padding="12dp" />
 
@@ -82,7 +82,7 @@
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Phone Number"
+                android:text="@string/phone_number"
                 android:layout_marginTop="23dp"
                 android:layout_marginBottom="8dp"
                 android:layout_marginStart="2dp"
@@ -99,7 +99,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:inputType="number"
-                    android:hint="Ex: +6282121243"
+                    android:hint="@string/ex_6282121243"
                     android:padding="12dp" />
 
             </com.google.android.material.textfield.TextInputLayout>
@@ -107,7 +107,7 @@
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Plan Selection"
+                android:text="@string/plan_selection"
                 android:layout_marginTop="23dp"
                 android:layout_marginBottom="8dp"
                 android:layout_marginStart="2dp"
@@ -134,7 +134,7 @@
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Meal Type "
+                android:text="@string/meal_type"
                 android:layout_marginTop="23dp"
                 android:layout_marginBottom="8dp"
                 android:layout_marginStart="2dp"
@@ -150,7 +150,7 @@
                     android:id="@+id/checkboxBreakfast"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Breakfast"
+                    android:text="@string/breakfast"
                     android:layout_weight="1"
                     android:textColor="@color/black"
                     android:textSize="14sp"/>
@@ -159,7 +159,7 @@
                     android:id="@+id/checkboxLunch"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Lunch"
+                    android:text="@string/lunch"
                     android:layout_weight="1"
                     android:textColor="@color/black"
                     android:textSize="14sp"/>
@@ -168,7 +168,7 @@
                     android:id="@+id/checkboxDinner"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Dinner"
+                    android:text="@string/dinner"
                     android:layout_weight="1"
                     android:textColor="@color/black"
                     android:textSize="14sp"/>
@@ -180,7 +180,7 @@
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Delivery Day"
+                android:text="@string/delivery_day"
                 android:layout_marginTop="23dp"
                 android:layout_marginBottom="8dp"
                 android:layout_marginStart="2dp"
@@ -203,7 +203,7 @@
                     android:layout_height="wrap_content"
                     android:id="@+id/chipMonday"
                     style="@style/Widget.MaterialComponents.Chip.Choice"
-                    android:text="Monday"
+                    android:text="@string/monday"
                     android:checkable="true" />
 
                 <com.google.android.material.chip.Chip
@@ -211,7 +211,7 @@
                     android:layout_height="wrap_content"
                     android:id="@+id/chipTuesday"
                     style="@style/Widget.MaterialComponents.Chip.Choice"
-                    android:text="Tuesday"
+                    android:text="@string/tuesday"
                     android:checkable="true" />
 
                 <com.google.android.material.chip.Chip
@@ -219,7 +219,7 @@
                     android:layout_height="wrap_content"
                     android:id="@+id/chipWednesday"
                     style="@style/Widget.MaterialComponents.Chip.Choice"
-                    android:text="Wednesday"
+                    android:text="@string/wednesday"
                     android:checkable="true" />
 
                 <com.google.android.material.chip.Chip
@@ -227,7 +227,7 @@
                     android:layout_height="wrap_content"
                     android:id="@+id/chipThursday"
                     style="@style/Widget.MaterialComponents.Chip.Choice"
-                    android:text="Thursday"
+                    android:text="@string/thursday"
                     android:checkable="true" />
 
                 <com.google.android.material.chip.Chip
@@ -235,7 +235,7 @@
                     android:layout_height="wrap_content"
                     android:id="@+id/chipFriday"
                     style="@style/Widget.MaterialComponents.Chip.Choice"
-                    android:text="Friday"
+                    android:text="@string/friday"
                     android:checkable="true" />
 
                 <com.google.android.material.chip.Chip
@@ -243,7 +243,7 @@
                     android:layout_height="wrap_content"
                     android:id="@+id/chipSaturday"
                     style="@style/Widget.MaterialComponents.Chip.Choice"
-                    android:text="Saturday"
+                    android:text="@string/saturday"
                     android:checkable="true" />
 
                 <com.google.android.material.chip.Chip
@@ -251,7 +251,7 @@
                     android:layout_height="wrap_content"
                     android:id="@+id/chipSunday"
                     style="@style/Widget.MaterialComponents.Chip.Choice"
-                    android:text="Sunday"
+                    android:text="@string/sunday"
                     android:checkable="true" />
 
             </com.google.android.material.chip.ChipGroup>
@@ -259,7 +259,7 @@
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Allergies"
+                android:text="@string/allergies"
                 android:layout_marginTop="23dp"
                 android:layout_marginBottom="8dp"
                 android:layout_marginStart="2dp"
@@ -270,7 +270,7 @@
                 android:id="@+id/inputAllergiesLayout"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:hint="List any allergies or dietary restrictions">
+                android:hint="@string/list_any_allergies_or_dietary_restrictions">
 
                 <com.google.android.material.textfield.TextInputEditText
                     android:id="@+id/inputAllergies"
@@ -286,7 +286,7 @@
                 android:id="@+id/totalPriceTextView"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Rp 0"
+                android:text="@string/rp_0"
                 android:layout_marginTop="20dp"
                 android:layout_marginStart="2dp"
                 android:textSize="18sp"
@@ -296,7 +296,7 @@
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Note: All fields are required and must be filled in before submitting the form"
+                android:text="@string/note_all_fields_are_required_and_must_be_filled_in_before_submitting_the_form"
                 android:layout_marginTop="23dp"
                 android:layout_marginBottom="8dp"
                 android:layout_marginStart="2dp"
@@ -308,7 +308,7 @@
                 android:layout_width="256dp"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="20dp"
-                android:text="Proceed to Payment"
+                android:text="@string/proceed_to_payment"
                 android:textSize="16sp"
                 android:layout_marginBottom="61dp"
                 android:layout_gravity="center"

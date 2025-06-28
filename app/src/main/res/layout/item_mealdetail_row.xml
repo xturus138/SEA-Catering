@@ -40,7 +40,7 @@
                 android:id="@+id/tvFoodName"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Steaks and Eggs"
+                android:text="@string/steaks_and_eggs"
                 android:textColor="@color/blueDark"
                 android:textSize="18sp"
                 android:textStyle="bold" />
@@ -55,7 +55,7 @@
                     android:id="@+id/tvFreshTag"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Fresh"
+                    android:text="@string/fresh"
                     android:textColor="@android:color/white"
                     android:textSize="12sp"
                     android:paddingStart="6dp"
@@ -73,7 +73,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="8dp"
-                android:text="By Kebabia Grill"
+                android:text="@string/by_kebabia_grill"
                 android:textColor="@color/blueDark"
                 android:textSize="14sp" />
 
@@ -82,7 +82,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="8dp"
-                android:text="461 kcal 40 C 26 P 24 F"
+                android:text="@string/_461_kcal_40_c_26_p_24_f"
                 android:textColor="@color/blueDark"
                 android:textSize="14sp" />
 

@@ -15,7 +15,7 @@
             android:id="@+id/tvAdminDashboardTitle"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:text="Admin Dashboard"
+            android:text="@string/tvAdminDashboardTitle"
             android:textColor="@color/blueDark"
             android:textSize="24sp"
             android:textStyle="bold"
@@ -46,7 +46,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="24dp"
-            android:text="Select Date Range:"
+            android:text="@string/tvDateRangeLabelAdmin"
             android:textColor="@color/black"
             android:textSize="16sp"
             app:layout_constraintStart_toStartOf="parent"
@@ -60,7 +60,7 @@
             android:layout_marginEnd="8dp"
             android:background="@color/grayYoung"
             android:padding="12dp"
-            android:text="Current Month"
+            android:text="@string/tvSelectedDateRange"
             android:textColor="@color/blueDark"
             android:textSize="16sp"
             app:layout_constraintEnd_toStartOf="@+id/btnSelectDateRange"
@@ -71,7 +71,7 @@
             android:id="@+id/btnSelectDateRange"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Change"
+            android:text="@string/btnSelectDateRange"
             android:textSize="12sp"
             android:backgroundTint="@color/blueDark"
             app:cornerRadius="5dp"
@@ -123,7 +123,7 @@
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="New Subscriptions"
+                        android:text="@string/tvNewSubscriptionsCountAdmin"
                         android:textColor="@color/black"
                         android:textSize="14sp"
                         android:textStyle="bold"/>
@@ -159,7 +159,7 @@
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="Monthly Recurring Revenue"
+                        android:text="@string/tvMRRAdmin"
                         android:textAlignment="center"
                         android:textColor="@color/black"
                         android:textSize="14sp"
@@ -196,7 +196,7 @@
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="Canceled Subscriptions" android:textColor="@color/black"
+                        android:text="@string/tvCanceledSubscriptionsCountAdmin" android:textColor="@color/black"
                         android:textSize="14sp"
                         android:textStyle="bold"/>
 
@@ -230,7 +230,7 @@
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="Active Subscriptions"
+                        android:text="@string/tvSubscriptionGrowthCountAdmin"
                         android:textAlignment="center"
                         android:textColor="@color/black"
                         android:textSize="14sp"

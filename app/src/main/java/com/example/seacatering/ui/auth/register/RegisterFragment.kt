@@ -56,6 +56,11 @@ class RegisterFragment : Fragment() {
             startActivityForResult(signInIntent, RC_SIGN_IN)
         }
 
+        binding.backButton.setOnClickListener(
+        ){
+            navigateToFragment(LoginFragment())
+        }
+
         observeViewModel()
         return binding.root
 
@@ -100,6 +105,13 @@ class RegisterFragment : Fragment() {
 
         viewModel.errorResult.observe(viewLifecycleOwner){ error ->
             Toast.makeText(requireContext(), error, Toast.LENGTH_SHORT).show()
+        }
+    }
+
+    private fun navigateToFragment(fragment: Fragment) {
+        parentFragmentManager.commit {
+            replace(id, fragment)
+            addToBackStack(null)
         }
     }
 

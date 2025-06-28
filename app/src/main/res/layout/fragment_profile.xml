@@ -19,8 +19,8 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="33dp"
-            android:text="Bio-data"
-            android:textSize="16dp"
+            android:text="@string/bio_data"
+            android:textSize="16sp"
             android:textColor="@color/blueDark"
             android:textStyle="bold"
             app:layout_constraintEnd_toEndOf="parent"
@@ -74,7 +74,7 @@
             android:id="@+id/nameProfile"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Raditya Aryabudhi Ramadhan"
+            android:text="@string/raditya_aryabudhi_ramadhan"
             android:textColor="@color/blueDark"
             android:textSize="14sp"
             android:textStyle="bold"
@@ -87,7 +87,7 @@
             android:id="@+id/emailProfile"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="radityaramadhan.138@gmail.com"
+            android:text="@string/radityaramadhan_138_gmail_com"
             android:textColor="@color/gray"
             android:textStyle="normal"
             android:textSize="12sp"
@@ -101,9 +101,9 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="40dp"
-            android:text="Full Name"
+            android:text="@string/full_name"
             android:textColor="@color/blueDark"
-            android:textSize="14dp"
+            android:textSize="14sp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/emailProfile" />
@@ -132,9 +132,9 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="20dp"
-            android:text="Email"
+            android:text="@string/email"
             android:textColor="@color/blueDark"
-            android:textSize="14dp"
+            android:textSize="14sp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/textInputLayoutName" />
@@ -164,9 +164,9 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="20dp"
-            android:text="NoHp"
+            android:text="@string/nohp"
             android:textColor="@color/blueDark"
-            android:textSize="14dp"
+            android:textSize="14sp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/textInputLayoutEmail" />
@@ -195,9 +195,9 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="20dp"
-            android:text="Address"
+            android:text="@string/address"
             android:textColor="@color/blueDark"
-            android:textSize="14dp"
+            android:textSize="14sp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/textInputLayoutHp" />
@@ -226,9 +226,9 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="20dp"
-            android:text="New Password"
+            android:text="@string/new_password"
             android:textColor="@color/blueDark"
-            android:textSize="14dp"
+            android:textSize="14sp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/textInputLayoutAddress" />
@@ -257,9 +257,9 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="20dp"
-            android:text="Confirm Password"
+            android:text="@string/confirm_password"
             android:textColor="@color/blueDark"
-            android:textSize="14dp"
+            android:textSize="14sp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/textInputLayoutPassword" />
@@ -290,12 +290,14 @@
             android:layout_marginTop="34dp"
             android:layout_gravity="center"
             android:backgroundTint="@color/green"
-            android:text="Update Profile"
+            android:text="@string/update_profile"
             android:textSize="16sp"
             app:cornerRadius="15dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/textInputLayoutConfirmPassword" />
+
+
 
         <com.google.android.material.button.MaterialButton
             android:id="@+id/logOut"
@@ -303,16 +305,50 @@
             android:layout_height="55dp"
             android:backgroundTint="@color/orangeRed"
             android:layout_marginTop="10dp"
-            android:text="LogOut"
+            android:text="@string/logout"
             app:cornerRadius="12dp"
             android:layout_marginBottom="16dp"
             app:iconPadding="8dp"
             app:iconGravity="textStart"
             app:layout_constraintTop_toBottomOf="@id/updateButton"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent" />
 
+
+        <TextView
+            android:id="@+id/headerContactAdmin"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="32dp"
+            android:text="Contact Admin: Brian"
+            android:textColor="@color/blueDark"
+            android:textSize="14sp"
+            android:textStyle="bold"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/logOut" />
+
+        <LinearLayout
+            android:id="@+id/layoutContactButtons"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_marginTop="8dp"
+            android:layout_marginBottom="30dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/headerContactAdmin">
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/btnContactWhatsapp"
+                style="@style/Widget.MaterialComponents.Button.OutlinedButton"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="8dp"
+                android:text="@string/whatsapp" />
+
+        </LinearLayout>
 
 
 

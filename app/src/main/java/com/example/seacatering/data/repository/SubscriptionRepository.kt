@@ -2,10 +2,10 @@ package com.example.seacatering.data.repository
 
 import android.util.Log
 import com.example.seacatering.model.Subscription
-import com.google.firebase.Timestamp // Import Timestamp
+import com.google.firebase.Timestamp
 import com.google.firebase.firestore.FirebaseFirestore
 import kotlinx.coroutines.tasks.await
-import java.util.Date // Import Date
+import java.util.Date
 
 class SubscriptionRepository {
 
@@ -67,12 +67,12 @@ class SubscriptionRepository {
         }
     }
 
-    // Fungsi tambahan untuk mendapatkan CANCELED Subscriptions dalam rentang tanggal
+
     suspend fun getCanceledSubscriptionsInDateRange(startDate: Timestamp, endDate: Timestamp): Int {
         return try {
             val snapshot = subscriptionCollection
                 .whereEqualTo("status", "CANCELED")
-                .whereGreaterThanOrEqualTo("canceled_at", startDate) // Gunakan canceled_at
+                .whereGreaterThanOrEqualTo("canceled_at", startDate)
                 .whereLessThanOrEqualTo("canceled_at", endDate)
                 .get()
                 .await()
