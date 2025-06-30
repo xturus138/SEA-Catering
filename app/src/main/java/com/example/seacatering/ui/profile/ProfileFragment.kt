@@ -108,24 +108,24 @@ class ProfileFragment : Fragment() {
             requireActivity().finish()
         }
 
-        binding.btnContactWhatsapp.setOnClickListener {
-            val phoneNumber = "08123456789"
-            val message = "I want to ask.."
-
-            try {
-                val whatsappIntent = Intent(Intent.ACTION_VIEW)
-                whatsappIntent.data = "https://api.whatsapp.com/send?phone=$phoneNumber&text=${Uri.encode(message)}".toUri()
-                startActivity(whatsappIntent)
-            } catch (e: Exception) {
-                val dialIntent = Intent(Intent.ACTION_DIAL)
-                dialIntent.data = "tel:$phoneNumber".toUri()
-                try {
-                    startActivity(dialIntent)
-                } catch (dialException: Exception) {
-                    Toast.makeText(requireContext(), "No application found to handle this request.", Toast.LENGTH_SHORT).show()
-                }
-            }
-        }
+//        binding.btnContactWhatsapp.setOnClickListener {
+//            val phoneNumber = "08123456789"
+//            val message = "I want to ask.."
+//
+//            try {
+//                val whatsappIntent = Intent(Intent.ACTION_VIEW)
+//                whatsappIntent.data = "https://api.whatsapp.com/send?phone=$phoneNumber&text=${Uri.encode(message)}".toUri()
+//                startActivity(whatsappIntent)
+//            } catch (e: Exception) {
+//                val dialIntent = Intent(Intent.ACTION_DIAL)
+//                dialIntent.data = "tel:$phoneNumber".toUri()
+//                try {
+//                    startActivity(dialIntent)
+//                } catch (dialException: Exception) {
+//                    Toast.makeText(requireContext(), "No application found to handle this request.", Toast.LENGTH_SHORT).show()
+//                }
+//            }
+//        }
 
 
         binding.cardView.setOnClickListener {

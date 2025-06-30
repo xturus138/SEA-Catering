@@ -307,49 +307,20 @@
             android:layout_marginTop="10dp"
             android:text="@string/logout"
             app:cornerRadius="12dp"
-            android:layout_marginBottom="16dp"
             app:iconPadding="8dp"
             app:iconGravity="textStart"
             app:layout_constraintTop_toBottomOf="@id/updateButton"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent" />
 
-
-        <TextView
-            android:id="@+id/headerContactAdmin"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="32dp"
-            android:text="Contact Admin: Brian"
-            android:textColor="@color/blueDark"
-            android:textSize="14sp"
-            android:textStyle="bold"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/logOut" />
-
-        <LinearLayout
-            android:id="@+id/layoutContactButtons"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:layout_marginTop="8dp"
-            android:layout_marginBottom="30dp"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/headerContactAdmin">
-
-            <com.google.android.material.button.MaterialButton
-                android:id="@+id/btnContactWhatsapp"
-                style="@style/Widget.MaterialComponents.Button.OutlinedButton"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginEnd="8dp"
-                android:text="@string/whatsapp" />
-
-        </LinearLayout>
-
+        <View
+            android:id="@+id/viewLineBlack"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:background="@color/white"
+            app:layout_constraintTop_toBottomOf="@+id/logOut"
+            android:layout_marginTop="30dp"
+            app:layout_constraintBottom_toBottomOf="parent" />
 
 
     </androidx.constraintlayout.widget.ConstraintLayout>

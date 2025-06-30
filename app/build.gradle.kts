@@ -44,6 +44,7 @@ android {
 }
 
 dependencies {
+    implementation("com.google.android.gms:play-services-wallet:18.0.0")
     implementation(libs.glide)
     implementation("com.google.android.gms:play-services-location:21.3.0")
     kapt("com.github.bumptech.glide:compiler:4.16.0")

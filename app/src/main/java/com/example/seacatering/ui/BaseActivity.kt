@@ -1,6 +1,8 @@
 package com.example.seacatering.ui
 
+import android.content.Context
 import android.content.Intent
+import android.net.ConnectivityManager
 import android.os.Bundle
 import android.util.Log
 import android.view.View
@@ -28,7 +30,9 @@ class BaseActivity : AppCompatActivity(), BottomVisibilityController {
 
     private lateinit var binding : ActivityBaseBinding
     private lateinit var dataStoreManager: DataStoreManager
+    private lateinit var connectivityReceiver: android.content.BroadcastReceiver
     private var currentUserRole: Role = Role.USER
+    private var isDialogShown = false
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -86,8 +90,27 @@ class BaseActivity : AppCompatActivity(), BottomVisibilityController {
         }
     }
 
+    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+        super.onActivityResult(requestCode, resultCode, data)
+
+        val currentFragment = supportFragmentManager.findFragmentById(R.id.fragment_container)
+
+        currentFragment?.onActivityResult(requestCode, resultCode, data)
+    }
+
+
     override fun setBottomNavVisible(visible: Boolean) {
         binding.bottomNav.visibility = if (visible) View.VISIBLE else View.GONE
+    }
+
+    override fun onResume() {
+        super.onResume()
+        registerNetworkReceiver()
+    }
+
+    override fun onPause() {
+        super.onPause()
+        unregisterReceiver(connectivityReceiver)
     }
 
     private fun loadFragment(fragment: Fragment){
@@ -95,4 +118,45 @@ class BaseActivity : AppCompatActivity(), BottomVisibilityController {
             .replace(R.id.fragment_container, fragment)
             .commit()
     }
+
+    private fun registerNetworkReceiver() {
+        val filter = android.content.IntentFilter(android.net.ConnectivityManager.CONNECTIVITY_ACTION)
+        connectivityReceiver = object : android.content.BroadcastReceiver() {
+            override fun onReceive(context: Context, intent: Intent?) {
+                if (!isNetworkAvailable(context)) {
+                    if (!isDialogShown) showNoInternetDialog()
+                } else {
+                    isDialogShown = false
+                }
+            }
+        }
+        registerReceiver(connectivityReceiver, filter)
+    }
+
+    private fun showNoInternetDialog() {
+        isDialogShown = true
+        val dialog = android.app.AlertDialog.Builder(this)
+            .setTitle("No Internet Connection")
+            .setMessage("Please enable internet connection to continue")
+            .setCancelable(false)
+            .setPositiveButton("Try again!") { d, _ ->
+                d.dismiss()
+                if (!isNetworkAvailable(this)) {
+                    showNoInternetDialog()
+                } else {
+                    isDialogShown = false
+                }
+            }
+            .create()
+
+        dialog.show()
+    }
+
+    fun isNetworkAvailable(context: Context): Boolean {
+        val connectivityManager =
+            context.getSystemService(Context.CONNECTIVITY_SERVICE) as ConnectivityManager
+        val activeNetwork = connectivityManager.activeNetworkInfo
+        return activeNetwork != null && activeNetwork.isConnected
+    }
+
 }

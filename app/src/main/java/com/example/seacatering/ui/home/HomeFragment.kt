@@ -2,6 +2,7 @@ package com.example.seacatering.ui.home
 
 import android.Manifest
 import android.content.Intent
+import android.content.pm.PackageManager
 import android.os.Bundle
 import android.util.Log
 import androidx.fragment.app.Fragment
@@ -25,6 +26,10 @@ import kotlinx.coroutines.flow.collectLatest // Import collectLatest
 import kotlinx.coroutines.flow.first
 import kotlinx.coroutines.launch
 import android.net.Uri // Import Uri
+import androidx.core.app.ActivityCompat
+import androidx.core.content.ContextCompat
+import androidx.core.view.isGone
+import com.example.seacatering.ui.bottombs.InfoBottomSheet
 
 class HomeFragment : Fragment() {
 
@@ -34,6 +39,9 @@ class HomeFragment : Fragment() {
     private lateinit var homeTestimonialViewModel: HomeTestimonialViewModel
     private lateinit var testimonialAdapter: TestimonialAdapter
     private lateinit var dataStoreManager: DataStoreManager
+
+
+
 
     @RequiresPermission(allOf = [Manifest.permission.ACCESS_FINE_LOCATION, Manifest.permission.ACCESS_COARSE_LOCATION])
     override fun onCreateView(
@@ -53,6 +61,11 @@ class HomeFragment : Fragment() {
             binding.textView2.text = locationName
         }
 
+        binding.btnInfo.setOnClickListener(){
+            val bottomSheet = InfoBottomSheet()
+            bottomSheet.show(parentFragmentManager, bottomSheet.tag)
+        }
+
         binding.cardView.setOnClickListener(){
             parentFragmentManager.beginTransaction()
                 .replace(R.id.fragment_container, ProfileFragment())
@@ -66,8 +79,16 @@ class HomeFragment : Fragment() {
         setupTestimonialRecyclerView()
         observeTestimonials()
         loadUserProfileImage()
+
+
+
+
+
         return binding.root
     }
+
+
+
 
     private fun clickToNavigate(){
         binding.linearLayoutRecommended.setOnClickListener() {
@@ -112,6 +133,7 @@ class HomeFragment : Fragment() {
     }
 
 
+
     private fun loadUserProfileImage() {
         viewLifecycleOwner.lifecycleScope.launch {
             dataStoreManager.userData.collectLatest { userData ->
@@ -136,6 +158,7 @@ class HomeFragment : Fragment() {
     }
 
     private fun setupTestimonialRecyclerView() {
+        binding.progressBarRv.visibility = View.VISIBLE
         testimonialAdapter = TestimonialAdapter(emptyList())
         val layoutManager = LinearLayoutManager(context, LinearLayoutManager.HORIZONTAL, false)
         binding.rvReview.layoutManager = layoutManager
@@ -158,9 +181,12 @@ class HomeFragment : Fragment() {
     private fun observeTestimonials() {
         homeTestimonialViewModel.testimonials.observe(viewLifecycleOwner) { testimonials ->
             testimonialAdapter.updateData(testimonials)
+            binding.progressBarRv.visibility = View.GONE
         }
 
     }
+
+
 
 
     private fun hideRecommendedItems() {

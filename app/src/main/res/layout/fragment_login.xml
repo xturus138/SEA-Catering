@@ -115,6 +115,14 @@
         app:strokeColor="@color/blueDark"
         app:strokeWidth="1dp"/>
 
+    <ProgressBar
+        android:id="@+id/progressBarLogin"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:layout_gravity="center"
+        android:visibility="gone" />
+
     <Button
         android:id="@+id/signInButton"
         android:layout_width="256dp"

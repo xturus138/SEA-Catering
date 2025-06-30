@@ -47,7 +47,7 @@ class AddTestimonialFragment : Fragment() {
                 Toast.makeText(context, "Testimonial submitted successfully!", Toast.LENGTH_SHORT).show()
                 parentFragmentManager.popBackStack(null, FragmentManager.POP_BACK_STACK_INCLUSIVE)
                 parentFragmentManager.beginTransaction()
-                    .replace(R.id.fragment_container, HomeFragment())
+                    .replace(R.id.fragment_container, MealFragment())
                     .commit()
 
             } else {

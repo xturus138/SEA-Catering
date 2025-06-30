@@ -63,6 +63,17 @@
                 app:layout_constraintStart_toStartOf="@+id/textView"
                 app:layout_constraintTop_toBottomOf="@+id/textView" />
 
+            <ImageButton
+                android:id="@+id/btnInfo"
+                android:layout_width="48dp"
+                android:layout_height="48dp"
+                android:background="@null"
+                android:src="@drawable/baseline_info_outline_24"
+                app:layout_constraintBottom_toBottomOf="@+id/textView2"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="@+id/textView" />
+
+
             <androidx.cardview.widget.CardView
                 android:id="@+id/cardAdds"
                 android:layout_width="0dp"
@@ -356,7 +367,31 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="16dp"
-            android:layout_marginBottom="16dp"
             android:clipToPadding="false" />
+
+
+        <ProgressBar
+            android:id="@+id/progressBarRv"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:visibility="gone"
+            android:layout_gravity="center"
+            android:layout_marginTop="30dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/cardView" />
+
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/app_version_0_1"
+            android:layout_marginTop="30dp"
+            android:textAlignment="center"
+            android:textStyle="italic"
+            android:textSize="12sp"
+            android:textColor="@color/blueDark"
+            android:layout_marginBottom="16dp"/>
     </LinearLayout>
 </ScrollView>

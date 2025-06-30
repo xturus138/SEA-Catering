@@ -1,5 +1,7 @@
 package com.example.seacatering.ui.subscription
 
+import android.app.Activity
+import android.content.Intent
 import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
@@ -14,8 +16,17 @@ import com.example.seacatering.databinding.FragmentSubscriptionBinding
 import com.example.seacatering.model.Meals
 import com.example.seacatering.ui.home.HomeFragment
 import com.example.seacatering.ui.testimonial.AddTestimonialFragment
+import com.google.android.gms.common.api.ApiException
+import com.google.android.gms.wallet.AutoResolveHelper
+import com.google.android.gms.wallet.IsReadyToPayRequest
+import com.google.android.gms.wallet.PaymentData
+import com.google.android.gms.wallet.PaymentsClient
+import com.google.android.gms.wallet.Wallet
+import com.google.android.gms.wallet.WalletConstants
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.google.android.material.chip.Chip
+import org.json.JSONArray
+import org.json.JSONObject
 import java.text.NumberFormat
 import java.util.Locale
 
@@ -24,12 +35,48 @@ class SubscriptionFragment : Fragment() {
     private lateinit var binding: FragmentSubscriptionBinding
     private lateinit var viewModel: SubscriptionViewModel
     private var selectedMeal: Meals? = null
+    private lateinit var paymentsClient: PaymentsClient
+    private val LOAD_PAYMENT_DATA_REQUEST_CODE = 991
+    private val baseCardPaymentMethod = JSONObject().apply {
+        put("type", "CARD")
+        put("parameters", JSONObject().apply {
+            put("allowedAuthMethods", JSONArray().apply {
+                put("PAN_ONLY")
+                put("CRYPTOGRAM_3DS")
+            })
+            put("allowedCardNetworks", JSONArray().apply {
+                put("VISA")
+                put("MASTERCARD")
+            })
+            put("billingAddressRequired", true)
+            put("billingAddressParameters", JSONObject().apply {
+                put("format", "FULL")
+            })
+        })
+        put("tokenizationSpecification", JSONObject().apply {
+            put("type", "PAYMENT_GATEWAY")
+            put("parameters", JSONObject().apply {
+                put("gateway", "example")
+                put("gatewayMerchantId", "exampleMerchantId")
+            })
+        })
+    }
+
+    private val googlePayBaseConfiguration = JSONObject().apply {
+        put("apiVersion", 2)
+        put("apiVersionMinor", 0)
+        put("allowedPaymentMethods", JSONArray().put(baseCardPaymentMethod))
+    }
+
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
         binding = FragmentSubscriptionBinding.inflate(inflater, container, false)
+
+        paymentsClient = createPaymentsClient(requireActivity())
+
         return binding.root
     }
 
@@ -84,17 +131,79 @@ class SubscriptionFragment : Fragment() {
 
         viewModel.submissionResult.observe(viewLifecycleOwner) { isSuccess ->
             if (isSuccess) {
-                Toast.makeText(context, "Subscription successful!", Toast.LENGTH_SHORT).show()
-                parentFragmentManager.popBackStack(null, FragmentManager.POP_BACK_STACK_INCLUSIVE)
-                parentFragmentManager.beginTransaction()
-                    .replace(R.id.fragment_container, AddTestimonialFragment())
-                    .commit()
+                val readyToPayRequest =
+                    IsReadyToPayRequest.fromJson(googlePayBaseConfiguration.toString())
+
+                val readyToPayTask = paymentsClient.isReadyToPay(readyToPayRequest)
+                readyToPayTask.addOnCompleteListener { task ->
+                    if (!isAdded || activity == null) return@addOnCompleteListener
+
+                    val paymentDataRequestJson = googlePayBaseConfiguration.apply {
+                        put("transactionInfo", JSONObject().apply {
+                            put("totalPrice", viewModel.totalPrice.value.toString())
+                            put("totalPriceStatus", "FINAL")
+                            put("currencyCode", "IDR")
+                        })
+                        put("merchantInfo", JSONObject().apply {
+                            put("merchantName", "SeaCatering")
+                        })
+                    }
+
+                    val paymentDataRequest = com.google.android.gms.wallet.PaymentDataRequest.fromJson(
+                        paymentDataRequestJson.toString()
+                    )
+
+                    val safeActivity = requireActivity()
+                    AutoResolveHelper.resolveTask(
+                        paymentsClient.loadPaymentData(paymentDataRequest),
+                        safeActivity,
+                        LOAD_PAYMENT_DATA_REQUEST_CODE
+                    )
+                }
 
             } else {
                 Toast.makeText(context, viewModel.errorMessage.value ?: "Subscription failed.", Toast.LENGTH_SHORT).show()
             }
         }
     }
+
+    @Deprecated("Deprecated in Java")
+    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+        super.onActivityResult(requestCode, resultCode, data)
+
+        if (requestCode == 991) {
+            when (resultCode) {
+                Activity.RESULT_OK -> {
+                    val paymentData = PaymentData.getFromIntent(data!!)
+                    val paymentInfo = paymentData?.toJson()
+                    Toast.makeText(requireContext(), "Payment Success!", Toast.LENGTH_SHORT).show()
+                    parentFragmentManager.popBackStack(null, FragmentManager.POP_BACK_STACK_INCLUSIVE)
+                    parentFragmentManager.beginTransaction()
+                        .replace(R.id.fragment_container, AddTestimonialFragment())
+                        .commit()
+                }
+
+                Activity.RESULT_CANCELED -> {
+                    Toast.makeText(requireContext(), "Payment Canceled.", Toast.LENGTH_SHORT).show()
+                }
+
+                AutoResolveHelper.RESULT_ERROR -> {
+                    val status = AutoResolveHelper.getStatusFromIntent(data)
+                    Log.e("GooglePay", "Error: $status")
+                    Toast.makeText(requireContext(), "Payment Error.", Toast.LENGTH_SHORT).show()
+                }
+            }
+        }
+    }
+
+
+
+    fun createPaymentsClient(activity: Activity): PaymentsClient {
+        val walletOptions = Wallet.WalletOptions.Builder()
+            .setEnvironment(WalletConstants.ENVIRONMENT_TEST).build()
+        return Wallet.getPaymentsClient(activity, walletOptions)
+    }
+
 
     private fun updateTotalPrice() {
         selectedMeal?.price?.let { planPrice ->

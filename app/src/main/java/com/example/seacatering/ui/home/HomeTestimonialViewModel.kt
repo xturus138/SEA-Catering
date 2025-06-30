@@ -68,17 +68,4 @@ class HomeTestimonialViewModel(application: Application) : AndroidViewModel(appl
         currentIndex = if (end == allTestimonials.size) 0 else end
         _isLoadingTestimonials.value = false
     }
-
-    fun refreshAllTestimonials() {
-        _isLoadingTestimonials.value = true
-        currentIndex = 0
-        viewModelScope.launch {
-            val fetched = testimonialRepository.getAllTestimonials()
-            if (isActive) {
-                allTestimonials = fetched
-                _testimonials.value = emptyList()
-                displayNextPageInternal()
-            }
-        }
-    }
 }

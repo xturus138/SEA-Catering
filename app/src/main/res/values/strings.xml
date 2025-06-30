@@ -102,7 +102,7 @@
     <string name="list_any_allergies_or_dietary_restrictions">List any allergies or dietary restrictions</string>
     <string name="rp_0">Rp 0</string>
     <string name="note_all_fields_are_required_and_must_be_filled_in_before_submitting_the_form">Note: All fields are required and must be filled in before submitting the form</string>
-    <string name="proceed_to_payment">Proceed to Payment</string>
+    <string name="proceed_to_payment">Payment with Google Play</string>
     <string name="add_your_testimonial">Add Your Testimonial</string>
     <string name="customer_name">Customer Name</string>
     <string name="your_name">Your Name</string>
@@ -125,6 +125,7 @@
     <string name="meal_plans">Meal Plans</string>
     <string name="subscription_tv">Subscription</string>
     <string name="whatsapp">WhatsApp</string>
+    <string name="app_version_0_1">App Version 0.1</string>
 
 
 </resources>
