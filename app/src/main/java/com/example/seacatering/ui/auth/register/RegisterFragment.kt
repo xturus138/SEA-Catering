@@ -26,12 +26,12 @@ class RegisterFragment : Fragment() {
     private lateinit var googleSignInClient: GoogleSignInClient
     private val RC_SIGN_IN = 9001
 
-
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
+    ): View {
         binding = FragmentRegisterBinding.inflate(layoutInflater, container, false)
+
         val dataStoreManager = DataStoreManager(requireContext())
         val factory = RegisterViewModelFactory(dataStoreManager)
         viewModel = ViewModelProvider(this, factory).get(RegisterViewModel::class.java)
@@ -40,15 +40,19 @@ class RegisterFragment : Fragment() {
             .requestIdToken(getString(com.example.seacatering.R.string.default_web_client_id))
             .requestEmail()
             .build()
-
         googleSignInClient = GoogleSignIn.getClient(requireActivity(), gso)
 
-        binding.signUpButton.setOnClickListener(){
-            val email = binding.inputEmail.text.toString()
+        binding.signUpButton.setOnClickListener {
+            val email = binding.inputEmail.text.toString().trim()
             val password = binding.inputPassword.text.toString()
             val confirmPass = binding.inputConfirmPassword.text.toString()
-            val name = binding.inputName.text.toString()
-            viewModel.register(email, password, confirmPass, name, address = "Not Provide", noHp = "Not Provide")
+            val name = binding.inputName.text.toString().trim()
+
+            if (!validateInputs(email, password, confirmPass, name)) return@setOnClickListener
+
+            binding.signUpButton.isEnabled = false
+
+            viewModel.register(email, password, confirmPass, name, address = "Not Provided", noHp = "Not Provided")
         }
 
         binding.googleButtonSignUp.setOnClickListener {
@@ -56,14 +60,55 @@ class RegisterFragment : Fragment() {
             startActivityForResult(signInIntent, RC_SIGN_IN)
         }
 
-        binding.backButton.setOnClickListener(
-        ){
+        binding.backButton.setOnClickListener {
             navigateToFragment(LoginFragment())
         }
 
         observeViewModel()
         return binding.root
+    }
 
+    private fun validateInputs(email: String, password: String, confirmPass: String, name: String): Boolean {
+        var isValid = true
+
+        if (email.isEmpty()) {
+            binding.inputEmail.error = "Email cannot be empty"
+            isValid = false
+        } else if (!android.util.Patterns.EMAIL_ADDRESS.matcher(email).matches()) {
+            binding.inputEmail.error = "Invalid email format"
+            isValid = false
+        } else {
+            binding.inputEmail.error = null
+        }
+
+        if (password.isEmpty()) {
+            binding.inputPassword.error = "Password cannot be empty"
+            isValid = false
+        } else if (password.length < 6) {
+            binding.inputPassword.error = "Password must be at least 6 characters"
+            isValid = false
+        } else {
+            binding.inputPassword.error = null
+        }
+
+        if (confirmPass.isEmpty()) {
+            binding.inputConfirmPassword.error = "Please confirm your password"
+            isValid = false
+        } else if (password != confirmPass) {
+            binding.inputConfirmPassword.error = "Passwords do not match"
+            isValid = false
+        } else {
+            binding.inputConfirmPassword.error = null
+        }
+
+        if (name.isEmpty()) {
+            binding.inputName.error = "Name cannot be empty"
+            isValid = false
+        } else {
+            binding.inputName.error = null
+        }
+
+        return isValid
     }
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
@@ -85,13 +130,13 @@ class RegisterFragment : Fragment() {
         }
     }
 
-    private fun observeViewModel(){
-        viewModel.registerResult.observe(viewLifecycleOwner){success ->
-            if(success){
+    private fun observeViewModel() {
+        viewModel.registerResult.observe(viewLifecycleOwner) { success ->
+            binding.signUpButton.isEnabled = true
+
+            if (success) {
                 Toast.makeText(requireContext(), "Your account has been created successfully!", Toast.LENGTH_SHORT).show()
-                parentFragmentManager.commit {
-                    replace(id, LoginFragment())
-                }
+                navigateToFragment(LoginFragment())
             }
         }
 
@@ -103,8 +148,9 @@ class RegisterFragment : Fragment() {
             }
         }
 
-        viewModel.errorResult.observe(viewLifecycleOwner){ error ->
-            Toast.makeText(requireContext(), "Oops! Something went wrong. Please try again.", Toast.LENGTH_SHORT).show()
+        viewModel.errorResult.observe(viewLifecycleOwner) { error ->
+            binding.signUpButton.isEnabled = true
+            Toast.makeText(requireContext(), error, Toast.LENGTH_SHORT).show()
         }
     }
 
@@ -114,6 +160,4 @@ class RegisterFragment : Fragment() {
             addToBackStack(null)
         }
     }
-
-
 }

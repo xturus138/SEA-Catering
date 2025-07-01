@@ -54,7 +54,7 @@ class RegisterViewModel(private val dataStoreManager: DataStoreManager) : ViewMo
                 }
                 _registerResult.value = true
             } else {
-                _errorResult.value = task.exception?.message
+                _errorResult.value = "Login failed. Please check your credentials and try again."
             }
         }
     }
@@ -88,7 +88,7 @@ class RegisterViewModel(private val dataStoreManager: DataStoreManager) : ViewMo
                     _errorResult.value = "User not found after Google sign-in"
                 }
             } else {
-                _errorResult.value = task.exception?.message
+                _errorResult.value = "Something went wrong, please contact administrator"
             }
         }
     }

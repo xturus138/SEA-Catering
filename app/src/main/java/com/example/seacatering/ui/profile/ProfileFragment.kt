@@ -1,5 +1,6 @@
 package com.example.seacatering.ui.profile
 
+import android.Manifest
 import android.annotation.SuppressLint
 import android.app.Activity
 import android.content.Intent
@@ -13,6 +14,8 @@ import android.widget.Toast
 import android.view.inputmethod.InputMethodManager
 import androidx.activity.result.ActivityResultLauncher
 import androidx.activity.result.contract.ActivityResultContracts
+import androidx.annotation.RequiresPermission
+import androidx.core.widget.addTextChangedListener
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.lifecycleScope
@@ -22,10 +25,9 @@ import com.example.seacatering.data.DataStoreManager
 import com.example.seacatering.databinding.FragmentProfileBinding
 import com.example.seacatering.ui.AuthActivity
 import com.example.seacatering.ui.home.HomeFragment
+import com.example.seacatering.ui.home.HomeViewModel
 import com.example.seacatering.utils.BottomVisibilityController
-import com.google.android.material.bottomnavigation.BottomNavigationView
 import kotlinx.coroutines.flow.collectLatest
-import kotlinx.coroutines.flow.first
 import kotlinx.coroutines.launch
 import androidx.core.net.toUri
 
@@ -34,8 +36,8 @@ class ProfileFragment : Fragment() {
     private lateinit var binding: FragmentProfileBinding
     private lateinit var dataStoreManager: DataStoreManager
     private lateinit var viewModel: ProfileViewModel
-
-
+    private lateinit var homeViewModel: HomeViewModel
+    private var isAddressManuallyChanged = false
 
     private val pickImageLauncher: ActivityResultLauncher<String> =
         registerForActivityResult(ActivityResultContracts.GetContent()) { uri: Uri? ->
@@ -53,6 +55,7 @@ class ProfileFragment : Fragment() {
             }
         }
 
+    @RequiresPermission(allOf = [Manifest.permission.ACCESS_FINE_LOCATION, Manifest.permission.ACCESS_COARSE_LOCATION])
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -61,6 +64,22 @@ class ProfileFragment : Fragment() {
         dataStoreManager = DataStoreManager(requireContext())
         val factory = ProfileViewModelFactory(dataStoreManager)
         viewModel = ViewModelProvider(this, factory)[ProfileViewModel::class.java]
+        homeViewModel = ViewModelProvider(this)[HomeViewModel::class.java]
+
+        binding.textInputAddress.addTextChangedListener {
+            if (binding.textInputAddress.isFocused) {
+                isAddressManuallyChanged = true
+            }
+        }
+
+        homeViewModel.fetchUserLocation()
+        homeViewModel.locationName.observe(viewLifecycleOwner) { location ->
+            val currentAddress = binding.textInputAddress.text.toString()
+            if (!isAddressManuallyChanged && (currentAddress.isEmpty() || currentAddress == "Not Provided")) {
+                binding.textInputAddress.setText(location)
+            }
+        }
+
 
         lifecycleScope.launch {
             dataStoreManager.userData.collectLatest { userData ->
@@ -69,6 +88,7 @@ class ProfileFragment : Fragment() {
                     startActivity(intent)
                     requireActivity().finish()
                 } else {
+                    isAddressManuallyChanged = false
                     binding.nameProfile.text = userData.name
                     binding.emailProfile.text = userData.email
                     binding.textInputName.setText(userData.name)
@@ -110,7 +130,6 @@ class ProfileFragment : Fragment() {
             startActivity(intent)
             requireActivity().finish()
         }
-
 
         binding.cardView.setOnClickListener {
             pickImageLauncher.launch("image/*")
@@ -155,7 +174,5 @@ class ProfileFragment : Fragment() {
         val view = activity.currentFocus ?: View(activity)
         inputMethodManager.hideSoftInputFromWindow(view.windowToken, 0)
     }
-
-
 
 }

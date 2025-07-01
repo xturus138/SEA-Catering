@@ -3,10 +3,12 @@ package com.example.seacatering.adapter
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.fragment.app.FragmentActivity
 import androidx.recyclerview.widget.RecyclerView
 import com.example.seacatering.R
 import com.example.seacatering.databinding.ItemSubscriptionBinding
 import com.example.seacatering.model.Subscription
+import com.example.seacatering.ui.bottombs.SubscriptionBottomSheet
 import com.google.firebase.Timestamp
 import java.text.SimpleDateFormat
 import java.util.Date
@@ -43,6 +45,14 @@ class SubscriptionAdapter(
             onResumeClick: (Subscription) -> Unit,
             onCancelClick: (Subscription) -> Unit
         ) {
+            binding.root.setOnClickListener {
+                val bottomSheet = SubscriptionBottomSheet.newInstance(subscription)
+                val fragmentManager = (binding.root.context as? FragmentActivity)?.supportFragmentManager
+                fragmentManager?.let {
+                    bottomSheet.show(it, "SubscriptionBottomSheet")
+                }
+            }
+
             binding.tvPlanName.text = subscription.plan_name
             binding.tvMealType.text = "Meal Type: ${subscription.meal_type}"
             binding.tvDeliveryDays.text = "Delivery Days: ${formatDeliveryDays(subscription.delivery_days)}"
