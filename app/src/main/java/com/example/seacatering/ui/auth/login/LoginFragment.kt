@@ -88,9 +88,11 @@ class LoginFragment : Fragment() {
                 if (idToken != null) {
                     viewModel.loginWithGoogle(idToken)
                 } else {
+                    binding.progressBarLogin.visibility = View.GONE
                     Toast.makeText(requireContext(), "Failed to retrieve your Google account data. Please try again.", Toast.LENGTH_SHORT).show()
                 }
             } catch (e: ApiException) {
+                binding.progressBarLogin.visibility = View.GONE
                 Toast.makeText(requireContext(), "Google login failed. Please check your connection or try again later.", Toast.LENGTH_SHORT).show()
             }
         }
