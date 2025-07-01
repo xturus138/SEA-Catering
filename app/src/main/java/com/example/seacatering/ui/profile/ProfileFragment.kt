@@ -107,6 +107,7 @@ class ProfileFragment : Fragment(), OnMapReadyCallback {
                     binding.textInputName.setText(userData.name)
                     binding.textInputEmail.setText(userData.email)
                     binding.textInputHp.setText(userData.noHp)
+                    binding.textShowAddress.setText(userData.address)
                     binding.textInputAddress.setText(userData.address)
 
                     if (userData.latitude != 0.0 && userData.longitude != 0.0) {

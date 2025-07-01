@@ -76,6 +76,7 @@
     <string name="email">Email</string>
     <string name="nohp">NoHp</string>
     <string name="address">Address</string>
+    <string name="addresssat">Saved Location</string>
     <string name="new_password">New Password</string>
     <string name="confirm_password">Confirm Password</string>
     <string name="update_profile">Update Profile</string>

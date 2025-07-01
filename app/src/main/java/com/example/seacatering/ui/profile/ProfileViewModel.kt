@@ -64,13 +64,17 @@ class ProfileViewModel(private val dataStoreManager: DataStoreManager, applicati
                 address = address,
                 noHp = noHp,
                 latitude = latitude,
-                longitude = longitude
+                longitude = longitude,
+                profileImageUrl = tempProfileImageUri.value?.toString() ?: currentUser.profileImageUrl
             )
 
             dataStoreManager.saveUserData(updatedUser)
             _updateResult.postValue(true)
+            setTempProfileImageUri(null)
         }
     }
+
+
 
 
     fun setTempProfileImageUri(uri: Uri?) {
