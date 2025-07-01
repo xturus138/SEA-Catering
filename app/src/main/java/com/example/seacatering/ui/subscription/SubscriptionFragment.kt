@@ -177,7 +177,7 @@ class SubscriptionFragment : Fragment() {
                 }
 
             } else {
-                Toast.makeText(context, viewModel.errorMessage.value ?: "Subscription failed.", Toast.LENGTH_SHORT).show()
+                Toast.makeText(context, "Subscription failed", Toast.LENGTH_SHORT).show()
             }
         }
     }
@@ -204,7 +204,6 @@ class SubscriptionFragment : Fragment() {
 
                 AutoResolveHelper.RESULT_ERROR -> {
                     val status = AutoResolveHelper.getStatusFromIntent(data)
-                    Log.e("GooglePay", "Error: $status")
                     Toast.makeText(requireContext(), "Payment Error.", Toast.LENGTH_SHORT).show()
                 }
             }

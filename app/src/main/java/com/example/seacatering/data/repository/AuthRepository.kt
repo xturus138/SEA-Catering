@@ -36,10 +36,10 @@ class AuthRepository() {
         return db.collection("users").document(uid)
             .update(updatedUser)
             .addOnSuccessListener {
-                Log.d("Firestore", "User data updated successfully")
+
             }
             .addOnFailureListener { e ->
-                Log.e("Firestore", "Failed to update user data: ${e.message}")
+
             }
     }
 
@@ -62,10 +62,10 @@ class AuthRepository() {
             role = Role.USER
         )
         db.collection("users").document(uid).set(user).addOnCompleteListener{
-            Log.d("Firestore", "saveUserData: User data saved successfully")
+
         }
             .addOnFailureListener{
-                Log.e("Firestore", "Failed to save user data")
+
             }
 
     }
@@ -81,7 +81,6 @@ class AuthRepository() {
                 null
             }
         } catch (e: Exception) {
-            Log.e("Firestore", "Error fetching user data", e)
             null
         }
     }

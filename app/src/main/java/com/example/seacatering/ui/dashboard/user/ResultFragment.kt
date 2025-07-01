@@ -71,9 +71,9 @@ class ResultFragment : Fragment() {
 
         viewModel.actionResult.observe(viewLifecycleOwner) { (success, message) ->
             if (success) {
-                Toast.makeText(context, message, Toast.LENGTH_SHORT).show()
+                Toast.makeText(context, "Operation completed successfully.", Toast.LENGTH_SHORT).show()
             } else {
-                Toast.makeText(context, "Error: $message", Toast.LENGTH_LONG).show()
+                Toast.makeText(context, "Oops, something went wrong! Please contact administrator", Toast.LENGTH_LONG).show()
             }
         }
     }

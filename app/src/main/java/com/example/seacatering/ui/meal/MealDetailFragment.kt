@@ -72,13 +72,11 @@ class MealDetailFragment : Fragment() {
     private fun displayMealDetails() {
         val meal = arguments?.getParcelable<Meals>("meal_data")
         meal?.let {
-            Log.d("MealDetailFragment", "Received meal: ${it.name}, price: ${it.price}")
-            Log.d("MealDetailFragment", "Details: ${it.details.joinToString(", ")}")
-            Log.d("MealDetailFragment", "Menu list size: ${it.menuList.size}")
+
 
             adapter.updateData(it.menuList)
         } ?: run {
-            Log.d("MealDetailFragment", "No meal data received")
+
         }
     }
 }

@@ -77,10 +77,10 @@ class RegisterFragment : Fragment() {
                 if (idToken != null) {
                     viewModel.loginWithGoogle(idToken)
                 } else {
-                    Toast.makeText(requireContext(), "Google ID Token is null", Toast.LENGTH_SHORT).show()
+                    Toast.makeText(requireContext(), "We couldn’t verify your Google account. Please try again.", Toast.LENGTH_SHORT).show()
                 }
             } catch (e: ApiException) {
-                Toast.makeText(requireContext(), "Google sign in failed: ${e.message}", Toast.LENGTH_SHORT).show()
+                Toast.makeText(requireContext(), "Google sign-in failed. Please check your connection and try again.", Toast.LENGTH_SHORT).show()
             }
         }
     }
@@ -88,7 +88,7 @@ class RegisterFragment : Fragment() {
     private fun observeViewModel(){
         viewModel.registerResult.observe(viewLifecycleOwner){success ->
             if(success){
-                Toast.makeText(requireContext(), "Done Create Account!", Toast.LENGTH_SHORT).show()
+                Toast.makeText(requireContext(), "Your account has been created successfully!", Toast.LENGTH_SHORT).show()
                 parentFragmentManager.commit {
                     replace(id, LoginFragment())
                 }
@@ -104,7 +104,7 @@ class RegisterFragment : Fragment() {
         }
 
         viewModel.errorResult.observe(viewLifecycleOwner){ error ->
-            Toast.makeText(requireContext(), error, Toast.LENGTH_SHORT).show()
+            Toast.makeText(requireContext(), "Oops! Something went wrong. Please try again.", Toast.LENGTH_SHORT).show()
         }
     }
 

@@ -52,7 +52,7 @@ class BaseActivity : AppCompatActivity(), BottomVisibilityController {
                 finish()
             } else {
                 currentUserRole = user.role
-                Log.d(TAG, "onCreate: User Sudah Login: ${user.name}, Role: ${user.role}")
+
 
                 if (savedInstanceState == null) {
                     if (currentUserRole == Role.ADMIN) {

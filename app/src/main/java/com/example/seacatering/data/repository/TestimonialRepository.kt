@@ -15,10 +15,10 @@ class TestimonialRepository {
     suspend fun saveTestimonial(testimonial: Testimonial): Boolean {
         return try {
             testimonialCollection.add(testimonial).await()
-            Log.d("TestimonialRepository", "Testimonial data saved successfully")
+
             true
         } catch (e: Exception) {
-            Log.e("TestimonialRepository", "Failed to save testimonial data: ${e.message}")
+
             false
         }
     }
@@ -40,7 +40,7 @@ class TestimonialRepository {
             }
             testimonials
         } catch (e: Exception) {
-            Log.e("TestimonialRepository", "Error fetching testimonials: ${e.message}")
+
             emptyList()
         }
     }

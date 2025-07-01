@@ -161,7 +161,7 @@ class AdminDashboardFragment : Fragment() {
                 startActivity(intent)
                 requireActivity().finish()
             } else {
-                Toast.makeText(context, viewModel.errorMessage.value ?: "Logout failed.", Toast.LENGTH_SHORT).show()
+                Toast.makeText(context, "Logout failed", Toast.LENGTH_SHORT).show()
             }
         }
     }

@@ -15,10 +15,10 @@ class SubscriptionRepository {
     suspend fun saveSubscription(subscription: Subscription): Boolean {
         return try {
             subscriptionCollection.add(subscription).await()
-            Log.d("SubscriptionRepository", "Subscription data saved successfully")
+
             true
         } catch (e: Exception) {
-            Log.e("SubscriptionRepository", "Failed to save subscription data: ${e.message}")
+
             false
         }
     }
@@ -33,7 +33,7 @@ class SubscriptionRepository {
                 doc.toObject(Subscription::class.java)?.copy(documentId = doc.id)
             }
         } catch (e: Exception) {
-            Log.e("SubscriptionRepository", "Error fetching subscription data: ${e.message}")
+
             emptyList()
         }
     }
@@ -48,10 +48,10 @@ class SubscriptionRepository {
             }
 
             subscriptionCollection.document(documentId).update(finalUpdates).await()
-            Log.d("SubscriptionRepository", "Subscription $documentId updated successfully with status: ${finalUpdates["status"]}")
+
             true
         } catch (e: Exception) {
-            Log.e("SubscriptionRepository", "Failed to update subscription $documentId: ${e.message}")
+
             false
         }
     }
@@ -59,10 +59,10 @@ class SubscriptionRepository {
     suspend fun deleteSubscription(documentId: String): Boolean {
         return try {
             subscriptionCollection.document(documentId).delete().await()
-            Log.d("SubscriptionRepository", "Subscription $documentId deleted successfully")
+
             true
         } catch (e: Exception) {
-            Log.e("SubscriptionRepository", "Failed to delete subscription $documentId: ${e.message}")
+
             false
         }
     }
@@ -78,7 +78,7 @@ class SubscriptionRepository {
                 .await()
             snapshot.size()
         } catch (e: Exception) {
-            Log.e("AdminDashboardRepo", "Error fetching canceled subscriptions in date range: ${e.message}")
+
             0
         }
     }

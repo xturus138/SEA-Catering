@@ -130,9 +130,9 @@ class ProfileFragment : Fragment() {
         (activity as? BottomVisibilityController)?.setBottomNavVisible(false)
         viewModel.updateResult.observe(viewLifecycleOwner) { success ->
             if (success) {
-                Toast.makeText(requireContext(), "Update berhasil", Toast.LENGTH_SHORT).show()
+                Toast.makeText(requireContext(), "Update succsess", Toast.LENGTH_SHORT).show()
             } else {
-                Toast.makeText(requireContext(), "Update gagal", Toast.LENGTH_SHORT).show()
+                Toast.makeText(requireContext(), "Update failed", Toast.LENGTH_SHORT).show()
             }
         }
     }

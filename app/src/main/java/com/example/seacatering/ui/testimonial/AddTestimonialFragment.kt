@@ -51,7 +51,7 @@ class AddTestimonialFragment : Fragment() {
                     .commit()
 
             } else {
-                Toast.makeText(context, viewModel.errorMessage.value ?: "Failed to submit testimonial.", Toast.LENGTH_SHORT).show()
+                Toast.makeText(context,  "Failed to submit testimonial", Toast.LENGTH_SHORT).show()
             }
         }
         binding.backButton.setOnClickListener {

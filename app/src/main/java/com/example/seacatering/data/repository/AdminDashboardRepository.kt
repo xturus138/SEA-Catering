@@ -23,7 +23,7 @@ class AdminDashboardRepository {
                 doc.toObject(Subscription::class.java)?.copy(documentId = doc.id)
             }
         } catch (e: Exception) {
-            Log.e("AdminDashboardRepo", "Error fetching all subscriptions: ${e.message}")
+
             emptyList()
         }
     }
@@ -36,7 +36,7 @@ class AdminDashboardRepository {
                 .await()
             snapshot.size()
         } catch (e: Exception) {
-            Log.e("AdminDashboardRepo", "Error fetching active subscriptions count: ${e.message}")
+
             0
         }
     }
@@ -50,7 +50,7 @@ class AdminDashboardRepository {
                 .await()
             snapshot.size()
         } catch (e: Exception) {
-            Log.e("AdminDashboardRepo", "Error fetching new subscriptions in date range: ${e.message}")
+
             0
         }
     }
@@ -66,7 +66,7 @@ class AdminDashboardRepository {
                 .await()
             snapshot.size()
         } catch (e: Exception) {
-            Log.e("AdminDashboardRepo", "Error fetching canceled subscriptions in date range: ${e.message}")
+
             0
         }
     }
