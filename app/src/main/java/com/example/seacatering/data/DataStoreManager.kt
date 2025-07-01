@@ -3,17 +3,16 @@ package com.example.seacatering.data
 import android.content.Context
 import androidx.datastore.preferences.core.edit
 import androidx.datastore.preferences.core.stringPreferencesKey
+import androidx.datastore.preferences.core.doublePreferencesKey
 import androidx.datastore.preferences.preferencesDataStore
 import com.example.seacatering.model.Role
 import com.example.seacatering.model.Users
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.map
 
-
 private val Context.dataStore by preferencesDataStore(name ="user_preferences")
 
 class DataStoreManager(private val context: Context) {
-
 
     private object PreferencesKeys {
         val UID = stringPreferencesKey("uid")
@@ -23,6 +22,8 @@ class DataStoreManager(private val context: Context) {
         val ADDRESS = stringPreferencesKey("address")
         val ROLE = stringPreferencesKey("role")
         val PROFILE_IMAGE_URL = stringPreferencesKey("profile_image_url")
+        val LATITUDE = doublePreferencesKey("latitude")
+        val LONGITUDE = doublePreferencesKey("longitude")
     }
 
     suspend fun saveUserData(user: Users) {
@@ -34,11 +35,12 @@ class DataStoreManager(private val context: Context) {
             preferences[PreferencesKeys.ADDRESS] = user.address
             preferences[PreferencesKeys.ROLE] = user.role.name
             preferences[PreferencesKeys.PROFILE_IMAGE_URL] = user.profileImageUrl
+            preferences[PreferencesKeys.LATITUDE] = user.latitude
+            preferences[PreferencesKeys.LONGITUDE] = user.longitude
         }
     }
 
-
-    suspend fun clearUserData(){
+    suspend fun clearUserData() {
         context.dataStore.edit { prefs ->
             prefs.clear()
         }
@@ -52,6 +54,8 @@ class DataStoreManager(private val context: Context) {
         val address = preferences[PreferencesKeys.ADDRESS]
         val roleString = preferences[PreferencesKeys.ROLE]
         val profileImageUrl = preferences[PreferencesKeys.PROFILE_IMAGE_URL]
+        val latitude = preferences[PreferencesKeys.LATITUDE] ?: 0.0
+        val longitude = preferences[PreferencesKeys.LONGITUDE] ?: 0.0
 
         if (uid != null && name != null && email != null && phone != null && address != null && roleString != null) {
             val role = try {
@@ -60,7 +64,7 @@ class DataStoreManager(private val context: Context) {
                 Role.USER
             }
 
-            Users(uid, name, email, address, phone, role, profileImageUrl ?: "")
+            Users(uid, name, email, address, phone, role, profileImageUrl ?: "", latitude, longitude)
         } else {
             null
         }

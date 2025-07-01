@@ -25,23 +25,28 @@ class AuthRepository() {
         firebaseAuth.signOut()
     }
 
-    fun updateUser(uid: String, name: String, email: String, address: String, noHp: String): Task<Void> {
+    fun updateUser(
+        uid: String,
+        name: String,
+        email: String,
+        address: String,
+        noHp: String,
+        latitude: Double,
+        longitude: Double
+    ): Task<Void> {
         val updatedUser = mapOf(
             "name" to name,
             "email" to email,
             "address" to address,
-            "noHp" to noHp
+            "noHp" to noHp,
+            "latitude" to latitude,
+            "longitude" to longitude
         )
 
         return db.collection("users").document(uid)
             .update(updatedUser)
-            .addOnSuccessListener {
-
-            }
-            .addOnFailureListener { e ->
-
-            }
     }
+
 
     fun loginWithGoogle(idToken: String): Task<AuthResult> {
         val credential = GoogleAuthProvider.getCredential(idToken, null)
@@ -52,23 +57,28 @@ class AuthRepository() {
         return  firebaseAuth.createUserWithEmailAndPassword(email, password)
     }
 
-    fun saveUserData(uid: String, name: String, email: String, address: String, noHp: String){
+    fun saveUserData(
+        uid: String,
+        name: String,
+        email: String,
+        address: String,
+        noHp: String,
+        latitude: Double = 0.0,
+        longitude: Double = 0.0
+    ) {
         val user = Users(
             uid = uid,
             name = name,
             email = email,
             address = address,
             noHp = noHp,
-            role = Role.USER
+            role = Role.USER,
+            latitude = latitude,
+            longitude = longitude
         )
-        db.collection("users").document(uid).set(user).addOnCompleteListener{
-
-        }
-            .addOnFailureListener{
-
-            }
-
+        db.collection("users").document(uid).set(user)
     }
+
 
     suspend fun getUserData(uid: String): Users? {
         return try {

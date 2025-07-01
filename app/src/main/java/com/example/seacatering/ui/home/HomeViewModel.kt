@@ -6,6 +6,7 @@ import android.location.Geocoder
 import android.location.Location
 import androidx.annotation.RequiresPermission
 import androidx.lifecycle.AndroidViewModel
+import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import com.google.android.gms.location.FusedLocationProviderClient
 import com.google.android.gms.location.LocationServices
@@ -21,12 +22,17 @@ class HomeViewModel(app: Application): AndroidViewModel(app) {
     private val _locationName = MutableLiveData<String>()
     val locationName = _locationName
 
+    private val _locationLatLng = MutableLiveData<Pair<Double, Double>>()
+    val locationLatLng: LiveData<Pair<Double, Double>> = _locationLatLng
+
     @RequiresPermission(allOf = [Manifest.permission.ACCESS_FINE_LOCATION, Manifest.permission.ACCESS_COARSE_LOCATION])
     fun fetchUserLocation() {
         fusedLocationClient.lastLocation.addOnSuccessListener { location: Location? ->
             location?.let {
+                _locationLatLng.postValue(Pair(it.latitude, it.longitude))
                 getCityAndProvince(it)
             } ?: run {
+                _locationLatLng.postValue(Pair(0.0, 0.0))
                 _locationName.postValue("Location not available")
             }
         }
