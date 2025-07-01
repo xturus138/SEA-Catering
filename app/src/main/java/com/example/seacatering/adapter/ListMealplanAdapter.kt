@@ -61,13 +61,6 @@ class ListMealplanAdapter(private var meals: List<Meals>, private val listener: 
         holder.ivNotSelected.visibility =
             if (position == selectedPosition) View.GONE else View.VISIBLE
 
-        holder.itemView.setBackgroundColor(
-            ContextCompat.getColor(
-                holder.itemView.context,
-                if (position == selectedPosition) R.color.blueDark else R.color.white
-            )
-        )
-
         holder.itemView.setOnClickListener {
             val clickedPosition = holder.bindingAdapterPosition
             if (clickedPosition == RecyclerView.NO_POSITION) return@setOnClickListener

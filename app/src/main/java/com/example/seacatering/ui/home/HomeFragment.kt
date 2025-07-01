@@ -32,6 +32,8 @@ class HomeFragment : Fragment() {
     private lateinit var homeTestimonialViewModel: HomeTestimonialViewModel
     private lateinit var testimonialAdapter: TestimonialAdapter
     private lateinit var dataStoreManager: DataStoreManager
+    private var isRecommendedLoaded = false
+
 
     @RequiresPermission(allOf = [Manifest.permission.ACCESS_FINE_LOCATION, Manifest.permission.ACCESS_COARSE_LOCATION])
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View {
@@ -102,10 +104,17 @@ class HomeFragment : Fragment() {
                 binding.titleThird.text = recommendedItems.getOrNull(2)?.title.orEmpty()
             }
 
+            isRecommendedLoaded = true
             binding.progressBarRecommended.visibility = View.GONE
             showRecommendedItems()
+
+            if (homeTestimonialViewModel.testimonials.value.isNullOrEmpty()) {
+                binding.rvReview.visibility = View.GONE
+                binding.progressBarRv.visibility = View.VISIBLE
+            }
         }
     }
+
 
     private fun loadUserProfileImage() {
         lifecycleScope.launch {
@@ -147,14 +156,22 @@ class HomeFragment : Fragment() {
     private fun observeTestimonials() {
         homeTestimonialViewModel.testimonials.observe(viewLifecycleOwner) {
             testimonialAdapter.updateData(it)
+            if (isRecommendedLoaded) {
+                binding.progressBarRv.visibility = View.GONE
+                binding.rvReview.visibility = View.VISIBLE
+            }
         }
     }
 
+
     private fun observeTestimonialLoading() {
         homeTestimonialViewModel.isLoadingTestimonials.observe(viewLifecycleOwner) { isLoading ->
-            binding.progressBarRv.visibility = if (isLoading) View.VISIBLE else View.GONE
+            if (isRecommendedLoaded) {
+                binding.progressBarRv.visibility = if (isLoading) View.VISIBLE else View.GONE
+            }
         }
     }
+
 
     private fun hideRecommendedItems() {
         binding.linearLayoutOffersStatic.visibility = View.GONE
