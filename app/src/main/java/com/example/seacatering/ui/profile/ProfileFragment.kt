@@ -1,5 +1,7 @@
 package com.example.seacatering.ui.profile
 
+import android.annotation.SuppressLint
+import android.app.Activity
 import android.content.Intent
 import android.net.Uri
 import android.os.Bundle
@@ -8,6 +10,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
+import android.view.inputmethod.InputMethodManager
 import androidx.activity.result.ActivityResultLauncher
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.fragment.app.Fragment
@@ -108,25 +111,6 @@ class ProfileFragment : Fragment() {
             requireActivity().finish()
         }
 
-//        binding.btnContactWhatsapp.setOnClickListener {
-//            val phoneNumber = "08123456789"
-//            val message = "I want to ask.."
-//
-//            try {
-//                val whatsappIntent = Intent(Intent.ACTION_VIEW)
-//                whatsappIntent.data = "https://api.whatsapp.com/send?phone=$phoneNumber&text=${Uri.encode(message)}".toUri()
-//                startActivity(whatsappIntent)
-//            } catch (e: Exception) {
-//                val dialIntent = Intent(Intent.ACTION_DIAL)
-//                dialIntent.data = "tel:$phoneNumber".toUri()
-//                try {
-//                    startActivity(dialIntent)
-//                } catch (dialException: Exception) {
-//                    Toast.makeText(requireContext(), "No application found to handle this request.", Toast.LENGTH_SHORT).show()
-//                }
-//            }
-//        }
-
 
         binding.cardView.setOnClickListener {
             pickImageLauncher.launch("image/*")
@@ -135,8 +119,14 @@ class ProfileFragment : Fragment() {
         return binding.root
     }
 
+    @SuppressLint("ClickableViewAccessibility")
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        view.setOnTouchListener { _, _ ->
+            hideKeyboard(requireActivity())
+            view.clearFocus()
+            false
+        }
         (activity as? BottomVisibilityController)?.setBottomNavVisible(false)
         viewModel.updateResult.observe(viewLifecycleOwner) { success ->
             if (success) {
@@ -159,5 +149,13 @@ class ProfileFragment : Fragment() {
         val noHp = binding.textInputHp.text.toString()
         viewModel.updateUser(name, email, address, noHp)
     }
+
+    private fun hideKeyboard(activity: Activity) {
+        val inputMethodManager = activity.getSystemService(Activity.INPUT_METHOD_SERVICE) as InputMethodManager
+        val view = activity.currentFocus ?: View(activity)
+        inputMethodManager.hideSoftInputFromWindow(view.windowToken, 0)
+    }
+
+
 
 }

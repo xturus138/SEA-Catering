@@ -32,7 +32,7 @@
     <string name="inputPasswordRegister">Make sure your password is strong</string>
     <string name="labelConfirmPasswordRegister">Confirm Password</string>
     <string name="inputConfirmPasswordRegister">Confirm password</string>
-    <string name="textNoteRegister">Back to login</string>
+    <string name="textNoteRegister">Back to login!</string>
     <string name="buttonGoogleSignUpRegister">Sign up with Google</string>
     <string name="buttonSignUpRegister">Create Account</string>
     <string name="tvAdminDashboardTitle">Admin Dashboard</string>
@@ -84,7 +84,7 @@
     <string name="full_name_subs">Full Name</string>
     <string name="ex_raditya_aryabudhi_ramadhan">Ex: Raditya Aryabudhi Ramadhan</string>
     <string name="phone_number">Phone Number</string>
-    <string name="ex_6282121243">Ex: +6282121243</string>
+    <string name="ex_6282121243">Ex: 08282121243</string>
     <string name="plan_selection">Plan Selection</string>
     <string name="meal_type">Meal Type</string>
     <string name="breakfast">Breakfast</string>

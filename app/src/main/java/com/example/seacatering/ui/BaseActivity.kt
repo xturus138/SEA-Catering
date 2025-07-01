@@ -1,11 +1,14 @@
 package com.example.seacatering.ui
 
+import android.app.Activity
 import android.content.Context
 import android.content.Intent
 import android.net.ConnectivityManager
 import android.os.Bundle
 import android.util.Log
+import android.view.MotionEvent
 import android.view.View
+import android.view.inputmethod.InputMethodManager
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.app.AppCompatDelegate
 import androidx.fragment.app.Fragment
@@ -90,6 +93,20 @@ class BaseActivity : AppCompatActivity(), BottomVisibilityController {
         }
     }
 
+
+    override fun onTouchEvent(event: MotionEvent?): Boolean {
+        hideKeyboard(this)
+        currentFocus?.clearFocus()
+        return super.onTouchEvent(event)
+    }
+
+
+
+    private fun hideKeyboard(activity: Activity) {
+        val inputMethodManager = activity.getSystemService(Activity.INPUT_METHOD_SERVICE) as InputMethodManager
+        val view = activity.currentFocus ?: View(activity)
+        inputMethodManager.hideSoftInputFromWindow(view.windowToken, 0)
+    }
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)
 

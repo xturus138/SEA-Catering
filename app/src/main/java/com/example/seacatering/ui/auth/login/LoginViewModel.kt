@@ -90,7 +90,7 @@ class LoginViewModel (private val app: Application) : AndroidViewModel(app) {
                     _errorMessage.value = "User not found after Google sign-in"
                 }
             } else {
-                _errorMessage.value = task.exception?.message
+                _errorMessage.value = "Unknown Error Please Contact Admin"
             }
         }
     }

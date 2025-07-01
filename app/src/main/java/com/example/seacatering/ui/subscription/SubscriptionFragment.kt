@@ -1,5 +1,6 @@
 package com.example.seacatering.ui.subscription
 
+import android.annotation.SuppressLint
 import android.app.Activity
 import android.content.Intent
 import android.os.Bundle
@@ -7,6 +8,7 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.view.inputmethod.InputMethodManager
 import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentManager
@@ -25,6 +27,7 @@ import com.google.android.gms.wallet.Wallet
 import com.google.android.gms.wallet.WalletConstants
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.google.android.material.chip.Chip
+import com.google.android.material.internal.ViewUtils.hideKeyboard
 import org.json.JSONArray
 import org.json.JSONObject
 import java.text.NumberFormat
@@ -80,8 +83,14 @@ class SubscriptionFragment : Fragment() {
         return binding.root
     }
 
+    @SuppressLint("ClickableViewAccessibility")
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        view.setOnTouchListener { _, _ ->
+            hideKeyboard(requireActivity())
+            view.clearFocus()
+            false
+        }
 
         viewModel = ViewModelProvider(this, ViewModelProvider.AndroidViewModelFactory.getInstance(requireActivity().application)).get(SubscriptionViewModel::class.java)
 
@@ -95,6 +104,12 @@ class SubscriptionFragment : Fragment() {
         viewModel.userPhoneNumber.observe(viewLifecycleOwner) { phoneNumber ->
             phoneNumber?.let {
                 binding.inputNumber.setText(it)
+            }
+        }
+
+        viewModel.userName.observe(viewLifecycleOwner) { userName ->
+            userName?.let {
+                binding.inputName.setText(it)
             }
         }
 
@@ -279,6 +294,12 @@ class SubscriptionFragment : Fragment() {
 
     private fun isMealTypeSelected(): Boolean {
         return binding.checkboxBreakfast.isChecked || binding.checkboxLunch.isChecked || binding.checkboxDinner.isChecked
+    }
+
+    private fun hideKeyboard(activity: Activity) {
+        val inputMethodManager = activity.getSystemService(Activity.INPUT_METHOD_SERVICE) as InputMethodManager
+        val view = activity.currentFocus ?: View(activity)
+        inputMethodManager.hideSoftInputFromWindow(view.windowToken, 0)
     }
 
     private fun isDeliveryDaySelected(): Boolean {

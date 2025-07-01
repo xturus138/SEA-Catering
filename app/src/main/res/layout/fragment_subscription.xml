@@ -202,6 +202,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:id="@+id/chipMonday"
+                    app:chipBackgroundColor="@color/chip_background_color"
                     style="@style/Widget.MaterialComponents.Chip.Choice"
                     android:text="@string/monday"
                     android:checkable="true" />
@@ -210,6 +211,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:id="@+id/chipTuesday"
+                    app:chipBackgroundColor="@color/chip_background_color"
                     style="@style/Widget.MaterialComponents.Chip.Choice"
                     android:text="@string/tuesday"
                     android:checkable="true" />
@@ -218,6 +220,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:id="@+id/chipWednesday"
+                    app:chipBackgroundColor="@color/chip_background_color"
                     style="@style/Widget.MaterialComponents.Chip.Choice"
                     android:text="@string/wednesday"
                     android:checkable="true" />
@@ -226,6 +229,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:id="@+id/chipThursday"
+                    app:chipBackgroundColor="@color/chip_background_color"
                     style="@style/Widget.MaterialComponents.Chip.Choice"
                     android:text="@string/thursday"
                     android:checkable="true" />
@@ -234,6 +238,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:id="@+id/chipFriday"
+                    app:chipBackgroundColor="@color/chip_background_color"
                     style="@style/Widget.MaterialComponents.Chip.Choice"
                     android:text="@string/friday"
                     android:checkable="true" />
@@ -242,6 +247,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:id="@+id/chipSaturday"
+                    app:chipBackgroundColor="@color/chip_background_color"
                     style="@style/Widget.MaterialComponents.Chip.Choice"
                     android:text="@string/saturday"
                     android:checkable="true" />
@@ -250,6 +256,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:id="@+id/chipSunday"
+                    app:chipBackgroundColor="@color/chip_background_color"
                     style="@style/Widget.MaterialComponents.Chip.Choice"
                     android:text="@string/sunday"
                     android:checkable="true" />

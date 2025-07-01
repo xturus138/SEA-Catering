@@ -40,7 +40,7 @@
                     android:layout_weight="1"
                     android:text="@string/balanced_nmeal_plan"
                     android:textColor="@color/white"
-                    android:textSize="20sp"
+                    android:textSize="24sp"
                     android:textStyle="bold" />
 
                 <TextView
@@ -62,7 +62,7 @@
             android:layout_marginTop="30dp"
             android:text="@string/your_plan"
             android:textColor="@color/blueDark"
-            android:textSize="14sp"
+            android:textSize="20sp"
             android:textStyle="bold"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/frameLayout" />
@@ -71,6 +71,7 @@
             android:id="@+id/rv_mealPlan"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:padding="2dp"
             android:layout_marginTop="26dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
@@ -87,7 +88,9 @@
 
         <com.google.android.material.button.MaterialButton
             android:id="@+id/updateButton"
-            android:layout_width="259dp"
+            android:layout_marginStart="16dp"
+            android:layout_marginEnd="16dp"
+            android:layout_width="match_parent"
             android:layout_height="55dp"
             android:layout_marginTop="52dp"
             android:backgroundTint="@color/green"
@@ -97,5 +100,14 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/rv_mealPlan" />
+
+        <View
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/updateButton"
+            app:layout_constraintStart_toStartOf="parent"
+            android:layout_marginBottom="30dp"
+            app:layout_constraintEnd_toEndOf="parent" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 </ScrollView>

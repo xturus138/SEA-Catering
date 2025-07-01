@@ -44,6 +44,8 @@ android {
 }
 
 dependencies {
+    implementation ("androidx.swiperefreshlayout:swiperefreshlayout:1.1.0")
+
     implementation("com.google.android.gms:play-services-wallet:18.0.0")
     implementation(libs.glide)
     implementation("com.google.android.gms:play-services-location:21.3.0")

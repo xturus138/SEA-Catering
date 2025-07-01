@@ -29,6 +29,9 @@ class SubscriptionViewModel(application: Application) : AndroidViewModel(applica
     private val _userPhoneNumber = MutableLiveData<String?>()
     val userPhoneNumber: LiveData<String?> get() = _userPhoneNumber
 
+    private val _userName = MutableLiveData<String?>()
+    val userName: LiveData<String?> get() = _userName
+
     private val _totalPrice = MutableLiveData<Double>()
     val totalPrice: LiveData<Double> get() = _totalPrice
 
@@ -43,6 +46,7 @@ class SubscriptionViewModel(application: Application) : AndroidViewModel(applica
         viewModelScope.launch {
             dataStoreManager.userData.firstOrNull()?.let { user ->
                 _userPhoneNumber.value = user.noHp
+                _userName.value = user.name
             }
         }
     }

@@ -26,6 +26,7 @@ class ListMealplanAdapter(private var meals: List<Meals>, private val listener: 
         val rvDetails: RecyclerView = itemView.findViewById(R.id.rvDetails)
         val ivMealImage: ImageView = itemView.findViewById(R.id.ivMealImage)
         val ivSelected: ImageView = itemView.findViewById(R.id.ivSelected)
+        val ivNotSelected: ImageView = itemView.findViewById(R.id.ivNotSelected)
     }
 
     interface onMealClickListener {
@@ -55,6 +56,17 @@ class ListMealplanAdapter(private var meals: List<Meals>, private val listener: 
 
         holder.ivSelected.visibility =
             if (position == selectedPosition) View.VISIBLE else View.GONE
+
+
+        holder.ivNotSelected.visibility =
+            if (position == selectedPosition) View.GONE else View.VISIBLE
+
+        holder.itemView.setBackgroundColor(
+            ContextCompat.getColor(
+                holder.itemView.context,
+                if (position == selectedPosition) R.color.blueDark else R.color.white
+            )
+        )
 
         holder.itemView.setOnClickListener {
             val clickedPosition = holder.bindingAdapterPosition

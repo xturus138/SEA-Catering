@@ -4,8 +4,11 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     xmlns:tools="http://schemas.android.com/tools"
-    android:layout_marginBottom="27dp"
-    android:backgroundTint="@color/magenta"
+    android:layout_marginEnd="16dp"
+    android:layout_marginStart="16dp"
+    android:layout_marginTop="20dp"
+    android:layout_marginBottom="8dp"
+    android:backgroundTint="@color/whiteOne"
     app:cardCornerRadius="12dp"
     app:cardElevation="4dp">
 

@@ -113,7 +113,8 @@
                 android:layout_height="wrap_content"
                 android:numStars="5"
                 android:stepSize="1.0"
-                android:rating="0"
+                android:rating="5"
+                android:theme="@style/CustomRatingBar"
                 android:isIndicator="false"
                 />
             <com.google.android.material.button.MaterialButton

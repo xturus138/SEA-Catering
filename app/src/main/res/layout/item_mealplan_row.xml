@@ -6,6 +6,8 @@
     android:id="@+id/cardRoot"
     android:layout_height="278dp"
     android:layout_marginStart="16dp"
+    android:layout_marginTop="2dp"
+    app:cardElevation="2dp"
     android:layout_marginEnd="16dp"
     android:backgroundTint="@color/magenta"
     app:cardCornerRadius="20dp">
@@ -22,11 +24,21 @@
             android:layout_height="24dp"
             android:layout_gravity="end"
             android:src="@android:drawable/checkbox_on_background"
+            android:visibility="visible" />
+
+        <ImageView
+            android:id="@+id/ivNotSelected"
+            android:layout_width="24dp"
+            android:layout_height="24dp"
+            android:layout_gravity="end"
+            android:src="@android:drawable/checkbox_off_background"
             android:visibility="gone" />
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:gravity="center"
             android:orientation="horizontal">
 
 
@@ -40,10 +52,10 @@
                 <TextView
                     android:id="@+id/tvName"
                     android:layout_width="match_parent"
-                    android:layout_height="40dp"
+                    android:layout_height="wrap_content"
                     android:text="@string/healthy_meal_packages"
                     android:textColor="@color/blueDark"
-                    android:textSize="14sp"
+                    android:textSize="16sp"
                     android:textStyle="bold"
                     android:gravity="start|center_vertical"
                     />
@@ -51,10 +63,10 @@
                 <TextView
                     android:id="@+id/tvPrice"
                     android:layout_width="match_parent"
-                    android:layout_height="50dp"
+                    android:layout_height="wrap_content"
                     android:text="@string/rp120_000"
                     android:textColor="@color/blueDark"
-                    android:textSize="20sp"
+                    android:textSize="24sp"
                     android:textStyle="bold"
                     android:gravity="start|center_vertical"
                     />
@@ -62,8 +74,9 @@
                 <TextView
                     android:id="@+id/tvDescriptionTitle"
                     android:layout_width="match_parent"
-                    android:layout_height="40dp"
+                    android:layout_height="wrap_content"
                     android:text="@string/what_s_include"
+                    android:layout_marginTop="8dp"
                     android:textColor="@color/blueDark"
                     android:textSize="14sp"
                     android:textStyle="bold"
@@ -82,6 +95,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:adjustViewBounds="true"
+                    android:clipToOutline="true"
                     android:scaleType="centerCrop" />
             </androidx.cardview.widget.CardView>
 

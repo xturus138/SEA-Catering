@@ -4,7 +4,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="250dp"
-    android:layout_height="wrap_content"
+    android:layout_height="150dp"
     android:layout_marginStart="8dp"
     android:layout_marginEnd="8dp"
     android:layout_marginBottom="8dp"
@@ -53,7 +53,7 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toBottomOf="@id/tvCustomerName"
-            tools:text="This service is good, the food is delicious and healthy. Highly recommended!" />
+            tools:text="I have been using this catering service for a few weeks now and I am really satisfied. The meals are always fresh, healthy, and very tasty. The portions are generous and delivery is always on time. Customer service is friendly and helpful. I highly recommend this to everyone." />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </com.google.android.material.card.MaterialCardView>

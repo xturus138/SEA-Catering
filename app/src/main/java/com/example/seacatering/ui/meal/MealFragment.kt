@@ -4,6 +4,7 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.lifecycleScope
@@ -41,9 +42,11 @@ class MealFragment : Fragment(), ListMealplanAdapter.onMealClickListener {
         observeViewModel()
 
         binding.updateButton.setOnClickListener {
-            selectedMeal?.let { meal ->
+            if (selectedMeal == null) {
+                Toast.makeText(requireContext(), "Choose The Meal First!", Toast.LENGTH_SHORT).show()
+            } else {
                 val bundle = Bundle().apply {
-                    putParcelable("meal_data", meal)
+                    putParcelable("meal_data", selectedMeal)
                 }
                 val detailFragment = MealDetailFragment().apply {
                     arguments = bundle
@@ -62,7 +65,11 @@ class MealFragment : Fragment(), ListMealplanAdapter.onMealClickListener {
     private fun observeViewModel() {
         viewModel.meals.observe(viewLifecycleOwner) { meals ->
             adapter.updateData(meals)
-            binding.updateButton.visibility = if (meals.isNotEmpty()) View.VISIBLE else View.GONE
+            binding.updateButton.visibility = if (meals.isNotEmpty()) {
+                View.VISIBLE
+            } else {
+                View.GONE
+            }
             binding.textView14.visibility = if (meals.isNotEmpty()) View.VISIBLE else View.GONE
         }
 

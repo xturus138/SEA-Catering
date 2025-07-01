@@ -65,8 +65,16 @@ class AddTestimonialFragment : Fragment() {
         val review = binding.inputReview.text.toString().trim()
         val rating = binding.ratingBar.rating
 
+        val wordCount = review.trim().split(" ").filter { it.isNotBlank() }.size
+
+        if (wordCount > 50) {
+            Toast.makeText(requireContext(), "The review must not exceed 50 words.", Toast.LENGTH_SHORT).show()
+            return
+        }
+
         viewModel.submitTestimonial(review, rating)
     }
+
 
     override fun onResume() {
         super.onResume()
