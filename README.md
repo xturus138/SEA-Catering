@@ -42,10 +42,10 @@ Semua proses — mulai dari pemesanan, pengaturan hari pengiriman, hingga pelaca
 <table>
   <tr>
     <td align="center">
-      <img src="https://github.com/user-attachments/assets/fecec255-d2aa-4098-8962-f6f95391b802" alt="Login Screen" width="200"/>
+      <img src="https://github.com/user-attachments/assets/44a8bf38-6965-4b2e-82ac-b3ac915d3775" alt="WhatsApp Image 1" width="200"/>
     </td>
     <td align="center">
-      <img src="https://github.com/user-attachments/assets/0bce12a5-07d9-47e3-93e4-9c8e589aefec" alt="Register Screen" width="200"/>
+      <img src="https://github.com/user-attachments/assets/c0682527-688d-4613-8d12-ea7c48f48518" alt="WhatsApp Image 2" width="200"/>
     </td>
     <td align="center">
       <img src="https://github.com/user-attachments/assets/21627626-e737-4f60-b8ce-a23794587ff0" alt="Login with Google" width="200"/>
@@ -56,64 +56,62 @@ Semua proses — mulai dari pemesanan, pengaturan hari pengiriman, hingga pelaca
 
 
 
-### 🏠 Eksplorasi Menu
-- Navigasi ke halaman **Home**, **Meals Plan**, dan **Subscription**  
-- Tampilan katalog makanan sehat
+<h3>🏠 Eksplorasi Menu</h3>
+<ul>
+  <li>Navigasi ke halaman <strong>Home</strong>, <strong>Meals Plan</strong>, dan <strong>Subscription</strong></li>
+  <li>Tampilan katalog makanan sehat</li>
+</ul>
+
 <table>
   <tr>
     <td align="center">
-      <img src="https://github.com/user-attachments/assets/66b8f742-a737-4e76-9bec-bfea52724dc8" alt="Home Screen" width="200"/>
+      <img src="https://github.com/user-attachments/assets/4e00ee93-28c6-4730-903c-8a22a7e309ac" alt="Home Page 1" width="200"/>
     </td>
     <td align="center">
-      <img src="https://github.com/user-attachments/assets/51e0ada5-bd14-412c-afd4-b65c605fddbd" alt="Meals Plan Screen" width="200"/>
+      <img src="https://github.com/user-attachments/assets/589fb6ef-7f8c-4286-a4c3-1cf97b3a682e" alt="Meals Plan" width="200"/>
     </td>
     <td align="center">
-      <img src="https://github.com/user-attachments/assets/8e7289ce-e2b3-49dc-b7b0-4966f63f1ba6" alt="Subscription Screen" width="200"/>
+      <img src="https://github.com/user-attachments/assets/8711bcf7-f9bd-4a41-b35d-82b360d9fa68" alt="Subscription Page" width="200"/>
     </td>
     <td align="center">
-      <img src="https://github.com/user-attachments/assets/e1b2a6f5-5822-4d7a-9b49-e02ba173c535" alt="Food Catalog Screen" width="200"/>
+      <img src="https://github.com/user-attachments/assets/2763819d-0b93-49e8-86e6-0dbd83cef669" alt="Meal List" width="200"/>
+    </td>
+    <td align="center">
+      <img src="https://github.com/user-attachments/assets/d4a2e8b4-84d6-4f4e-9ef3-de785f5a6c7f" alt="Meal Detail" width="200"/>
     </td>
   </tr>
 </table>
 
 
-### 📦 Kelola Langganan
-- Pilih paket katering, atur hari kirim, dan simpan data Anda
-- Lihat, jeda, atau batalkan langganan kapan saja dari dashboard
+
+<h3>📦 Kelola Langganan</h3>
+<ul>
+  <li>Pilih paket katering, atur hari kirim, dan simpan data Anda</li>
+  <li>Lihat, jeda, atau batalkan langganan kapan saja dari dashboard</li>
+</ul>
+
+<h3>✍️ Ulasan & Testimoni</h3>
+<ul>
+  <li>Beri feedback dan rating apps untuk bantu kami jadi lebih baik</li>
+</ul>
 
 <table>
   <tr>
-    <td align="center">
-      <img src="https://github.com/user-attachments/assets/8dfd2c0e-aaa0-4a28-adef-71d3efca1488" alt="Subscription Selection 1" width="200"/>
-    </td>
-    <td align="center">
-      <img src="https://github.com/user-attachments/assets/dbd0ef5a-e956-487e-b71e-2837259176c1" alt="Subscription Selection 2" width="200"/>
-    </td>
-    <td align="center">
-      <img src="https://github.com/user-attachments/assets/019dae74-4bdd-4973-96da-f06965a271f7" alt="Subscription Confirmation" width="200"/>
-    </td>
-    <td align="center">
-      <img src="https://github.com/user-attachments/assets/6ad83342-e9af-43c8-b4bb-5df48d27656d" alt="My Subscription" width="200"/>
-    </td>
-    <td align="center">
-      <img src="https://github.com/user-attachments/assets/7a4657db-3b24-4b85-98c8-430cb3dc19d2" alt="Subscription Detail" width="200"/>
-    </td>
+    <td><img src="https://github.com/user-attachments/assets/010f94bb-2d89-4f7d-880d-a4756d4edd92" width="200" alt="Subscription 1" /></td>
+    <td><img src="https://github.com/user-attachments/assets/55d236ec-6e12-4491-8088-73df048d1a8a" width="200" alt="Subscription 2" /></td>
+    <td><img src="https://github.com/user-attachments/assets/f205380a-eb5c-4cff-b19b-27b5631a7df7" width="200" alt="Subscription 3" /></td>
   </tr>
-</table>
-
-### ✍️ Ulasan & Testimoni
-- Beri feedback dan rating apps untuk bantu kami jadi lebih baik
-
-<table>
   <tr>
-    <td align="center">
-      <img src="https://github.com/user-attachments/assets/a12ab0cd-0dc6-43ab-a4b0-6beaeb1280a9" alt="Review Screen 1" width="200"/>
-    </td>
-    <td align="center">
-      <img src="https://github.com/user-attachments/assets/761683d5-0347-419a-86b6-37ac3a738581" alt="Review Screen 2" width="200"/>
-    </td>
+    <td><img src="https://github.com/user-attachments/assets/d53e4b63-a832-4b26-9f40-1c23fb9baf14" width="200" alt="Subscription 4" /></td>
+    <td><img src="https://github.com/user-attachments/assets/162514f8-c421-4e9d-abbc-db58431b22c0" width="200" alt="Subscription 5" /></td>
+    <td><img src="https://github.com/user-attachments/assets/be8668e5-8be2-488e-987d-a2a933fb4466" width="200" alt="Subscription 6" /></td>
+  </tr>
+  <tr>
+    <td><img src="https://github.com/user-attachments/assets/1dc18489-eb2e-4c2f-b4a6-90e3702ca014" width="200" alt="Subscription 7" /></td>
   </tr>
 </table>
+
+
 
 
 ### 📈 Fitur Admin
@@ -132,18 +130,22 @@ Semua proses — mulai dari pemesanan, pengaturan hari pengiriman, hingga pelaca
   </tr>
 </table>
 
-### 👋 Profile
-- Profile untuk data diri
+<h3>👋 Profile</h3>
+<ul>
+  <li>Profile untuk data diri</li>
+</ul>
+
 <table>
   <tr>
     <td align="center">
-      <img src="https://github.com/user-attachments/assets/2deeffa7-5317-4fc5-bb15-d844c86f8278" alt="User Profile" width="200"/>
+      <img src="https://github.com/user-attachments/assets/e7ef88fa-5f32-4cfe-bf1f-f5f87ebcfcd7" alt="Profile 1" width="200" />
     </td>
     <td align="center">
-      <img src="https://github.com/user-attachments/assets/92b19bdf-8ad2-457f-959b-8e8017123ddb" alt="Edit Profile" width="200"/>
+      <img src="https://github.com/user-attachments/assets/34e46b46-a457-4da0-95f2-d1f41c6bc572" alt="Profile 2" width="200" />
     </td>
   </tr>
 </table>
+
 
 
 ---
@@ -156,7 +158,7 @@ Aplikasi ini dibangun dengan:
 - **Arsitektur:** MVVM (Model-View-ViewModel)
 - **Navigasi:** Bottom Navigation
 - **Database & Auth:** Firebase Firestore + Firebase Auth
-- **Storage:** Github Storage + Firebase (Auth & Firestore)
+- **Storage:** Github Storage 
 
 ---
 ## Setup Emulator Menggunakan Android Studio
